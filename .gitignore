@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# User data
+.zima_history.json
+.zima_memory.json
+
+# Test workspace
+zima_test_workspace/
+
+# Backups
+*.backup
+*.v1.backup
+
+# Build artifacts
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.log
+
+# Example projects (exclude from repo)
+laravel-project/
+hello.php
+hello_me.php
+sote.txt
+mambo.md
+
+# System prompts archive (too large)
+system-prompts-and-models-of-ai-tools-main/
+
+# Old versions
+qwen-agent.js
+qwen-agent-enhanced.js
+unminify.js

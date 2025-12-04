@@ -1,0 +1,64 @@
+{
+  "name": "@zima-ai/zima",
+  "version": "3.0.0",
+  "description": "Local AI coding assistant powered by Qwen2.5-Coder-14B via Ollama. Claude Code alternative that runs 100% on your machine.",
+  "main": "zima.js",
+  "bin": {
+    "zima": "./zima.js"
+  },
+  "scripts": {
+    "start": "node zima.js",
+    "postinstall": "node postinstall.js"
+  },
+  "keywords": [
+    "ai",
+    "coding",
+    "assistant",
+    "qwen",
+    "ollama",
+    "cli",
+    "claude-code",
+    "local-ai",
+    "code-assistant",
+    "developer-tools",
+    "ai-pair-programming",
+    "llm",
+    "tui",
+    "terminal"
+  ],
+  "author": "ZIMA Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Andrew-Mashamba/zima_code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Andrew-Mashamba/zima_code/issues"
+  },
+  "homepage": "https://github.com/Andrew-Mashamba/zima_code#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.11.0",
+    "chalk": "^4.1.2",
+    "glob": "^13.0.0"
+  },
+  "devDependencies": {},
+  "preferGlobal": true,
+  "files": [
+    "zima.js",
+    "postinstall.js",
+    "ZIMA_GUIDE.md",
+    "TOOLS_REFERENCE.md",
+    "README.md",
+    "README-INSTALL.md",
+    "INSTALL-QUICK.md"
+  ]
+}
