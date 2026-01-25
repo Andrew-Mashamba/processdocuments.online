@@ -1,0 +1,60 @@
+# JSON PROCESSING TEST PROMPTS
+# Copy and paste these prompts to test JSON tool functionality
+
+## JSON_001: Validate JSON
+Validate the JSON file at tests/input/sample_data.json and report if it's valid or list any structural issues found.
+
+---
+
+## JSON_002: Repair Invalid JSON
+Repair the invalid JSON file at tests/input/invalid_json.json. Fix any syntax errors and save the corrected version.
+
+---
+
+## JSON_003: Transform JSON - Filter
+Transform tests/input/sample_data.json to extract only employees from the Engineering department. Output as a new JSON file.
+
+---
+
+## JSON_004: Transform JSON - Restructure
+Transform tests/input/sample_data.json to create a new structure where employees are grouped by department. Each department should be a key with an array of employee objects.
+
+---
+
+## JSON_005: JSON to PDF
+Convert the employee data from tests/input/sample_data.json to a professionally formatted PDF document with a table.
+
+---
+
+## JSON_006: Sign JSON with HMAC
+Generate HMAC signing keys and digitally sign the employee data from tests/input/sample_data.json.
+
+---
+
+## JSON_007: Verify JSON Signature
+After signing the JSON file, verify that the signature is valid and the data hasn't been tampered with.
+
+---
+
+## JSON_008: JSON to CSV
+Convert the employees array from tests/input/sample_data.json to a CSV file with headers.
+
+---
+
+## JSON_009: JSON to YAML
+Convert tests/input/sample_data.json to YAML format.
+
+---
+
+## JSON_010: Merge JSON Files
+Merge multiple JSON structures: combine the employee data with additional metadata like last_updated date and version number.
+
+---
+
+## JSON_011: Query JSON
+Query tests/input/sample_data.json to find all employees with salary greater than $80,000 and return their names and departments.
+
+---
+
+## JSON_012: Format/Pretty Print JSON
+Read tests/input/sample_data.json and output a pretty-printed version with proper indentation (4 spaces).

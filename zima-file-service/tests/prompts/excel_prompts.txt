@@ -1,0 +1,50 @@
+# EXCEL PROCESSING TEST PROMPTS
+# Copy and paste these prompts to test Excel tool functionality
+
+## EXCEL_001: Create Excel from JSON
+Create an Excel spreadsheet from the employee data in tests/input/sample_data.json. Include all employee records with columns for ID, Name, Email, Department, Salary, and Hire Date. Format the salary column as currency.
+
+---
+
+## EXCEL_002: Create Excel from CSV with Charts
+Convert the sales data in tests/input/sales_data.csv to an Excel file. Add a bar chart showing total sales by region and a line chart showing daily sales trends.
+
+---
+
+## EXCEL_003: Add Conditional Formatting
+Create an Excel file with the employee salaries from tests/input/sample_data.json and add conditional formatting: highlight salaries above $90,000 in green and below $70,000 in red.
+
+---
+
+## EXCEL_004: Create Pivot Summary
+Create an Excel file from tests/input/sales_data.csv and add a pivot summary showing total sales by product and region.
+
+---
+
+## EXCEL_005: Add Formulas
+Create an Excel spreadsheet with the sales data from tests/input/sales_data.csv and add formulas to calculate: total revenue, average unit price, and quantity sold per product.
+
+---
+
+## EXCEL_006: Compress Workbook
+Create an Excel file from the sales data and then compress it to reduce file size.
+
+---
+
+## EXCEL_007: Protect Workbook
+Create an Excel file with employee data and protect it with password "secure123" to prevent unauthorized editing.
+
+---
+
+## EXCEL_008: Find and Replace in Excel
+Create an Excel file from the sales data and replace all occurrences of "Widget" with "Product".
+
+---
+
+## EXCEL_009: Extract Sheets
+Create an Excel workbook with multiple sheets (one per region from sales data) and then extract just the "North" sheet to a separate file.
+
+---
+
+## EXCEL_010: Validate Excel Data
+Create an Excel file from the sales data and validate that all Quantity values are positive numbers and all Total values match Quantity * Unit Price.

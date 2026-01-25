@@ -1,0 +1,373 @@
+{
+  "test_suite": "ZIMA Document Processing Tools",
+  "version": "1.0",
+  "description": "Comprehensive test prompts to validate all tool categories",
+
+  "categories": {
+    "excel": {
+      "description": "Excel Processing Tools",
+      "tests": [
+        {
+          "id": "excel_001",
+          "name": "Create Excel from JSON",
+          "prompt": "Create an Excel spreadsheet from the employee data in tests/input/sample_data.json. Include all employee records with columns for ID, Name, Email, Department, Salary, and Hire Date. Format the salary column as currency.",
+          "expected_tools": ["create_excel"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/employees.xlsx"
+        },
+        {
+          "id": "excel_002",
+          "name": "Create Excel from CSV with Charts",
+          "prompt": "Convert the sales data in tests/input/sales_data.csv to an Excel file. Add a bar chart showing total sales by region and a line chart showing daily sales trends.",
+          "expected_tools": ["create_excel", "add_chart"],
+          "input_files": ["tests/input/sales_data.csv"],
+          "expected_output": "generated_files/sales_report.xlsx"
+        },
+        {
+          "id": "excel_003",
+          "name": "Add Conditional Formatting",
+          "prompt": "Create an Excel file with the employee salaries and add conditional formatting: highlight salaries above $90,000 in green and below $70,000 in red.",
+          "expected_tools": ["create_excel", "add_conditional_formatting"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/salary_highlighted.xlsx"
+        },
+        {
+          "id": "excel_004",
+          "name": "Create Pivot Summary",
+          "prompt": "Create an Excel file from the sales data and add a pivot summary showing total sales by product and region.",
+          "expected_tools": ["create_excel", "create_pivot_summary"],
+          "input_files": ["tests/input/sales_data.csv"],
+          "expected_output": "generated_files/sales_pivot.xlsx"
+        },
+        {
+          "id": "excel_005",
+          "name": "Add Formulas",
+          "prompt": "Create an Excel spreadsheet with the sales data and add formulas to calculate: total revenue, average unit price, and quantity sold per product.",
+          "expected_tools": ["create_excel", "add_formulas"],
+          "input_files": ["tests/input/sales_data.csv"],
+          "expected_output": "generated_files/sales_formulas.xlsx"
+        }
+      ]
+    },
+
+    "pdf": {
+      "description": "PDF Processing Tools",
+      "tests": [
+        {
+          "id": "pdf_001",
+          "name": "Create PDF Report",
+          "prompt": "Create a professional PDF document from the quarterly report in tests/input/report_content.txt. Use proper formatting with headers, bullet points, and a table of contents.",
+          "expected_tools": ["create_pdf"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/quarterly_report.pdf"
+        },
+        {
+          "id": "pdf_002",
+          "name": "Create PDF with Watermark",
+          "prompt": "Create a PDF from the report content and add a 'CONFIDENTIAL' diagonal watermark on every page.",
+          "expected_tools": ["create_pdf", "add_watermark"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/confidential_report.pdf"
+        },
+        {
+          "id": "pdf_003",
+          "name": "Create Protected PDF",
+          "prompt": "Create a PDF from the employee data and protect it with password 'secure123'. Disable printing and copying.",
+          "expected_tools": ["create_pdf", "protect_pdf"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/protected_employees.pdf"
+        },
+        {
+          "id": "pdf_004",
+          "name": "JSON to PDF Table",
+          "prompt": "Convert the employee JSON data to a nicely formatted PDF with a table showing all employees.",
+          "expected_tools": ["json_to_pdf"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/employees_table.pdf"
+        },
+        {
+          "id": "pdf_005",
+          "name": "Create Multi-page PDF",
+          "prompt": "Create a multi-page PDF report with: Page 1 - Title and Executive Summary, Page 2 - Employee Directory table, Page 3 - Department breakdown.",
+          "expected_tools": ["create_pdf"],
+          "input_files": ["tests/input/sample_data.json", "tests/input/report_content.txt"],
+          "expected_output": "generated_files/multi_page_report.pdf"
+        }
+      ]
+    },
+
+    "word": {
+      "description": "Word Processing Tools",
+      "tests": [
+        {
+          "id": "word_001",
+          "name": "Create Word Document",
+          "prompt": "Create a Word document from the quarterly report content with proper headings, formatting, and a professional layout.",
+          "expected_tools": ["create_word"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/quarterly_report.docx"
+        },
+        {
+          "id": "word_002",
+          "name": "Create Word with Table",
+          "prompt": "Create a Word document that includes the employee data as a formatted table with alternating row colors.",
+          "expected_tools": ["create_word"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/employee_directory.docx"
+        },
+        {
+          "id": "word_003",
+          "name": "Create Word with Headers/Footers",
+          "prompt": "Create a Word document from the report content. Add a header with 'Acme Corporation' and page numbers in the footer.",
+          "expected_tools": ["create_word", "add_headers_footers"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/report_with_headers.docx"
+        },
+        {
+          "id": "word_004",
+          "name": "Create Protected Word",
+          "prompt": "Create a Word document from the confidential report and protect it with password 'readonly123' to prevent editing.",
+          "expected_tools": ["create_word", "protect_word"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/protected_report.docx"
+        },
+        {
+          "id": "word_005",
+          "name": "Mail Merge",
+          "prompt": "Create a mail merge template for welcome letters and merge it with the employee data to generate personalized letters.",
+          "expected_tools": ["mail_merge"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/welcome_letters.docx"
+        }
+      ]
+    },
+
+    "powerpoint": {
+      "description": "PowerPoint Processing Tools",
+      "tests": [
+        {
+          "id": "ppt_001",
+          "name": "Create Presentation",
+          "prompt": "Create a PowerPoint presentation with 5 slides summarizing the quarterly report. Include a title slide, key highlights, regional performance, challenges, and recommendations.",
+          "expected_tools": ["create_powerpoint"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/quarterly_presentation.pptx"
+        },
+        {
+          "id": "ppt_002",
+          "name": "Create Presentation with Charts",
+          "prompt": "Create a PowerPoint presentation showing sales data with bar charts for regional comparison and pie charts for product distribution.",
+          "expected_tools": ["create_powerpoint", "add_slide"],
+          "input_files": ["tests/input/sales_data.csv"],
+          "expected_output": "generated_files/sales_presentation.pptx"
+        },
+        {
+          "id": "ppt_003",
+          "name": "Add Animations",
+          "prompt": "Create a presentation from the report content and add fade-in animations to all bullet points.",
+          "expected_tools": ["create_powerpoint", "add_animations"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/animated_presentation.pptx"
+        },
+        {
+          "id": "ppt_004",
+          "name": "Presentation to Images",
+          "prompt": "Create a presentation from the quarterly report and export each slide as a PNG image.",
+          "expected_tools": ["create_powerpoint", "presentation_to_images"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/slides/"
+        }
+      ]
+    },
+
+    "json": {
+      "description": "JSON Processing Tools",
+      "tests": [
+        {
+          "id": "json_001",
+          "name": "Validate JSON",
+          "prompt": "Validate the JSON file at tests/input/sample_data.json and report any structural issues.",
+          "expected_tools": ["validate_json"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "validation_result"
+        },
+        {
+          "id": "json_002",
+          "name": "Repair Invalid JSON",
+          "prompt": "Repair the invalid JSON file at tests/input/invalid_json.json and save the corrected version.",
+          "expected_tools": ["repair_json"],
+          "input_files": ["tests/input/invalid_json.json"],
+          "expected_output": "generated_files/repaired.json"
+        },
+        {
+          "id": "json_003",
+          "name": "Transform JSON",
+          "prompt": "Transform the employee data JSON to extract only Engineering department employees and output as a new JSON file.",
+          "expected_tools": ["transform_json"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/engineering_employees.json"
+        },
+        {
+          "id": "json_004",
+          "name": "JSON to PDF",
+          "prompt": "Convert the employee JSON data to a formatted PDF document with a table.",
+          "expected_tools": ["json_to_pdf"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/employees.pdf"
+        },
+        {
+          "id": "json_005",
+          "name": "Sign JSON",
+          "prompt": "Generate signing keys and digitally sign the employee data JSON file.",
+          "expected_tools": ["generate_json_signing_keys", "sign_json"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/signed_data.json"
+        }
+      ]
+    },
+
+    "conversion": {
+      "description": "File Conversion Tools",
+      "tests": [
+        {
+          "id": "conv_001",
+          "name": "Excel to PDF",
+          "prompt": "Create an Excel file from the sales data and convert it to PDF format.",
+          "expected_tools": ["create_excel", "excel_to_pdf"],
+          "input_files": ["tests/input/sales_data.csv"],
+          "expected_output": "generated_files/sales_report.pdf"
+        },
+        {
+          "id": "conv_002",
+          "name": "Word to PDF",
+          "prompt": "Create a Word document from the report and convert it to PDF.",
+          "expected_tools": ["create_word", "word_to_pdf"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/report.pdf"
+        },
+        {
+          "id": "conv_003",
+          "name": "CSV to JSON",
+          "prompt": "Convert the sales CSV file to JSON format.",
+          "expected_tools": ["csv_to_json"],
+          "input_files": ["tests/input/sales_data.csv"],
+          "expected_output": "generated_files/sales_data.json"
+        },
+        {
+          "id": "conv_004",
+          "name": "JSON to CSV",
+          "prompt": "Extract the employees array from the JSON data and convert it to CSV format.",
+          "expected_tools": ["json_to_csv"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/employees.csv"
+        },
+        {
+          "id": "conv_005",
+          "name": "JSON to YAML",
+          "prompt": "Convert the employee data JSON to YAML format.",
+          "expected_tools": ["json_to_yaml"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": "generated_files/employees.yaml"
+        }
+      ]
+    },
+
+    "text": {
+      "description": "Text Processing Tools",
+      "tests": [
+        {
+          "id": "text_001",
+          "name": "Word Count",
+          "prompt": "Count the words, lines, and characters in the quarterly report text file.",
+          "expected_tools": ["word_count"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "statistics"
+        },
+        {
+          "id": "text_002",
+          "name": "Find and Replace",
+          "prompt": "In the report content, replace all occurrences of 'Widget' with 'Product' and save to a new file.",
+          "expected_tools": ["find_replace"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/updated_report.txt"
+        },
+        {
+          "id": "text_003",
+          "name": "Extract Lines",
+          "prompt": "Extract all lines containing 'Revenue' or 'revenue' from the report.",
+          "expected_tools": ["filter_lines"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/revenue_lines.txt"
+        },
+        {
+          "id": "text_004",
+          "name": "Text to JSON",
+          "prompt": "Parse the quarterly report text and convert it to a structured JSON with sections for summary, highlights, challenges, and recommendations.",
+          "expected_tools": ["text_to_json"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/report_structured.json"
+        }
+      ]
+    },
+
+    "image": {
+      "description": "Image Processing Tools",
+      "tests": [
+        {
+          "id": "img_001",
+          "name": "Add Text Watermark",
+          "prompt": "Add a 'SAMPLE' text watermark to any generated image.",
+          "expected_tools": ["add_text_watermark"],
+          "input_files": [],
+          "expected_output": "generated_files/watermarked_image.png"
+        },
+        {
+          "id": "img_002",
+          "name": "Redact Sensitive Info",
+          "prompt": "Create an image with sample text and redact any email addresses found.",
+          "expected_tools": ["redact_sensitive_info"],
+          "input_files": [],
+          "expected_output": "generated_files/redacted_image.png"
+        }
+      ]
+    },
+
+    "complex_workflows": {
+      "description": "Multi-tool Complex Workflows",
+      "tests": [
+        {
+          "id": "workflow_001",
+          "name": "Complete Report Package",
+          "prompt": "Create a complete report package: 1) Word document with the quarterly report, 2) Excel spreadsheet with sales data and charts, 3) PDF version of the Word doc with watermark, 4) PowerPoint summary presentation.",
+          "expected_tools": ["create_word", "create_excel", "add_chart", "word_to_pdf", "add_watermark", "create_powerpoint"],
+          "input_files": ["tests/input/report_content.txt", "tests/input/sales_data.csv"],
+          "expected_output": ["generated_files/report.docx", "generated_files/sales.xlsx", "generated_files/report.pdf", "generated_files/presentation.pptx"]
+        },
+        {
+          "id": "workflow_002",
+          "name": "Data Processing Pipeline",
+          "prompt": "Process the employee data: 1) Validate the JSON, 2) Transform to extract only high-salary employees (>$80k), 3) Create an Excel file with the filtered data, 4) Add conditional formatting to highlight the highest paid, 5) Convert to PDF.",
+          "expected_tools": ["validate_json", "transform_json", "create_excel", "add_conditional_formatting", "excel_to_pdf"],
+          "input_files": ["tests/input/sample_data.json"],
+          "expected_output": ["generated_files/high_salary.xlsx", "generated_files/high_salary.pdf"]
+        },
+        {
+          "id": "workflow_003",
+          "name": "Sales Analysis Package",
+          "prompt": "Analyze sales data: 1) Convert CSV to JSON, 2) Create Excel with pivot table by region and product, 3) Add bar chart for regional comparison, 4) Create PDF report, 5) Create 3-slide PowerPoint with key insights.",
+          "expected_tools": ["csv_to_json", "create_excel", "create_pivot_summary", "add_chart", "create_pdf", "create_powerpoint"],
+          "input_files": ["tests/input/sales_data.csv"],
+          "expected_output": ["generated_files/sales_analysis.xlsx", "generated_files/sales_report.pdf", "generated_files/sales_deck.pptx"]
+        },
+        {
+          "id": "workflow_004",
+          "name": "Secure Document Package",
+          "prompt": "Create a secure document package: 1) Create Word document from report, 2) Add headers/footers with confidential markings, 3) Convert to PDF, 4) Add watermark, 5) Password protect the PDF.",
+          "expected_tools": ["create_word", "add_headers_footers", "word_to_pdf", "add_watermark", "protect_pdf"],
+          "input_files": ["tests/input/report_content.txt"],
+          "expected_output": "generated_files/secure_report.pdf"
+        }
+      ]
+    }
+  }
+}

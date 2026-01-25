@@ -1,0 +1,63 @@
+# POWERPOINT PROCESSING TEST PROMPTS
+# Copy and paste these prompts to test PowerPoint tool functionality
+
+## PPT_001: Create Basic Presentation
+Create a PowerPoint presentation with 5 slides summarizing tests/input/report_content.txt:
+- Slide 1: Title slide with "Q4 2024 Report" and "Acme Corporation"
+- Slide 2: Executive Summary key points
+- Slide 3: Key Highlights with bullet points
+- Slide 4: Challenges and Risks
+- Slide 5: Recommendations
+
+---
+
+## PPT_002: Create Presentation with Data
+Create a PowerPoint presentation showing the sales data from tests/input/sales_data.csv:
+- Slide 1: Title "Sales Analysis Q4 2024"
+- Slide 2: Table with sales by region
+- Slide 3: Bar chart comparing regions
+- Slide 4: Summary and insights
+
+---
+
+## PPT_003: Add Animations
+Create a presentation from tests/input/report_content.txt and add fade-in animations to all bullet points on each slide.
+
+---
+
+## PPT_004: Add Transitions
+Create a presentation and add smooth fade transitions between all slides.
+
+---
+
+## PPT_005: Export Slides to Images
+Create a presentation from the quarterly report and export each slide as a PNG image file.
+
+---
+
+## PPT_006: Protect Presentation
+Create a presentation from the report and protect it with password "present123" to prevent modifications.
+
+---
+
+## PPT_007: Compress Presentation
+Create a presentation with the quarterly report content and compress it to reduce file size.
+
+---
+
+## PPT_008: Add Speaker Notes
+Create a presentation from the report and add speaker notes to each slide with key talking points.
+
+---
+
+## PPT_009: Create Chart Slides
+Create a PowerPoint with:
+- Slide 1: Pie chart showing sales distribution by product
+- Slide 2: Bar chart showing sales by region
+- Slide 3: Line chart showing daily sales trend
+Data source: tests/input/sales_data.csv
+
+---
+
+## PPT_010: Employee Directory Slides
+Create a PowerPoint presentation that shows each employee from tests/input/sample_data.json on their own slide with their details formatted nicely.

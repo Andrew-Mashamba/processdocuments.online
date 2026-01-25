@@ -1,0 +1,10 @@
+{
+    "filename": "/Volumes/DATA/QWEN/zima-file-service/generated_files/primary_colors.xlsx",
+    "sheet_name": "Primary Colors",
+    "headers": ["Color", "Hex Code", "RGB Values", "Description"],
+    "data": [
+        ["Red", "#FF0000", "255, 0, 0", "A vibrant, intense primary color associated with passion and energy"],
+        ["Blue", "#0000FF", "0, 0, 255", "A cool, calming primary color representing depth and stability"],
+        ["Yellow", "#FFFF00", "255, 255, 0", "A bright, cheerful primary color symbolizing sunshine and optimism"]
+    ]
+}

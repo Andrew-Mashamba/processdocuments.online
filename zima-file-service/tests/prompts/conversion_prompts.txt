@@ -1,0 +1,80 @@
+# FILE CONVERSION TEST PROMPTS
+# Copy and paste these prompts to test conversion tool functionality
+
+## CONV_001: CSV to JSON
+Convert tests/input/sales_data.csv to JSON format. Each row should become a JSON object with the column headers as keys.
+
+---
+
+## CONV_002: JSON to CSV
+Extract the employees array from tests/input/sample_data.json and convert it to a CSV file with proper headers.
+
+---
+
+## CONV_003: JSON to YAML
+Convert the complete structure of tests/input/sample_data.json to YAML format.
+
+---
+
+## CONV_004: YAML to JSON
+Convert this YAML to JSON:
+```yaml
+name: Test Project
+version: 1.0
+features:
+  - authentication
+  - reporting
+  - exports
+```
+
+---
+
+## CONV_005: Excel to PDF
+Create an Excel file from tests/input/sales_data.csv with formatting and charts, then convert it to PDF format.
+
+---
+
+## CONV_006: Word to PDF
+Create a Word document from tests/input/report_content.txt and convert it to PDF format.
+
+---
+
+## CONV_007: PDF to Text
+Create a PDF from the quarterly report and then extract all text content from it.
+
+---
+
+## CONV_008: Text to PDF
+Convert tests/input/report_content.txt directly to a PDF document with default formatting.
+
+---
+
+## CONV_009: Excel to HTML
+Create an Excel spreadsheet from the sales data and export it as an HTML table.
+
+---
+
+## CONV_010: HTML to Word
+Convert this HTML to a Word document:
+```html
+<h1>Monthly Report</h1>
+<h2>Summary</h2>
+<p>This month showed <strong>significant growth</strong> in all regions.</p>
+<h2>Details</h2>
+<ul>
+  <li>North: +15%</li>
+  <li>South: +12%</li>
+  <li>East: +18%</li>
+  <li>West: +10%</li>
+</ul>
+```
+
+---
+
+## CONV_011: Image to PDF
+Create a sample image (or use a chart from Excel) and convert it to a PDF document.
+
+---
+
+## CONV_012: Text to Excel
+Convert tests/input/sales_data.csv (as text) to an Excel spreadsheet with proper column detection and formatting.

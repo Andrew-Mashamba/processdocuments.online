@@ -1,0 +1,124 @@
+# COMPLEX WORKFLOW TEST PROMPTS
+# These prompts test multi-tool workflows and parallel operations
+
+## WORKFLOW_001: Complete Report Package
+Create a complete quarterly report package:
+1. Word document from tests/input/report_content.txt with proper formatting
+2. Excel spreadsheet from tests/input/sales_data.csv with charts and pivot table
+3. PDF version of the Word document with "CONFIDENTIAL" watermark
+4. PowerPoint presentation summarizing key points (5 slides)
+
+Output all files to the generated_files directory.
+
+---
+
+## WORKFLOW_002: Data Processing Pipeline
+Process the employee data through this pipeline:
+1. Validate tests/input/sample_data.json for structural correctness
+2. Transform to extract only employees with salary > $80,000
+3. Create an Excel file with the filtered data
+4. Add conditional formatting to highlight the highest salary in green
+5. Convert the Excel file to PDF
+6. Add a "HIGH EARNERS" watermark to the PDF
+
+---
+
+## WORKFLOW_003: Sales Analysis Suite
+Perform complete sales analysis:
+1. Read tests/input/sales_data.csv
+2. Convert to JSON for processing
+3. Create Excel with:
+   - Raw data sheet
+   - Pivot table by Region and Product
+   - Bar chart for regional comparison
+   - Line chart for daily trends
+4. Create PDF report with sales summary
+5. Create 4-slide PowerPoint with insights
+
+---
+
+## WORKFLOW_004: Secure Document Package
+Create a secure, auditable document package:
+1. Create Word document from tests/input/report_content.txt
+2. Add professional headers ("Acme Corp") and footers (page numbers)
+3. Add table of contents
+4. Convert to PDF
+5. Add "CONFIDENTIAL - DO NOT DISTRIBUTE" watermark
+6. Password protect the PDF with "secret123"
+7. Sign the PDF digitally
+
+---
+
+## WORKFLOW_005: Multi-Format Export
+Export the employee data in multiple formats:
+1. Read tests/input/sample_data.json
+2. Create formatted Excel spreadsheet
+3. Create formatted Word document with table
+4. Create PDF with professional layout
+5. Export to CSV
+6. Export to YAML
+
+All formats should contain the same employee data.
+
+---
+
+## WORKFLOW_006: Presentation from Raw Data
+Build a complete presentation from scratch:
+1. Read tests/input/sales_data.csv
+2. Create summary statistics (totals by region, by product)
+3. Create 6-slide PowerPoint:
+   - Title slide
+   - Overview with key metrics
+   - Regional performance chart
+   - Product performance chart
+   - Daily trends chart
+   - Recommendations slide
+4. Add transitions between slides
+5. Export slides as images for preview
+
+---
+
+## WORKFLOW_007: Document Merge and Compare
+Create and compare documents:
+1. Create Word document A from first half of tests/input/report_content.txt
+2. Create Word document B from second half
+3. Merge both documents into one
+4. Convert merged document to PDF
+5. Create Excel summary of document statistics (word count, page count)
+
+---
+
+## WORKFLOW_008: Protected Multi-Format Distribution
+Prepare documents for secure distribution:
+1. Create Word document from report
+2. Create Excel from sales data
+3. Create PDF from JSON data
+4. Protect Word document (read-only)
+5. Protect Excel workbook (structure protection)
+6. Protect PDF (no printing, no copying)
+All documents should use password "distribute123"
+
+---
+
+## WORKFLOW_009: JSON Processing Chain
+Complete JSON data pipeline:
+1. Validate tests/input/sample_data.json
+2. Transform: group employees by department
+3. For each department, calculate average salary
+4. Sign the processed data with HMAC
+5. Export to PDF report
+6. Export to YAML for configuration use
+
+---
+
+## WORKFLOW_010: Full Business Intelligence Package
+Create complete BI deliverables:
+1. Process tests/input/sales_data.csv and tests/input/sample_data.json
+2. Create master Excel workbook with:
+   - Sales data sheet with formulas
+   - Employee directory sheet
+   - Summary dashboard with charts
+3. Create Word report combining sales and employee insights
+4. Create executive PowerPoint (3 slides max)
+5. Create PDF package of all materials
+6. Compress all files for distribution
