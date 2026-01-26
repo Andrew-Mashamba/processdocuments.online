@@ -898,7 +898,8 @@ class FileGenerator extends Component
      */
     public function getStreamingUrl(): string
     {
-        return "{$this->apiUrl}/api/generate/stream";
+        // Return relative URL for JavaScript (proxied via Apache)
+        return "/api/generate/stream";
     }
 
     /**
