@@ -707,6 +707,212 @@
         </div>
     </section>
 
+    <!-- SEO: Static Tool List for Search Engine Crawlers (Screen Reader Accessible) -->
+    <div class="sr-only" aria-label="Complete list of available document processing tools">
+        <h2>Free Online Document Processing Tools</h2>
+        <p>Process documents online with our comprehensive suite of 185+ tools. Convert, merge, split PDF, Excel, Word files instantly.</p>
+
+        <h3>PDF Tools</h3>
+        <ul>
+            <li>Create PDF - Generate PDF documents from text, data, or templates</li>
+            <li>Merge PDF - Combine multiple PDF files into one document</li>
+            <li>Split PDF - Divide PDF into separate pages or sections</li>
+            <li>Compress PDF - Reduce PDF file size while maintaining quality</li>
+            <li>PDF to Word - Convert PDF documents to editable Word format</li>
+            <li>PDF to Excel - Extract tables from PDF to Excel spreadsheets</li>
+            <li>PDF to Image - Convert PDF pages to PNG, JPG images</li>
+            <li>Image to PDF - Create PDF from images</li>
+            <li>Add Watermark to PDF - Insert text or image watermarks</li>
+            <li>Password Protect PDF - Secure PDF with encryption</li>
+            <li>Unlock PDF - Remove password protection from PDF</li>
+            <li>Sign PDF - Add digital signatures to PDF documents</li>
+            <li>PDF OCR - Extract text from scanned PDF using OCR</li>
+            <li>Rotate PDF - Change page orientation</li>
+            <li>Add Page Numbers to PDF - Insert page numbering</li>
+            <li>PDF to PDF/A - Convert to archival format</li>
+            <li>Flatten PDF - Flatten form fields and annotations</li>
+            <li>Repair PDF - Fix corrupted PDF files</li>
+        </ul>
+
+        <h3>Excel Tools</h3>
+        <ul>
+            <li>Create Excel - Generate spreadsheets with data and formulas</li>
+            <li>Merge Excel - Combine multiple workbooks</li>
+            <li>Split Excel - Separate worksheets into files</li>
+            <li>Excel to CSV - Convert Excel to comma-separated values</li>
+            <li>CSV to Excel - Import CSV data into Excel format</li>
+            <li>Excel to JSON - Export Excel data as JSON</li>
+            <li>JSON to Excel - Convert JSON data to Excel spreadsheet</li>
+            <li>Excel to PDF - Convert spreadsheets to PDF</li>
+            <li>Add Charts to Excel - Create bar, line, pie charts</li>
+            <li>Add Formulas - Insert calculations and functions</li>
+            <li>Pivot Tables - Generate pivot table summaries</li>
+            <li>Conditional Formatting - Apply data-driven styling</li>
+            <li>Protect Excel - Password protect workbooks</li>
+            <li>Validate Excel Data - Check data integrity</li>
+        </ul>
+
+        <h3>Word Document Tools</h3>
+        <ul>
+            <li>Create Word Document - Generate DOCX files with formatting</li>
+            <li>Merge Word Documents - Combine multiple DOCX files</li>
+            <li>Split Word Document - Divide by sections or pages</li>
+            <li>Word to PDF - Convert Word documents to PDF</li>
+            <li>PDF to Word - Convert PDF to editable Word format</li>
+            <li>Word to HTML - Export Word as web page</li>
+            <li>Mail Merge - Create personalized documents from data</li>
+            <li>Add Table of Contents - Generate automatic TOC</li>
+            <li>Add Watermark to Word - Insert text or image watermarks</li>
+            <li>Track Changes - Enable document revision tracking</li>
+            <li>Compare Documents - Find differences between versions</li>
+        </ul>
+
+        <h3>PowerPoint Tools</h3>
+        <ul>
+            <li>Create PowerPoint - Generate presentations with slides</li>
+            <li>Merge PowerPoint - Combine multiple presentations</li>
+            <li>Split PowerPoint - Extract individual slides</li>
+            <li>PowerPoint to PDF - Convert PPTX to PDF</li>
+            <li>PDF to PowerPoint - Create slides from PDF</li>
+            <li>Add Animations - Insert slide transitions and effects</li>
+            <li>Add Charts to PowerPoint - Create presentation charts</li>
+            <li>Extract Images - Get images from presentations</li>
+            <li>Add Speaker Notes - Include presenter notes</li>
+        </ul>
+
+        <h3>Image Tools</h3>
+        <ul>
+            <li>Compress Image - Reduce image file size</li>
+            <li>Resize Image - Change image dimensions</li>
+            <li>Crop Image - Trim image edges</li>
+            <li>Convert Image Format - PNG to JPG, WebP, TIFF conversion</li>
+            <li>Add Watermark to Image - Insert text or logo watermarks</li>
+            <li>Rotate Image - Change image orientation</li>
+            <li>Flip Image - Mirror image horizontally or vertically</li>
+            <li>Grayscale Image - Convert to black and white</li>
+            <li>Blur Image - Apply blur effect</li>
+            <li>Sharpen Image - Enhance image clarity</li>
+            <li>Adjust Brightness - Modify image brightness</li>
+            <li>Adjust Contrast - Change image contrast</li>
+            <li>Merge Images - Combine multiple images</li>
+            <li>Generate QR Code - Create QR codes from text or URLs</li>
+            <li>Generate Barcode - Create barcodes for products</li>
+            <li>OCR Image - Extract text from images</li>
+            <li>Remove Image Metadata - Strip EXIF data</li>
+            <li>SVG to PNG - Convert vector to raster</li>
+            <li>Generate Favicon - Create website icons</li>
+        </ul>
+
+        <h3>Video Tools</h3>
+        <ul>
+            <li>Compress Video - Reduce video file size</li>
+            <li>Convert Video Format - MP4, AVI, MOV, WebM conversion</li>
+            <li>Trim Video - Cut video clips</li>
+            <li>Merge Videos - Combine multiple video files</li>
+            <li>Extract Audio from Video - Get audio track from video</li>
+            <li>Add Watermark to Video - Insert text or image watermarks</li>
+            <li>Resize Video - Change video dimensions</li>
+            <li>Rotate Video - Change video orientation</li>
+            <li>Video to GIF - Convert video clips to animated GIFs</li>
+            <li>GIF to Video - Convert GIF to video format</li>
+            <li>Extract Frames - Get images from video</li>
+            <li>Add Subtitles - Insert captions into video</li>
+            <li>Remove Audio from Video - Create silent video</li>
+            <li>Change Video Speed - Speed up or slow down video</li>
+        </ul>
+
+        <h3>Audio Tools</h3>
+        <ul>
+            <li>Compress Audio - Reduce audio file size</li>
+            <li>Convert Audio Format - MP3, WAV, AAC, FLAC conversion</li>
+            <li>Trim Audio - Cut audio clips</li>
+            <li>Merge Audio - Combine multiple audio files</li>
+            <li>Extract Audio - Get audio from video files</li>
+            <li>Adjust Volume - Increase or decrease audio volume</li>
+            <li>Remove Noise - Clean up audio recordings</li>
+            <li>Add Fade Effects - Apply fade in and fade out</li>
+            <li>Change Audio Speed - Speed up or slow down audio</li>
+            <li>Audio to Text - Transcribe audio with speech recognition</li>
+            <li>Text to Audio - Generate speech from text</li>
+            <li>Split Audio - Divide audio into segments</li>
+            <li>Reverse Audio - Play audio backwards</li>
+            <li>Normalize Audio - Balance audio levels</li>
+        </ul>
+
+        <h3>Developer Tools</h3>
+        <ul>
+            <li>Format JSON - Beautify and indent JSON data</li>
+            <li>Minify JSON - Compress JSON by removing whitespace</li>
+            <li>Validate JSON - Check JSON syntax and structure</li>
+            <li>JSON to XML - Convert JSON to XML format</li>
+            <li>XML to JSON - Convert XML to JSON format</li>
+            <li>Format CSS - Beautify CSS stylesheets</li>
+            <li>Minify CSS - Compress CSS code</li>
+            <li>Format HTML - Beautify HTML markup</li>
+            <li>Minify HTML - Compress HTML code</li>
+            <li>Base64 Encode - Encode text or files to Base64</li>
+            <li>Base64 Decode - Decode Base64 strings</li>
+            <li>URL Encode - Encode special URL characters</li>
+            <li>URL Decode - Decode URL-encoded strings</li>
+            <li>Generate UUID - Create unique identifiers</li>
+            <li>Generate Hash - Create MD5, SHA1, SHA256 hashes</li>
+            <li>Test Regex - Test regular expressions</li>
+            <li>Diff Text - Compare text differences</li>
+            <li>Lorem Ipsum Generator - Generate placeholder text</li>
+        </ul>
+
+        <h3>Calculator Tools</h3>
+        <ul>
+            <li>Percentage Calculator - Calculate percentages</li>
+            <li>BMI Calculator - Calculate Body Mass Index</li>
+            <li>Loan Calculator - Calculate loan payments and interest</li>
+            <li>Unit Converter - Convert between measurement units</li>
+            <li>Temperature Converter - Convert Celsius, Fahrenheit, Kelvin</li>
+            <li>Currency Converter - Convert between currencies</li>
+            <li>Date Calculator - Calculate date differences</li>
+            <li>Age Calculator - Calculate age from birthdate</li>
+            <li>Statistics Calculator - Calculate mean, median, mode</li>
+            <li>Tip Calculator - Calculate tips and splits</li>
+        </ul>
+
+        <h3>SEO Tools</h3>
+        <ul>
+            <li>Generate Meta Tags - Create SEO meta tags</li>
+            <li>Generate Sitemap - Create XML sitemaps</li>
+            <li>Generate Robots.txt - Create robots.txt files</li>
+            <li>Analyze Keywords - Keyword density analysis</li>
+            <li>Generate Slug - Create URL-friendly slugs</li>
+            <li>Check Word Count - Count words and characters</li>
+            <li>Generate Open Graph Tags - Create social media tags</li>
+            <li>Schema Markup Generator - Create structured data</li>
+        </ul>
+
+        <h3>Security Tools</h3>
+        <ul>
+            <li>Generate Password - Create strong random passwords</li>
+            <li>Password Strength Checker - Analyze password security</li>
+            <li>Hash Generator - Generate MD5, SHA1, SHA256, SHA512 hashes</li>
+            <li>AES Encrypt - Encrypt text with AES encryption</li>
+            <li>AES Decrypt - Decrypt AES encrypted text</li>
+            <li>JWT Decoder - Decode JSON Web Tokens</li>
+            <li>Email Validator - Validate email addresses</li>
+            <li>SSL Certificate Checker - Check SSL certificate details</li>
+        </ul>
+
+        <h3>File Tools</h3>
+        <ul>
+            <li>Create ZIP - Compress files into ZIP archive</li>
+            <li>Extract ZIP - Unzip compressed archives</li>
+            <li>GZIP Compress - Compress files with GZIP</li>
+            <li>GZIP Decompress - Decompress GZIP files</li>
+            <li>Analyze File - Get file information and metadata</li>
+            <li>Compare Files - Find differences between files</li>
+            <li>Split File - Divide large files into parts</li>
+            <li>Merge Files - Combine file parts</li>
+            <li>Calculate Checksum - Generate file checksums</li>
+        </ul>
+    </div>
+
     <!-- How It Works Section -->
     <section class="bg-neutral-100 py-16 px-4" id="how-it-works">
         <div class="max-w-6xl mx-auto">
