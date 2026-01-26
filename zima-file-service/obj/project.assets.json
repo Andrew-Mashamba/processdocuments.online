@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {
+    "net8.0": {
       "BouncyCastle.Cryptography/2.2.1": {
         "type": "package",
         "compile": {
@@ -6507,7 +6507,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net9.0": [
+    "net8.0": [
       "ClosedXML >= 0.102.2",
       "Docnet.Core >= 2.6.0",
       "DocumentFormat.OpenXml >= 2.20.0",
@@ -6519,30 +6519,29 @@
     ]
   },
   "packageFolders": {
-    "/Users/andrewmashamba/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/DATA/QWEN/zima-file-service/zima-file-service.csproj",
+      "projectUniqueName": "/var/www/html/zima-file-service/zima-file-service.csproj",
       "projectName": "zima-file-service",
-      "projectPath": "/Volumes/DATA/QWEN/zima-file-service/zima-file-service.csproj",
-      "packagesPath": "/Users/andrewmashamba/.nuget/packages/",
-      "outputPath": "/Volumes/DATA/QWEN/zima-file-service/obj/",
+      "projectPath": "/var/www/html/zima-file-service/zima-file-service.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/var/www/html/zima-file-service/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/andrewmashamba/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net9.0"
+        "net8.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -6550,17 +6549,11 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.300"
+      }
     },
     "frameworks": {
-      "net9.0": {
-        "targetAlias": "net9.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "ClosedXML": {
             "target": "Package",
@@ -6614,7 +6607,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
