@@ -1286,7 +1286,7 @@ Action: If no chart tool exists, create one, register it, then use it.";
         var startInfo = new ProcessStartInfo
         {
             FileName = _claudePath,
-            Arguments = $"--print --output-format stream-json --verbose --model {selectedModel}",
+            Arguments = $"--print --output-format stream-json --verbose --include-partial-messages --model {selectedModel}",
             WorkingDirectory = _workingDirectory,
             RedirectStandardInput = true,
             RedirectStandardOutput = true,
@@ -1612,6 +1612,26 @@ Max 200 words, bullet points.
             {
                 case "system":
                     // Skip system init messages
+                    return (null, null, null, null);
+
+                case "stream_event":
+                    // Handle streaming partial messages (--include-partial-messages)
+                    // Format: {"type":"stream_event","event":{"type":"content_block_delta","delta":{"type":"text_delta","text":"..."}}}
+                    if (root.TryGetProperty("event", out var eventObj))
+                    {
+                        var eventType = eventObj.TryGetProperty("type", out var et) ? et.GetString() : null;
+
+                        if (eventType == "content_block_delta" &&
+                            eventObj.TryGetProperty("delta", out var delta) &&
+                            delta.TryGetProperty("text", out var textDelta))
+                        {
+                            var streamText = textDelta.GetString();
+                            if (!string.IsNullOrEmpty(streamText))
+                            {
+                                return (streamText, null, null, null);
+                            }
+                        }
+                    }
                     return (null, null, null, null);
 
                 case "assistant":

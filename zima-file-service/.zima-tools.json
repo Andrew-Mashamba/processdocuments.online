@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "updatedAt": "2026-01-26T15:47:50.1907697Z",
+  "updatedAt": "2026-01-26T15:28:43.764567Z",
   "mcpTools": [
     {
       "name": "create_excel",
@@ -1644,7 +1644,7 @@
     {
       "name": "create_s_controller",
       "description": "List all available tools",
-      "filePath": "/var/www/html/zima-file-service/Api/ToolsController.cs",
+      "filePath": "/Volumes/DATA/QWEN/zima-file-service/Api/ToolsController.cs",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -1657,8 +1657,8 @@
           "request"
         ]
       },
-      "createdAt": "2026-01-26T15:47:50.1901223Z",
-      "updatedAt": "2026-01-26T15:47:50.1901224Z"
+      "createdAt": "2026-01-26T15:28:43.764515Z",
+      "updatedAt": "2026-01-26T15:28:43.764515Z"
     }
   ]
 }

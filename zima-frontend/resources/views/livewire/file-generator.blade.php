@@ -32,6 +32,98 @@
         color: inherit;
     }
 
+    /* Markdown styles for AI responses */
+    .ai-message-content h1, .ai-message-content h2, .ai-message-content h3 {
+        font-weight: 600;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: #171717;
+    }
+    .ai-message-content h1 { font-size: 1.25rem; }
+    .ai-message-content h2 { font-size: 1.125rem; }
+    .ai-message-content h3 { font-size: 1rem; }
+
+    .ai-message-content p {
+        margin-bottom: 0.75rem;
+    }
+
+    .ai-message-content ul, .ai-message-content ol {
+        margin: 0.5rem 0;
+        padding-left: 1.5rem;
+    }
+    .ai-message-content li {
+        margin-bottom: 0.25rem;
+    }
+
+    .ai-message-content table {
+        border-collapse: collapse;
+        margin: 0.75rem 0;
+        font-size: 0.8125rem;
+        width: 100%;
+        border: 1px solid #e5e5e5;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    .ai-message-content th, .ai-message-content td {
+        border: 1px solid #e5e5e5;
+        padding: 0.5rem 0.75rem;
+        text-align: left;
+    }
+    .ai-message-content th {
+        background-color: #f5f5f5;
+        font-weight: 600;
+    }
+    .ai-message-content tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .ai-message-content code {
+        background-color: #f5f5f5;
+        padding: 0.125rem 0.375rem;
+        border-radius: 0.25rem;
+        font-size: 0.8125rem;
+        font-family: ui-monospace, monospace;
+    }
+    .ai-message-content pre {
+        background-color: #1f1f1f;
+        color: #e5e5e5;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+    }
+    .ai-message-content pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+    }
+
+    .ai-message-content blockquote {
+        border-left: 3px solid #d4d4d4;
+        margin: 0.75rem 0;
+        padding-left: 1rem;
+        color: #525252;
+        font-style: italic;
+    }
+
+    .ai-message-content hr {
+        border: none;
+        border-top: 1px solid #e5e5e5;
+        margin: 1rem 0;
+    }
+
+    .ai-message-content strong {
+        font-weight: 600;
+    }
+
+    .ai-message-content a {
+        color: #2563eb;
+        text-decoration: underline;
+    }
+    .ai-message-content a:hover {
+        color: #1d4ed8;
+    }
+
     /* Input textarea placeholder */
     textarea::placeholder {
         color: #a3a3a3;
@@ -325,7 +417,7 @@
                                 <div class="flex items-center space-x-1">
                                     <!-- Download -->
                                     <a
-                                        href="/api/files/session/{{ $currentSessionId }}/{{ $fileName }}/download"
+                                        href="{{ $apiUrl }}/api/files/session/{{ $currentSessionId }}/{{ $fileName }}/download"
                                         target="_blank"
                                         class="p-1 text-neutral-400 hover:text-neutral-900 rounded-lg transition"
                                         title="Download"
@@ -489,7 +581,7 @@
                                             @foreach($message['files'] as $file)
                                                 @php
                                                     $fileName = is_array($file) ? ($file['name'] ?? $file['fileName'] ?? '') : $file;
-                                                    $downloadUrl = "/api/files/generated/{$currentSessionId}/" . urlencode($fileName) . "/download";
+                                                    $downloadUrl = "{$apiUrl}/api/files/generated/{$currentSessionId}/" . urlencode($fileName) . "/download";
                                                 @endphp
                                                 <a
                                                     href="{{ $downloadUrl }}"
@@ -589,10 +681,22 @@
         <div class="p-4 bg-neutral-50">
             <form wire:submit="generate">
                 <div class="flex w-full flex-row items-center gap-2 rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2">
+                  <!-- Agent Mode Toggle -->
+                  <button
+                      type="button"
+                      wire:click="toggleAgentMode"
+                      class="flex-shrink-0 h-10 px-3 rounded-full flex items-center gap-1.5 transition-all {{ $agentMode ? 'bg-neutral-900 text-white' : 'bg-white text-neutral-500 hover:bg-neutral-100 border border-neutral-200' }}"
+                      title="{{ $agentMode ? 'Agent Mode: ON - Autonomous tool execution' : 'Agent Mode: OFF - Standard generation' }}"
+                  >
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                      </svg>
+                      <span class="text-xs font-medium">{{ $agentMode ? 'Agent' : 'Agent' }}</span>
+                  </button>
                   <div class="relative h-full w-full min-w-[200px]">
                     <textarea
                       rows="1"
-                      placeholder="Describe the file you want to generate..."
+                      placeholder="{{ $agentMode ? 'Describe what you want the agent to create...' : 'Describe the file you want to generate...' }}"
                       wire:model="prompt"
                       @if($isLoading) disabled @endif
                       x-data="{
@@ -807,7 +911,7 @@
 
                                     <div class="flex items-center space-x-1">
                                         <a
-                                            href="/api/files/generated/{{ $currentSessionId }}/{{ urlencode($group['latestVersion']['fileName'] ?? $group['baseName']) }}/download"
+                                            href="{{ $apiUrl }}/api/files/generated/{{ $currentSessionId }}/{{ urlencode($group['latestVersion']['fileName'] ?? $group['baseName']) }}/download"
                                             target="_blank"
                                             class="p-1.5 text-neutral-400 hover:text-neutral-900 rounded-lg transition"
                                             title="Download latest"
@@ -861,7 +965,7 @@
                                             </div>
                                             <div class="flex items-center space-x-1">
                                                 <a
-                                                    href="/api/files/generated/{{ $currentSessionId }}/{{ urlencode($version['fileName']) }}/download"
+                                                    href="{{ $apiUrl }}/api/files/generated/{{ $currentSessionId }}/{{ urlencode($version['fileName']) }}/download"
                                                     target="_blank"
                                                     class="p-1 text-neutral-400 hover:text-neutral-900 rounded-lg transition"
                                                     title="Download v{{ $version['version'] }}"
@@ -1319,7 +1423,7 @@
                 const formData = new FormData();
                 formData.append('file', file);
 
-                const response = await fetch('/api/files/upload/tools', {
+                const response = await fetch('{{ $apiUrl }}/api/files/upload/tools', {
                     method: 'POST',
                     headers: {
                         'X-Session-Id': '{{ $currentSessionId }}'
@@ -1453,7 +1557,7 @@
                 requestBody['output_file'] = outputFileName;
             }
 
-            const response = await fetch(`/api/tools/${this.selectedTool.name}`, {
+            const response = await fetch(`{{ $apiUrl }}/api/tools/${this.selectedTool.name}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1476,7 +1580,7 @@
                 if (outputPath) {
                     this.outputFileName = outputPath.split('/').pop();
                     // Build download URL
-                    this.outputFileUrl = `/api/files/generated/{{ $currentSessionId }}/${encodeURIComponent(this.outputFileName)}/download`;
+                    this.outputFileUrl = `{{ $apiUrl }}/api/files/generated/{{ $currentSessionId }}/${encodeURIComponent(this.outputFileName)}/download`;
                 }
 
                 // Refresh files list
@@ -1815,7 +1919,17 @@
     </div>
 </div>
 
+<!-- Marked.js for markdown parsing -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <script>
+    // Configure marked for safe rendering
+    marked.setOptions({
+        breaks: true,
+        gfm: true,
+        sanitize: false
+    });
+
     // Auto-scroll to bottom when new messages appear
     document.addEventListener('livewire:updated', () => {
         const chatMessages = document.getElementById('chat-messages');
@@ -1882,8 +1996,9 @@
                     this.processLine(buffer);
                 }
 
-                // Complete the streaming
-                this.wire.completeStreaming(this.content, this.usage || {}, this.files, this.model);
+                // Complete the streaming - parse markdown to HTML before saving
+                const htmlContent = marked.parse(this.content);
+                this.wire.completeStreaming(htmlContent, this.usage || {}, this.files, this.model);
 
             } catch (error) {
                 console.error('Streaming error:', error);
@@ -1912,10 +2027,12 @@
         handleEvent(eventType, data) {
             switch (eventType) {
                 case 'content':
-                    // Append content and update UI in real-time
+                    // Append content and update UI in real-time with markdown parsing
                     if (data.content) {
                         this.content += data.content;
-                        this.wire.updateStreamingContent(this.content);
+                        // Parse markdown to HTML for proper formatting
+                        const htmlContent = marked.parse(this.content);
+                        this.wire.updateStreamingContent(htmlContent);
                     }
                     break;
 
@@ -1991,12 +2108,14 @@
                 streamingHandler.wire = component;
             }
 
-            console.log('Starting streaming with handler');
-            streamingHandler.startStreaming(data.streamUrl, {
-                prompt: data.prompt,
-                messages: data.messages,
-                sessionId: data.sessionId
-            });
+            console.log('Starting streaming with handler, agentMode:', data.agentMode);
+
+            // Build request body based on mode
+            const requestBody = data.agentMode
+                ? { goal: data.goal, sessionId: data.sessionId }
+                : { prompt: data.prompt, messages: data.messages, sessionId: data.sessionId };
+
+            streamingHandler.startStreaming(data.streamUrl, requestBody);
         });
     });
 

@@ -525,3 +525,216 @@ public class RegisterToolRequest
     public string Description { get; set; } = "";
     public string? FilePath { get; set; }
 }
+
+/// <summary>
+/// Agent-based endpoints using the simplified filesystem-driven architecture.
+/// Claude CLI handles tool discovery, execution, and multi-turn reasoning autonomously.
+/// </summary>
+[ApiController]
+[Route("api/agent")]
+public class AgentController : ControllerBase
+{
+    private readonly AgentService _agentService;
+
+    public AgentController()
+    {
+        _agentService = AgentService.Instance;
+    }
+
+    /// <summary>
+    /// Execute a goal using the autonomous agent.
+    /// The agent will:
+    /// 1. Discover available tools
+    /// 2. Read uploaded files as needed
+    /// 3. Execute tools or create new ones
+    /// 4. Save outputs to session folder
+    /// </summary>
+    [HttpPost]
+    public async Task<IActionResult> Execute([FromBody] AgentRequest request)
+    {
+        if (string.IsNullOrWhiteSpace(request.Goal))
+        {
+            return BadRequest(new { error = "Goal is required" });
+        }
+
+        try
+        {
+            var result = await _agentService.ExecuteAsync(request.Goal, request.SessionId);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Execute a goal with real-time streaming (SSE).
+    /// </summary>
+    [HttpPost("stream")]
+    public async Task StreamExecute([FromBody] AgentRequest request)
+    {
+        Response.Headers.Append("Content-Type", "text/event-stream");
+        Response.Headers.Append("Cache-Control", "no-cache");
+        Response.Headers.Append("Connection", "keep-alive");
+        Response.Headers.Append("X-Accel-Buffering", "no");
+
+        async Task SendEvent(string eventType, object data)
+        {
+            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            await Response.WriteAsync($"event: {eventType}\n");
+            await Response.WriteAsync($"data: {json}\n\n");
+            await Response.Body.FlushAsync();
+        }
+
+        if (string.IsNullOrWhiteSpace(request.Goal))
+        {
+            await SendEvent("error", new { message = "Goal is required" });
+            return;
+        }
+
+        try
+        {
+            await foreach (var streamEvent in _agentService.ExecuteStreamAsync(request.Goal, request.SessionId))
+            {
+                await SendEvent(streamEvent.Type, streamEvent.Data ?? new { });
+            }
+        }
+        catch (Exception ex)
+        {
+            await SendEvent("error", new { message = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Continue a previous session with a new goal.
+    /// Session memory persists, so the agent can continue where it left off.
+    /// </summary>
+    [HttpPost("continue/{sessionId}")]
+    public async Task<IActionResult> ContinueSession(string sessionId, [FromBody] AgentContinueRequest request)
+    {
+        if (string.IsNullOrWhiteSpace(request.Goal))
+        {
+            return BadRequest(new { error = "Goal is required" });
+        }
+
+        try
+        {
+            var result = await _agentService.ContinueSessionAsync(sessionId, request.Goal);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Get available tools from the filesystem-based registry.
+    /// </summary>
+    [HttpGet("tools")]
+    public IActionResult GetTools()
+    {
+        var tools = _agentService.GetAvailableTools();
+        return Ok(new
+        {
+            tools = tools.Select(t => new
+            {
+                t.Name,
+                t.Description,
+                t.Category,
+                t.Usage
+            }),
+            count = tools.Count,
+            path = Path.Combine(FileManager.Instance.WorkingDirectory, "tools")
+        });
+    }
+
+    /// <summary>
+    /// Regenerate tool manifests from the tools registry.
+    /// </summary>
+    [HttpPost("tools/refresh")]
+    public IActionResult RefreshTools()
+    {
+        _agentService.GenerateToolManifests();
+        var tools = _agentService.GetAvailableTools();
+        return Ok(new
+        {
+            message = "Tool manifests regenerated",
+            count = tools.Count
+        });
+    }
+
+    /// <summary>
+    /// Get session memory (log, context, plan).
+    /// </summary>
+    [HttpGet("session/{sessionId}/memory")]
+    public IActionResult GetSessionMemory(string sessionId)
+    {
+        var memoryPath = Path.Combine(FileManager.Instance.WorkingDirectory, "memory", "sessions", sessionId);
+
+        if (!Directory.Exists(memoryPath))
+        {
+            return NotFound(new { error = "Session not found" });
+        }
+
+        var memory = new Dictionary<string, string?>();
+        foreach (var file in new[] { "log.md", "context.md", "plan.md" })
+        {
+            var filePath = Path.Combine(memoryPath, file);
+            memory[Path.GetFileNameWithoutExtension(file)] = System.IO.File.Exists(filePath)
+                ? System.IO.File.ReadAllText(filePath)
+                : null;
+        }
+
+        return Ok(new
+        {
+            sessionId,
+            memory,
+            files = Directory.GetFiles(memoryPath).Select(f => Path.GetFileName(f))
+        });
+    }
+
+    /// <summary>
+    /// Get session generated files.
+    /// </summary>
+    [HttpGet("session/{sessionId}/files")]
+    public IActionResult GetSessionFiles(string sessionId)
+    {
+        var outputPath = Path.Combine(FileManager.Instance.GeneratedFilesPath, sessionId);
+
+        if (!Directory.Exists(outputPath))
+        {
+            return Ok(new { sessionId, files = new List<object>() });
+        }
+
+        var files = Directory.GetFiles(outputPath, "*", SearchOption.AllDirectories)
+            .Select(f => new FileInfo(f))
+            .Select(f => new
+            {
+                name = f.Name,
+                path = f.FullName,
+                size = f.Length,
+                created = f.CreationTime,
+                downloadUrl = $"/api/files/download/{sessionId}/{Uri.EscapeDataString(f.Name)}"
+            })
+            .ToList();
+
+        return Ok(new { sessionId, files });
+    }
+}
+
+// Agent DTOs
+public class AgentRequest
+{
+    public string Goal { get; set; } = "";
+    public string? SessionId { get; set; }
+}
+
+public class AgentContinueRequest
+{
+    public string Goal { get; set; } = "";
+}
