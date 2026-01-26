@@ -221,7 +221,7 @@
                                                 </div>
                                             </div>
                                             <a
-                                                href="http://localhost:5000{{ $group['latestVersion']['downloadUrl'] ?? '' }}"
+                                                href="{{ $group['latestVersion']['downloadUrl'] ?? '' }}"
                                                 target="_blank"
                                                 class="p-1.5 text-neutral-400 hover:text-neutral-900 rounded-lg transition flex-shrink-0"
                                                 title="Download"
@@ -297,7 +297,7 @@
                                 <div class="flex items-center space-x-1">
                                     <!-- Download -->
                                     <a
-                                        href="http://localhost:5000/api/files/session/{{ $currentSessionId }}/{{ $fileName }}/download"
+                                        href="/api/files/session/{{ $currentSessionId }}/{{ $fileName }}/download"
                                         target="_blank"
                                         class="p-1 text-neutral-400 hover:text-neutral-900 rounded-lg transition"
                                         title="Download"
@@ -461,7 +461,7 @@
                                             @foreach($message['files'] as $file)
                                                 @php
                                                     $fileName = is_array($file) ? ($file['name'] ?? $file['fileName'] ?? '') : $file;
-                                                    $downloadUrl = "http://localhost:5000/api/files/generated/{$currentSessionId}/" . urlencode($fileName) . "/download";
+                                                    $downloadUrl = "/api/files/generated/{$currentSessionId}/" . urlencode($fileName) . "/download";
                                                 @endphp
                                                 <a
                                                     href="{{ $downloadUrl }}"
@@ -698,7 +698,7 @@
                                                 </div>
                                             </div>
                                             <a
-                                                href="http://localhost:5000{{ $group['latestVersion']['downloadUrl'] ?? '' }}"
+                                                href="{{ $group['latestVersion']['downloadUrl'] ?? '' }}"
                                                 target="_blank"
                                                 class="p-1.5 text-neutral-400 hover:text-neutral-900 rounded-lg transition flex-shrink-0"
                                                 title="Download"
@@ -779,7 +779,7 @@
 
                                     <div class="flex items-center space-x-1">
                                         <a
-                                            href="http://localhost:5000/api/files/generated/{{ $currentSessionId }}/{{ urlencode($group['latestVersion']['fileName'] ?? $group['baseName']) }}/download"
+                                            href="/api/files/generated/{{ $currentSessionId }}/{{ urlencode($group['latestVersion']['fileName'] ?? $group['baseName']) }}/download"
                                             target="_blank"
                                             class="p-1.5 text-neutral-400 hover:text-neutral-900 rounded-lg transition"
                                             title="Download latest"
@@ -833,7 +833,7 @@
                                             </div>
                                             <div class="flex items-center space-x-1">
                                                 <a
-                                                    href="http://localhost:5000/api/files/generated/{{ $currentSessionId }}/{{ urlencode($version['fileName']) }}/download"
+                                                    href="/api/files/generated/{{ $currentSessionId }}/{{ urlencode($version['fileName']) }}/download"
                                                     target="_blank"
                                                     class="p-1 text-neutral-400 hover:text-neutral-900 rounded-lg transition"
                                                     title="Download v{{ $version['version'] }}"
@@ -1291,7 +1291,7 @@
                 const formData = new FormData();
                 formData.append('file', file);
 
-                const response = await fetch('http://localhost:5000/api/files/upload/tools', {
+                const response = await fetch('/api/files/upload/tools', {
                     method: 'POST',
                     headers: {
                         'X-Session-Id': '{{ $currentSessionId }}'
@@ -1425,7 +1425,7 @@
                 requestBody['output_file'] = outputFileName;
             }
 
-            const response = await fetch(`http://localhost:5000/api/tools/${this.selectedTool.name}`, {
+            const response = await fetch(`/api/tools/${this.selectedTool.name}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1448,7 +1448,7 @@
                 if (outputPath) {
                     this.outputFileName = outputPath.split('/').pop();
                     // Build download URL
-                    this.outputFileUrl = `http://localhost:5000/api/files/generated/{{ $currentSessionId }}/${encodeURIComponent(this.outputFileName)}/download`;
+                    this.outputFileUrl = `/api/files/generated/{{ $currentSessionId }}/${encodeURIComponent(this.outputFileName)}/download`;
                 }
 
                 // Refresh files list
