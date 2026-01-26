@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "AIJE8s2DxTYLruhJrgOknUY8203PoWJubLk8q1SVxg4=",
+  "Source": "zima-file-service",
+  "BasePath": "_content/zima-file-service",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

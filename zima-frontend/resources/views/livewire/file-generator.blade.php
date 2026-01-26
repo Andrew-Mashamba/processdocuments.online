@@ -135,24 +135,52 @@
         </div>
 
         <!-- Upload Area -->
-        <div class="px-3 py-3 border-b border-neutral-200">
+        <div class="px-3 py-3 border-b border-neutral-200"
+             x-data="{ uploading: false, progress: 0 }"
+             x-on:livewire-upload-start="uploading = true; progress = 0"
+             x-on:livewire-upload-finish="uploading = false; progress = 100"
+             x-on:livewire-upload-error="uploading = false; progress = 0"
+             x-on:livewire-upload-progress="progress = $event.detail.progress">
             <form wire:submit="uploadFile">
-                <label class="flex flex-col items-center justify-center w-full h-20 border-2 border-dashed border-neutral-300 rounded-xl cursor-pointer bg-neutral-50 hover:bg-neutral-100 hover:border-neutral-400 transition-all">
-                    <div class="flex flex-col items-center justify-center py-2">
-                        @if($isUploading)
-                            <svg class="w-5 h-5 text-neutral-900 animate-spin" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            <p class="text-[11px] text-neutral-500 mt-1">Uploading...</p>
-                        @else
-                            <div class="w-8 h-8 bg-neutral-900 rounded-lg flex items-center justify-center mb-1">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                <label class="flex flex-col items-center justify-center w-full h-20 border-2 border-dashed border-neutral-300 rounded-xl cursor-pointer bg-neutral-50 hover:bg-neutral-100 hover:border-neutral-400 transition-all relative overflow-hidden">
+                    <!-- Progress bar background -->
+                    <div x-show="uploading || @js($isUploading)"
+                         x-transition:enter="transition ease-out duration-200"
+                         class="absolute inset-0 bg-neutral-100">
+                        <div class="h-full bg-neutral-200 transition-all duration-300 ease-out"
+                             :style="'width: ' + progress + '%'"></div>
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center py-2 relative z-10">
+                        <template x-if="uploading">
+                            <div class="flex flex-col items-center">
+                                <svg class="w-5 h-5 text-neutral-900 animate-spin" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
+                                <p class="text-[11px] text-neutral-600 mt-1 font-medium">
+                                    Uploading... <span x-text="Math.round(progress)"></span>%
+                                </p>
                             </div>
-                            <p class="text-[11px] text-neutral-500">Click to upload · Max 10MB</p>
-                        @endif
+                        </template>
+                        <template x-if="!uploading">
+                            <div class="flex flex-col items-center">
+                                @if($isUploading)
+                                    <svg class="w-5 h-5 text-neutral-900 animate-spin" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <p class="text-[11px] text-neutral-500 mt-1">Processing...</p>
+                                @else
+                                    <div class="w-8 h-8 bg-neutral-900 rounded-lg flex items-center justify-center mb-1">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                        </svg>
+                                    </div>
+                                    <p class="text-[11px] text-neutral-500">Click to upload · Max 10MB</p>
+                                @endif
+                            </div>
+                        </template>
                     </div>
                     <input
                         type="file"

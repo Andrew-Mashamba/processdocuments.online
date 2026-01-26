@@ -1,0 +1,609 @@
+{
+  "version": "2.0",
+  "updatedAt": "2026-01-25T11:43:15.481693Z",
+  "mcpTools": [
+    {
+      "name": "create_excel",
+      "description": "Create Excel spreadsheets (.xlsx) with data, formatting, formulas, and multiple sheets",
+      "usage": "create_excel(file_path, headers?, rows, sheet_name?, auto_fit_columns?)",
+      "category": "document",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Filename or full path"
+          },
+          "sheet_name": {
+            "type": "string",
+            "description": "Worksheet name (default: Sheet1)"
+          },
+          "headers": {
+            "type": "array",
+            "description": "Column headers",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rows": {
+            "type": "array",
+            "description": "Data rows",
+            "items": {
+              "type": "array"
+            }
+          },
+          "auto_fit_columns": {
+            "type": "boolean",
+            "description": "Auto-fit column widths"
+          }
+        },
+        "required": [
+          "file_path",
+          "rows"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "read_excel",
+      "description": "Read data from Excel spreadsheets",
+      "usage": "read_excel(file_path, sheet_name?, has_headers?) -\u003E {headers, rows}",
+      "category": "document",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Path to Excel file"
+          },
+          "sheet_name": {
+            "type": "string",
+            "description": "Sheet to read"
+          },
+          "has_headers": {
+            "type": "boolean",
+            "description": "First row is headers"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "create_word",
+      "description": "Create Word documents (.docx) with text, headings, tables, and formatting",
+      "usage": "create_word(file_path, title?, content[])",
+      "category": "document",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Filename or full path"
+          },
+          "title": {
+            "type": "string",
+            "description": "Document title"
+          },
+          "content": {
+            "type": "array",
+            "description": "Content blocks",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "file_path",
+          "content"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "create_pdf",
+      "description": "Create PDF documents with text, tables, and professional formatting",
+      "usage": "create_pdf(file_path, title?, content[], page_size?)",
+      "category": "document",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Filename or full path"
+          },
+          "title": {
+            "type": "string",
+            "description": "Document title"
+          },
+          "content": {
+            "type": "array",
+            "description": "Content blocks",
+            "items": {
+              "type": "object"
+            }
+          },
+          "page_size": {
+            "type": "string",
+            "description": "A4, Letter, Legal"
+          }
+        },
+        "required": [
+          "file_path",
+          "content"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "create_powerpoint",
+      "description": "Create PowerPoint presentations (.pptx) with slides, titles, and content",
+      "usage": "create_powerpoint(filename, slides[])",
+      "category": "document",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "Filename or full path"
+          },
+          "slides": {
+            "type": "array",
+            "description": "Slide objects",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": [
+          "filename",
+          "slides"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "list_files",
+      "description": "List files in generated_files or uploaded_files directory",
+      "usage": "list_files(folder?, pattern?) -\u003E [{name, size, modified}]",
+      "category": "file",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "folder": {
+            "type": "string",
+            "description": "\u0027generated\u0027 or \u0027uploaded\u0027"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "Filter pattern (*.xlsx)"
+          }
+        },
+        "required": []
+      },
+      "isCustom": false
+    },
+    {
+      "name": "get_file_info",
+      "description": "Get detailed information about a file",
+      "usage": "get_file_info(file_path) -\u003E {name, size, created, modified}",
+      "category": "file",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Path to file"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "read_file_content",
+      "description": "Read content of text files or get base64 of binary files",
+      "usage": "read_file_content(file_path, as_base64?) -\u003E string",
+      "category": "file",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Path to file"
+          },
+          "as_base64": {
+            "type": "boolean",
+            "description": "Return as base64"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "delete_file",
+      "description": "Delete a file from generated_files directory",
+      "usage": "delete_file(file_path) -\u003E {success, message}",
+      "category": "file",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "File to delete"
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "copy_file",
+      "description": "Copy a file to a new location",
+      "usage": "copy_file(source_path, dest_path, overwrite?)",
+      "category": "file",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "source_path": {
+            "type": "string",
+            "description": "Source file"
+          },
+          "dest_path": {
+            "type": "string",
+            "description": "Destination"
+          },
+          "overwrite": {
+            "type": "boolean",
+            "description": "Overwrite if exists"
+          }
+        },
+        "required": [
+          "source_path",
+          "dest_path"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "move_file",
+      "description": "Move or rename a file",
+      "usage": "move_file(source_path, dest_path, overwrite?)",
+      "category": "file",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "source_path": {
+            "type": "string",
+            "description": "Source file"
+          },
+          "dest_path": {
+            "type": "string",
+            "description": "Destination"
+          },
+          "overwrite": {
+            "type": "boolean",
+            "description": "Overwrite if exists"
+          }
+        },
+        "required": [
+          "source_path",
+          "dest_path"
+        ]
+      },
+      "isCustom": false
+    },
+    {
+      "name": "get_directory_info",
+      "description": "Get file storage directory paths and stats",
+      "usage": "get_directory_info() -\u003E {generated_path, uploaded_path, counts}",
+      "category": "file",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "isCustom": false
+    },
+    {
+      "name": "merge_pdf",
+      "description": "Merge multiple PDF files into one",
+      "usage": "merge_pdf(files[], output_file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "split_pdf",
+      "description": "Split PDF by pages, ranges, or every N pages",
+      "usage": "split_pdf(file, mode, output_prefix)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "extract_pages",
+      "description": "Extract specific pages from PDF",
+      "usage": "extract_pages(file, pages[], output_file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "remove_pages",
+      "description": "Remove specific pages from PDF",
+      "usage": "remove_pages(file, pages[], output_file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "rotate_pdf",
+      "description": "Rotate PDF pages by 90, 180, or 270 degrees",
+      "usage": "rotate_pdf(file, rotation, pages?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_watermark",
+      "description": "Add text watermark to PDF pages",
+      "usage": "add_watermark(file, text, opacity?, font_size?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_page_numbers",
+      "description": "Add page numbers to PDF",
+      "usage": "add_page_numbers(file, position, format?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "compress_pdf",
+      "description": "Compress/optimize PDF file size",
+      "usage": "compress_pdf(file, output_file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "get_pdf_info",
+      "description": "Get PDF metadata and page info",
+      "usage": "get_pdf_info(file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "merge_workbooks",
+      "description": "Merge multiple Excel workbooks",
+      "usage": "merge_workbooks(files[], output_file, mode?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "split_workbook",
+      "description": "Split Excel workbook by sheets",
+      "usage": "split_workbook(file, output_prefix)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "excel_to_csv",
+      "description": "Convert Excel sheet to CSV",
+      "usage": "excel_to_csv(file, sheet_name?, delimiter?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "excel_to_json",
+      "description": "Convert Excel sheet to JSON",
+      "usage": "excel_to_json(file, sheet_name?, has_headers?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "csv_to_excel",
+      "description": "Convert CSV to Excel",
+      "usage": "csv_to_excel(file, delimiter?, sheet_name?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "json_to_excel",
+      "description": "Convert JSON array to Excel",
+      "usage": "json_to_excel(file, sheet_name?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "clean_excel",
+      "description": "Remove blank rows/columns, trim whitespace",
+      "usage": "clean_excel(file, options)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "get_excel_info",
+      "description": "Get Excel workbook metadata",
+      "usage": "get_excel_info(file)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "merge_text",
+      "description": "Merge multiple text files",
+      "usage": "merge_text(files[], output_file, separator?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "split_text",
+      "description": "Split text file by lines, pattern, or size",
+      "usage": "split_text(file, mode, options)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "find_replace",
+      "description": "Find and replace text (supports regex)",
+      "usage": "find_replace(file, find, replace, use_regex?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "remove_duplicates",
+      "description": "Remove duplicate lines from text",
+      "usage": "remove_duplicates(file, case_sensitive?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "sort_lines",
+      "description": "Sort lines alphabetically or numerically",
+      "usage": "sort_lines(file, order?, numeric?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "convert_case",
+      "description": "Convert text case (upper/lower/title)",
+      "usage": "convert_case(file, case_type)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "add_line_numbers",
+      "description": "Add line numbers to text file",
+      "usage": "add_line_numbers(file, format?, start_at?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "compare_files",
+      "description": "Compare two text files (diff)",
+      "usage": "compare_files(file1, file2, output_file?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "clean_whitespace",
+      "description": "Remove extra whitespace from text",
+      "usage": "clean_whitespace(file, options)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "format_json",
+      "description": "Format/beautify JSON with indentation",
+      "usage": "format_json(file, indent?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "minify_json",
+      "description": "Minify JSON (remove whitespace)",
+      "usage": "minify_json(file, output_file)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "validate_json",
+      "description": "Validate JSON syntax",
+      "usage": "validate_json(file)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "merge_json",
+      "description": "Merge multiple JSON files",
+      "usage": "merge_json(files[], mode, output_file)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "split_json",
+      "description": "Split large JSON array into files",
+      "usage": "split_json(file, items_per_file)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "query_json",
+      "description": "Query JSON with path expressions",
+      "usage": "query_json(file, path)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "sort_json_keys",
+      "description": "Sort JSON object keys alphabetically",
+      "usage": "sort_json_keys(file, recursive?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "flatten_json",
+      "description": "Flatten nested JSON structure",
+      "usage": "flatten_json(file, separator?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "json_to_csv",
+      "description": "Convert JSON array to CSV",
+      "usage": "json_to_csv(file, delimiter?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "remove_json_keys",
+      "description": "Remove specific keys from JSON",
+      "usage": "remove_json_keys(file, keys[], recursive?)",
+      "category": "json",
+      "isCustom": false
+    }
+  ],
+  "skills": [
+    {
+      "name": "generate-excel",
+      "description": "Generate Excel spreadsheet from natural language"
+    },
+    {
+      "name": "generate-word",
+      "description": "Generate Word document from natural language"
+    },
+    {
+      "name": "generate-pdf",
+      "description": "Generate PDF document from natural language"
+    },
+    {
+      "name": "analyze-file",
+      "description": "Analyze uploaded file and extract insights"
+    }
+  ],
+  "customTools": [
+    {
+      "name": "create_power_point",
+      "description": "Custom tool: PowerPointTool",
+      "filePath": "/Volumes/DATA/QWEN/zima-file-service/Api/PowerPointTool.cs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "string",
+            "description": "JSON request data for the tool"
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "createdAt": "2026-01-25T11:43:15.48166Z",
+      "updatedAt": "2026-01-25T11:43:15.481671Z"
+    }
+  ]
+}

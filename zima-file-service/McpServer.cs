@@ -70,6 +70,89 @@ public class McpServer
         }
     }
 
+    /// <summary>
+    /// Invoke a tool directly from the API controller (bypasses MCP protocol)
+    /// </summary>
+    public async Task<string> InvokeToolDirectAsync(string toolName, Dictionary<string, object> arguments)
+    {
+        Console.Error.WriteLine($"[InvokeToolDirect] Executing tool: {toolName}");
+
+        try
+        {
+            // Check if this is a custom tool
+            var toolDef = ToolsRegistry.Instance.GetTool(toolName);
+            if (toolDef?.IsCustom == true && !string.IsNullOrEmpty(toolDef.FilePath))
+            {
+                return await ExecuteCustomToolAsync(toolName, toolDef.FilePath, arguments);
+            }
+
+            // Resolve file paths for document creation tools
+            if (toolName is "create_excel" or "create_word" or "create_pdf")
+            {
+                ResolveFilePath(arguments, "file_path");
+            }
+            else if (toolName == "create_powerpoint")
+            {
+                ResolveFilePath(arguments, "filename");
+            }
+            else if (toolName == "read_excel")
+            {
+                ResolveFilePathForReading(arguments, "file_path");
+            }
+
+            var pdfTool = new PdfProcessingTool();
+            var excelProcTool = new ExcelProcessingTool();
+            var textTool = new TextProcessingTool();
+            var jsonTool = new JsonProcessingTool();
+            var wordTool = new WordProcessingTool();
+            var pptTool = new PowerPointProcessingTool();
+            var ocrTool = new OcrProcessingTool();
+            var conversionTool = new ConversionTools();
+            var imageTool = new ImageProcessingTool();
+
+            string result = toolName switch
+            {
+                // Document creation
+                "create_excel" => await new ExcelTool().CreateExcelAsync(arguments),
+                "read_excel" => await new ExcelTool().ReadExcelAsync(arguments),
+                "create_word" => await new WordTool().CreateWordAsync(arguments),
+                "create_pdf" => await new PdfTool().CreatePdfAsync(arguments),
+                "create_powerpoint" => await CreatePowerPointAsync(arguments),
+
+                // File management
+                "list_files" => await _fileManagementTool.ListFilesAsync(arguments),
+                "get_file_info" => await _fileManagementTool.GetFileInfoAsync(arguments),
+                "delete_file" => await _fileManagementTool.DeleteFileAsync(arguments),
+                "copy_file" => await _fileManagementTool.CopyFileAsync(arguments),
+                "move_file" => await _fileManagementTool.MoveFileAsync(arguments),
+                "read_file_content" => await _fileManagementTool.ReadFileContentAsync(arguments),
+                "get_directory_info" => await _fileManagementTool.GetDirectoryInfoAsync(arguments),
+
+                // PDF Processing
+                "merge_pdf" => await pdfTool.MergePdfAsync(arguments),
+                "split_pdf" => await pdfTool.SplitPdfAsync(arguments),
+                "extract_pages" => await pdfTool.ExtractPagesAsync(arguments),
+                "ocr_pdf" => await ocrTool.OcrPdfAsync(arguments),
+
+                // Excel Processing
+                "excel_to_csv" => await excelProcTool.ExcelToCsvAsync(arguments),
+
+                // Image Processing
+                "ocr_image" => await ocrTool.OcrImageAsync(arguments),
+                "resize_image" => await imageTool.ResizeImageAsync(arguments),
+
+                _ => throw new NotSupportedException($"Tool '{toolName}' is not supported for direct invocation")
+            };
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"[InvokeToolDirect] Error: {ex.Message}");
+            return System.Text.Json.JsonSerializer.Serialize(new { success = false, error = ex.Message });
+        }
+    }
+
     private async Task<string> HandleRequestAsync(string requestJson)
     {
         var request = JsonSerializer.Deserialize<JsonRpcRequest>(requestJson, _jsonOptions);
