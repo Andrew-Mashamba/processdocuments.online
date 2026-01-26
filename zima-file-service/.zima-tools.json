@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "updatedAt": "2026-01-25T11:43:15.481693Z",
+  "updatedAt": "2026-01-26T15:47:50.1907697Z",
   "mcpTools": [
     {
       "name": "create_excel",
@@ -565,6 +565,1042 @@
       "usage": "remove_json_keys(file, keys[], recursive?)",
       "category": "json",
       "isCustom": false
+    },
+    {
+      "name": "protect_pdf",
+      "description": "Protect PDF with password encryption",
+      "usage": "protect_pdf(file, user_password?, owner_password)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "unlock_pdf",
+      "description": "Unlock password-protected PDF",
+      "usage": "unlock_pdf(file, password)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "pdf_to_text",
+      "description": "Extract text from PDF",
+      "usage": "pdf_to_text(file, pages?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "text_to_pdf",
+      "description": "Convert text file to PDF",
+      "usage": "text_to_pdf(file, title?, font_size?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "compare_pdf",
+      "description": "Compare two PDF files",
+      "usage": "compare_pdf(file1, file2)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "crop_pdf",
+      "description": "Crop PDF page margins",
+      "usage": "crop_pdf(file, left, bottom, right, top)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "set_pdf_metadata",
+      "description": "Set PDF metadata (title, author, etc.)",
+      "usage": "set_pdf_metadata(file, title?, author?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "image_to_pdf",
+      "description": "Convert images to PDF document",
+      "usage": "image_to_pdf(images[], output_file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "html_to_pdf",
+      "description": "Convert HTML to PDF",
+      "usage": "html_to_pdf(file, output_file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "redact_pdf",
+      "description": "Redact/blackout areas in PDF",
+      "usage": "redact_pdf(file, areas[])",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "repair_pdf",
+      "description": "Attempt to repair corrupted PDF",
+      "usage": "repair_pdf(file, output_file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "sign_pdf",
+      "description": "Sign PDF with digital certificate (PFX/P12)",
+      "usage": "sign_pdf(file, certificate, password, reason?, location?, visible?, page?, x?, y?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "verify_pdf_signature",
+      "description": "Verify PDF digital signatures",
+      "usage": "verify_pdf_signature(file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "create_test_certificate",
+      "description": "Create a self-signed test certificate for PDF signing",
+      "usage": "create_test_certificate(name?, organization?, password?, valid_years?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_sticky_note",
+      "description": "Add sticky note (text annotation) to PDF",
+      "usage": "add_sticky_note(file, page, x, y, title?, content?, color?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_highlight",
+      "description": "Add highlight annotation to PDF",
+      "usage": "add_highlight(file, page, x, y, width, height, color?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_underline",
+      "description": "Add underline annotation to PDF",
+      "usage": "add_underline(file, page, x, y, width, height, color?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_strikethrough",
+      "description": "Add strikethrough annotation to PDF",
+      "usage": "add_strikethrough(file, page, x, y, width, height, color?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_free_text",
+      "description": "Add free text box annotation to PDF",
+      "usage": "add_free_text(file, page, x, y, width, height, content, font_size?, color?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_stamp",
+      "description": "Add stamp annotation to PDF (Approved, Draft, Final, etc.)",
+      "usage": "add_stamp(file, page, x, y, stamp_type)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "add_link",
+      "description": "Add link annotation to PDF (URL or internal page)",
+      "usage": "add_link(file, page, x, y, width, height, url?, target_page?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "list_annotations",
+      "description": "List all annotations in PDF",
+      "usage": "list_annotations(file)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "remove_annotations",
+      "description": "Remove annotations from PDF",
+      "usage": "remove_annotations(file, type?, pages?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "flatten_annotations",
+      "description": "Flatten annotations into PDF content",
+      "usage": "flatten_annotations(file, output_file?)",
+      "category": "pdf",
+      "isCustom": false
+    },
+    {
+      "name": "extract_sheets",
+      "description": "Extract specific sheets from workbook",
+      "usage": "extract_sheets(file, sheets[])",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "reorder_sheets",
+      "description": "Reorder sheets in workbook",
+      "usage": "reorder_sheets(file, new_order[])",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "rename_sheets",
+      "description": "Rename sheets in workbook",
+      "usage": "rename_sheets(file, rename_map)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "delete_sheets",
+      "description": "Delete sheets from workbook",
+      "usage": "delete_sheets(file, sheets[])",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "copy_sheet",
+      "description": "Copy sheet within workbook",
+      "usage": "copy_sheet(file, sheet, new_name)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "find_replace_excel",
+      "description": "Find and replace in Excel",
+      "usage": "find_replace_excel(file, find, replace)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "excel_to_html",
+      "description": "Convert Excel to HTML table",
+      "usage": "excel_to_html(file, sheet?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "add_formulas",
+      "description": "Add formulas to Excel cells",
+      "usage": "add_formulas(file, formulas)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "text_to_excel",
+      "description": "Convert text file to Excel",
+      "usage": "text_to_excel(file, delimiter?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "add_chart",
+      "description": "Add chart to Excel workbook",
+      "usage": "add_chart(file, data_range, chart_type)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "create_pivot_summary",
+      "description": "Create pivot-table style summary",
+      "usage": "create_pivot_summary(file, row_field, value_field, aggregation?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "validate_excel_data",
+      "description": "Validate Excel data against rules",
+      "usage": "validate_excel_data(file, rules[])",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "compress_excel",
+      "description": "Compress Excel workbook to reduce file size",
+      "usage": "compress_excel(file, remove_hidden_sheets?, remove_comments?, optimize_images?, output_file?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "repair_excel",
+      "description": "Repair corrupted Excel workbook",
+      "usage": "repair_excel(file, output_file?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "protect_workbook",
+      "description": "Protect Excel workbook with password",
+      "usage": "protect_workbook(file, password, protect_structure?, protect_sheets?, allowed_operations[]?, output_file?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "unprotect_workbook",
+      "description": "Remove protection from Excel workbook",
+      "usage": "unprotect_workbook(file, password?, unprotect_sheets?, output_file?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "add_conditional_formatting",
+      "description": "Add conditional formatting to Excel",
+      "usage": "add_conditional_formatting(file, range, format_type, condition?, value1?, value2?, background_color?, output_file?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "clear_conditional_formatting",
+      "description": "Clear conditional formatting from Excel",
+      "usage": "clear_conditional_formatting(file, range?, clear_all?, output_file?)",
+      "category": "excel",
+      "isCustom": false
+    },
+    {
+      "name": "reverse_text",
+      "description": "Reverse text (lines or characters)",
+      "usage": "reverse_text(file, mode)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "convert_encoding",
+      "description": "Convert text encoding (UTF-8, ASCII, etc.)",
+      "usage": "convert_encoding(file, from, to)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "standardize_line_endings",
+      "description": "Standardize line endings (LF, CRLF, CR)",
+      "usage": "standardize_line_endings(file, line_ending)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "wrap_text",
+      "description": "Wrap text at specified width",
+      "usage": "wrap_text(file, width)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "text_to_json",
+      "description": "Convert text file to JSON",
+      "usage": "text_to_json(file, format)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "extract_columns",
+      "description": "Extract columns from delimited text",
+      "usage": "extract_columns(file, columns[], delimiter?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "filter_lines",
+      "description": "Filter lines by pattern",
+      "usage": "filter_lines(file, pattern, use_regex?, invert?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "get_text_stats",
+      "description": "Get text file statistics",
+      "usage": "get_text_stats(file)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "text_to_html",
+      "description": "Convert text to HTML document",
+      "usage": "text_to_html(file, title?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "text_to_xml",
+      "description": "Convert text to XML document",
+      "usage": "text_to_xml(file, root_element?, line_element?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "html_to_text",
+      "description": "Strip HTML to plain text",
+      "usage": "html_to_text(file, preserve_links?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "xml_to_text",
+      "description": "Convert XML to plain text",
+      "usage": "xml_to_text(file, include_attributes?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "compress_text",
+      "description": "Compress text file using GZIP",
+      "usage": "compress_text(file, output_file?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "decompress_text",
+      "description": "Decompress GZIP file",
+      "usage": "decompress_text(file, output_file?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "encrypt_text",
+      "description": "Encrypt text file with AES",
+      "usage": "encrypt_text(file, password)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "decrypt_text",
+      "description": "Decrypt AES-encrypted file",
+      "usage": "decrypt_text(file, password)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "calculate_checksum",
+      "description": "Calculate file checksum (MD5, SHA1, SHA256)",
+      "usage": "calculate_checksum(file, algorithm?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "validate_checksum",
+      "description": "Validate file checksum",
+      "usage": "validate_checksum(file, expected, algorithm?)",
+      "category": "text",
+      "isCustom": false
+    },
+    {
+      "name": "csv_to_json",
+      "description": "Convert CSV to JSON array",
+      "usage": "csv_to_json(file, delimiter?, has_header?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "xml_to_json",
+      "description": "Convert XML to JSON",
+      "usage": "xml_to_json(file)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "json_to_xml",
+      "description": "Convert JSON to XML",
+      "usage": "json_to_xml(file, root_element?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "validate_schema",
+      "description": "Validate JSON against schema",
+      "usage": "validate_schema(file, schema_file)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "get_json_stats",
+      "description": "Get JSON file statistics",
+      "usage": "get_json_stats(file)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "remove_duplicates_json",
+      "description": "Remove duplicate objects from JSON array",
+      "usage": "remove_duplicates_json(file, key_field?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "transform_json",
+      "description": "Transform JSON using mappings",
+      "usage": "transform_json(file, mappings)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "yaml_to_json",
+      "description": "Convert YAML to JSON",
+      "usage": "yaml_to_json(file, output_file?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "json_to_yaml",
+      "description": "Convert JSON to YAML",
+      "usage": "json_to_yaml(file, output_file?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "json_to_html_table",
+      "description": "Convert JSON to HTML table",
+      "usage": "json_to_html_table(file, title?, include_styles?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "encrypt_json",
+      "description": "Encrypt JSON file with AES",
+      "usage": "encrypt_json(file, password)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "decrypt_json",
+      "description": "Decrypt AES-encrypted JSON",
+      "usage": "decrypt_json(file, password)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "array_operations",
+      "description": "JSON array operations (concat, slice, reverse, shuffle, unique)",
+      "usage": "array_operations(file, operation, options?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "repair_json",
+      "description": "Repair invalid/malformed JSON",
+      "usage": "repair_json(file, output_file?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "sql_to_json",
+      "description": "Convert SQL query/schema to JSON",
+      "usage": "sql_to_json(file?, sql?, mode?, row_count?, output_file?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "json_to_pdf",
+      "description": "Convert JSON data to PDF document",
+      "usage": "json_to_pdf(file, title?, style?, page_size?, landscape?, output_file?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "sign_json",
+      "description": "Sign JSON with digital signature (HMAC/RSA)",
+      "usage": "sign_json(file, algorithm?, secret?, private_key?, output_file?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "verify_json_signature",
+      "description": "Verify JSON digital signature",
+      "usage": "verify_json_signature(file, secret?, public_key?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "generate_json_signing_keys",
+      "description": "Generate RSA key pair for JSON signing",
+      "usage": "generate_json_signing_keys(key_size?, private_key_file?, public_key_file?)",
+      "category": "json",
+      "isCustom": false
+    },
+    {
+      "name": "merge_word",
+      "description": "Merge multiple Word documents",
+      "usage": "merge_word(files[], output_file)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "split_word",
+      "description": "Split Word document by sections or headings",
+      "usage": "split_word(file, mode)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "extract_word_sections",
+      "description": "Extract specific sections from Word document",
+      "usage": "extract_word_sections(file, sections[])",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "remove_word_sections",
+      "description": "Remove sections from Word document",
+      "usage": "remove_word_sections(file, sections[])",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "word_to_text",
+      "description": "Convert Word document to plain text",
+      "usage": "word_to_text(file)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "word_to_html",
+      "description": "Convert Word document to HTML",
+      "usage": "word_to_html(file)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "word_to_json",
+      "description": "Convert Word document to JSON structure",
+      "usage": "word_to_json(file)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "text_to_word",
+      "description": "Convert text file to Word document",
+      "usage": "text_to_word(file, detect_headings?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "find_replace_word",
+      "description": "Find and replace in Word document",
+      "usage": "find_replace_word(file, find, replace, use_regex?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "add_header_footer",
+      "description": "Add header/footer to Word document",
+      "usage": "add_header_footer(file, header?, footer?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "get_word_info",
+      "description": "Get Word document info",
+      "usage": "get_word_info(file)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "compare_word",
+      "description": "Compare two Word documents",
+      "usage": "compare_word(file1, file2)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "clean_word_formatting",
+      "description": "Clean formatting from Word document",
+      "usage": "clean_word_formatting(file, keep_structure?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "word_to_pdf",
+      "description": "Convert Word document to PDF",
+      "usage": "word_to_pdf(file, output_file?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "mail_merge",
+      "description": "Mail merge with data placeholders",
+      "usage": "mail_merge(file, data[], output_prefix?, single_output?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "accept_track_changes",
+      "description": "Accept or reject track changes",
+      "usage": "accept_track_changes(file, action)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "add_watermark_word",
+      "description": "Add watermark to Word document",
+      "usage": "add_watermark_word(file, text)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "manage_word_tables",
+      "description": "Extract, remove, or count tables",
+      "usage": "manage_word_tables(file, action, table_index?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "manage_word_comments",
+      "description": "Extract or remove comments",
+      "usage": "manage_word_comments(file, action)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "add_page_numbers_word",
+      "description": "Add page numbers to Word document",
+      "usage": "add_page_numbers_word(file, position?, alignment?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "compress_word",
+      "description": "Compress Word document to reduce file size",
+      "usage": "compress_word(file, remove_comments?, remove_revisions?, compress_images?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "repair_word",
+      "description": "Repair corrupted Word document",
+      "usage": "repair_word(file, output_file?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "html_to_word",
+      "description": "Convert HTML file or content to Word document",
+      "usage": "html_to_word(file?, html?, output_file?, preserve_styles?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "protect_word",
+      "description": "Protect Word document with password",
+      "usage": "protect_word(file, password, protection_type?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "unprotect_word",
+      "description": "Remove protection from Word document",
+      "usage": "unprotect_word(file, password?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "sign_word",
+      "description": "Sign Word document with digital certificate",
+      "usage": "sign_word(file, certificate, password, signer_name?, signer_title?)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "verify_word_signature",
+      "description": "Verify Word document signature",
+      "usage": "verify_word_signature(file)",
+      "category": "word",
+      "isCustom": false
+    },
+    {
+      "name": "merge_ppt",
+      "description": "Merge multiple PowerPoint presentations",
+      "usage": "merge_ppt(files[], output_file)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "split_ppt",
+      "description": "Split presentation by slides",
+      "usage": "split_ppt(file, slides_per_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "extract_slides",
+      "description": "Extract specific slides from presentation",
+      "usage": "extract_slides(file, slides[])",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "remove_slides",
+      "description": "Remove slides from presentation",
+      "usage": "remove_slides(file, slides[])",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "reorder_slides",
+      "description": "Reorder slides in presentation",
+      "usage": "reorder_slides(file, new_order[])",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "ppt_to_text",
+      "description": "Extract text from presentation",
+      "usage": "ppt_to_text(file, include_notes?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "ppt_to_json",
+      "description": "Convert presentation to JSON structure",
+      "usage": "ppt_to_json(file)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "get_ppt_info",
+      "description": "Get presentation info",
+      "usage": "get_ppt_info(file)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "duplicate_slides",
+      "description": "Duplicate slides in presentation",
+      "usage": "duplicate_slides(file, slides[], copies?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "ppt_to_pdf",
+      "description": "Convert PowerPoint to PDF",
+      "usage": "ppt_to_pdf(file, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "add_slide",
+      "description": "Add new slide to presentation",
+      "usage": "add_slide(file, position?, title?, content?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "add_watermark_ppt",
+      "description": "Add watermark to all slides",
+      "usage": "add_watermark_ppt(file, text)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "extract_ppt_notes",
+      "description": "Extract speaker notes from slides",
+      "usage": "extract_ppt_notes(file, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "set_transitions",
+      "description": "Set slide transitions",
+      "usage": "set_transitions(file, type, duration_ms?, slides?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "find_replace_ppt",
+      "description": "Find and replace text in presentation",
+      "usage": "find_replace_ppt(file, find, replace)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "extract_ppt_images",
+      "description": "Extract images from presentation",
+      "usage": "extract_ppt_images(file, output_folder?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "compress_ppt",
+      "description": "Compress PowerPoint presentation to reduce file size",
+      "usage": "compress_ppt(file, remove_notes?, remove_comments?, compress_images?, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "repair_ppt",
+      "description": "Repair corrupted PowerPoint presentation",
+      "usage": "repair_ppt(file, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "ppt_to_images",
+      "description": "Convert PowerPoint slides to images",
+      "usage": "ppt_to_images(file, format?, width?, height?, slides?, output_folder?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "ppt_to_video",
+      "description": "Convert PowerPoint to video (creates image sequence with metadata)",
+      "usage": "ppt_to_video(file, seconds_per_slide?, width?, height?, fps?, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "add_animations",
+      "description": "Add animations to presentation elements",
+      "usage": "add_animations(file, animation_type, trigger?, duration_ms?, slides?, target?, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "protect_ppt",
+      "description": "Protect PowerPoint presentation with password",
+      "usage": "protect_ppt(file, password, protect_structure?, read_only?, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "unprotect_ppt",
+      "description": "Remove protection from PowerPoint presentation",
+      "usage": "unprotect_ppt(file, output_file?)",
+      "category": "powerpoint",
+      "isCustom": false
+    },
+    {
+      "name": "ocr_pdf",
+      "description": "Extract text from scanned/image-based PDF using OCR",
+      "usage": "ocr_pdf(file, language?, output_format?, pages?)",
+      "category": "ocr",
+      "isCustom": false
+    },
+    {
+      "name": "ocr_image",
+      "description": "Extract text from image file (JPG, PNG, TIFF)",
+      "usage": "ocr_image(file, language?)",
+      "category": "ocr",
+      "isCustom": false
+    },
+    {
+      "name": "get_ocr_languages",
+      "description": "Get available OCR languages",
+      "usage": "get_ocr_languages()",
+      "category": "ocr",
+      "isCustom": false
+    },
+    {
+      "name": "batch_ocr",
+      "description": "OCR multiple files at once",
+      "usage": "batch_ocr(files[], language?, output_folder?)",
+      "category": "ocr",
+      "isCustom": false
+    },
+    {
+      "name": "add_text_watermark",
+      "description": "Add text watermark to image",
+      "usage": "add_text_watermark(file, text, position?, font_size?, color?, opacity?, rotation?, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "add_image_watermark",
+      "description": "Add image watermark to another image",
+      "usage": "add_image_watermark(file, watermark_image, position?, opacity?, scale?, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "redact_strings",
+      "description": "Redact text patterns from image using OCR",
+      "usage": "redact_strings(file, patterns[], use_regex?, redact_color?, language?, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "redact_regions",
+      "description": "Redact specific regions from image",
+      "usage": "redact_regions(file, regions[], redact_color?, blur?, blur_radius?, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "redact_sensitive_info",
+      "description": "Auto-detect and redact sensitive info (email, phone, SSN)",
+      "usage": "redact_sensitive_info(file, types[]?, redact_color?, language?, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "resize_image",
+      "description": "Resize an image",
+      "usage": "resize_image(file, width?, height?, maintain_aspect?, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "convert_image_format",
+      "description": "Convert image format (PNG, JPG, WebP, etc.)",
+      "usage": "convert_image_format(file, format, quality?, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "crop_image",
+      "description": "Crop an image",
+      "usage": "crop_image(file, x, y, width, height, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "rotate_image",
+      "description": "Rotate an image",
+      "usage": "rotate_image(file, degrees, output_file?)",
+      "category": "image",
+      "isCustom": false
+    },
+    {
+      "name": "pdf_to_word",
+      "description": "Convert PDF to Word document (.docx)",
+      "usage": "pdf_to_word(file, output_file?, preserve_layout?)",
+      "category": "conversion",
+      "isCustom": false
+    },
+    {
+      "name": "pdf_to_excel",
+      "description": "Convert PDF to Excel spreadsheet (.xlsx) with table detection",
+      "usage": "pdf_to_excel(file, output_file?, detect_tables?)",
+      "category": "conversion",
+      "isCustom": false
+    },
+    {
+      "name": "pdf_to_jpg",
+      "description": "Convert PDF pages to JPG images",
+      "usage": "pdf_to_jpg(file, output_folder?, dpi?, quality?, pages?)",
+      "category": "conversion",
+      "isCustom": false
+    },
+    {
+      "name": "pdf_to_png",
+      "description": "Convert PDF pages to PNG images (lossless)",
+      "usage": "pdf_to_png(file, output_folder?, dpi?, pages?)",
+      "category": "conversion",
+      "isCustom": false
+    },
+    {
+      "name": "pdf_to_pdfa",
+      "description": "Convert PDF to PDF/A archival format",
+      "usage": "pdf_to_pdfa(file, output_file?, conformance?)",
+      "category": "conversion",
+      "isCustom": false
+    },
+    {
+      "name": "excel_to_pdf",
+      "description": "Convert Excel spreadsheet to PDF",
+      "usage": "excel_to_pdf(file, output_file?, sheets?, landscape?, fit_to_page?)",
+      "category": "conversion",
+      "isCustom": false
     }
   ],
   "skills": [
@@ -604,6 +1640,25 @@
       },
       "createdAt": "2026-01-25T11:43:15.48166Z",
       "updatedAt": "2026-01-25T11:43:15.481671Z"
+    },
+    {
+      "name": "create_s_controller",
+      "description": "List all available tools",
+      "filePath": "/var/www/html/zima-file-service/Api/ToolsController.cs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "string",
+            "description": "JSON request data for the tool"
+          }
+        },
+        "required": [
+          "request"
+        ]
+      },
+      "createdAt": "2026-01-26T15:47:50.1901223Z",
+      "updatedAt": "2026-01-26T15:47:50.1901224Z"
     }
   ]
 }
