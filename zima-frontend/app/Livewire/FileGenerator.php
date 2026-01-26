@@ -44,6 +44,9 @@ class FileGenerator extends Component
     public string $streamingContent = '';
     public bool $streamingMode = true; // Re-enabled with fixed streaming backend
 
+    // Agent mode - Uses autonomous agent with tool execution
+    public bool $agentMode = true; // Default to agent mode for better autonomous file generation
+
     // File upload state
     public $uploadedFile;
     public array $sessionFiles = [];
@@ -58,7 +61,7 @@ class FileGenerator extends Component
     public ?string $jobStep = null;
     public bool $useAsyncMode = false; // Enable async mode for long-running tasks
 
-    protected string $apiUrl = 'http://localhost:5000';
+    public string $apiUrl = 'http://localhost:5000';
 
     // File upload validation rules
     protected array $fileValidationRules = [
@@ -653,13 +656,22 @@ class FileGenerator extends Component
 
         // Dispatch event to JavaScript StreamingHandler
         // Note: Journey will be completed in completeStreaming() method
-        $this->dispatch('startStreaming', [
-            'prompt' => $userPrompt,
-            'messages' => $cachedMessages,
+        $requestData = [
             'sessionId' => $this->currentSessionId,
             'streamUrl' => $this->getStreamingUrl(),
             'journeyRequestId' => $this->journeyRequestId, // Pass journey ID to JavaScript
-        ]);
+            'agentMode' => $this->agentMode,
+        ];
+
+        // Agent mode uses 'goal' property, standard mode uses 'prompt' and 'messages'
+        if ($this->agentMode) {
+            $requestData['goal'] = $userPrompt;
+        } else {
+            $requestData['prompt'] = $userPrompt;
+            $requestData['messages'] = $cachedMessages;
+        }
+
+        $this->dispatch('startStreaming', $requestData);
     }
 
     protected function generateSmartTitle(ChatSession $session, string $firstPrompt)
@@ -894,12 +906,25 @@ class FileGenerator extends Component
     }
 
     /**
+     * Toggle agent mode
+     */
+    public function toggleAgentMode()
+    {
+        $this->agentMode = !$this->agentMode;
+        Log::info("Agent mode toggled: " . ($this->agentMode ? 'ON' : 'OFF'));
+    }
+
+    /**
      * Get the streaming URL for JavaScript EventSource
      */
     public function getStreamingUrl(): string
     {
-        // Return relative URL for JavaScript (proxied via Apache)
-        return "/api/generate/stream";
+        // Use full backend URL to avoid proxy issues
+        // Return agent URL when in agent mode, otherwise standard generate
+        if ($this->agentMode) {
+            return "{$this->apiUrl}/api/agent/stream";
+        }
+        return "{$this->apiUrl}/api/generate/stream";
     }
 
     /**
