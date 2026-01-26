@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using ZimaFileService.Services;
 
 namespace ZimaFileService.Api;
 
@@ -139,16 +140,28 @@ public class FilesController : ControllerBase
     {
         try
         {
-            var filePath = Path.Combine(_fileManager.GeneratedFilesPath, filename);
+            // Sanitize filename to prevent path traversal
+            var safeFilename = FileSecurityValidator.SanitizeFilename(filename);
+            var filePath = Path.Combine(_fileManager.GeneratedFilesPath, safeFilename);
+
+            // Verify path is safe
+            if (!FileSecurityValidator.IsPathSafe(_fileManager.GeneratedFilesPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogSecurityIncident(GetClientIp(), "PATH_TRAVERSAL",
+                    $"Attempted path traversal in download: {filename}");
+                return BadRequest(new { error = "Invalid file path" });
+            }
+
             if (!System.IO.File.Exists(filePath))
             {
                 return NotFound(new { error = "File not found" });
             }
 
-            var contentType = GetContentType(filename);
+            var contentType = GetContentType(safeFilename);
             var bytes = System.IO.File.ReadAllBytes(filePath);
 
-            return File(bytes, contentType, filename);
+            SecurityAuditLogger.Instance.LogFileOperation(GetClientIp(), "DOWNLOAD", safeFilename, true);
+            return File(bytes, contentType, safeFilename);
         }
         catch (Exception ex)
         {
@@ -164,17 +177,30 @@ public class FilesController : ControllerBase
     {
         try
         {
-            var filePath = Path.Combine(_fileManager.GeneratedFilesPath, filename);
+            // Sanitize filename to prevent path traversal
+            var safeFilename = FileSecurityValidator.SanitizeFilename(filename);
+            var filePath = Path.Combine(_fileManager.GeneratedFilesPath, safeFilename);
+
+            // Verify path is safe
+            if (!FileSecurityValidator.IsPathSafe(_fileManager.GeneratedFilesPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogSecurityIncident(GetClientIp(), "PATH_TRAVERSAL",
+                    $"Attempted path traversal in delete: {filename}");
+                return BadRequest(new { error = "Invalid file path" });
+            }
+
             if (!System.IO.File.Exists(filePath))
             {
                 return NotFound(new { error = "File not found" });
             }
 
             System.IO.File.Delete(filePath);
-            return Ok(new { message = $"File '{filename}' deleted successfully" });
+            SecurityAuditLogger.Instance.LogFileOperation(GetClientIp(), "DELETE", safeFilename, true);
+            return Ok(new { message = $"File '{safeFilename}' deleted successfully" });
         }
         catch (Exception ex)
         {
+            SecurityAuditLogger.Instance.LogFileOperation(GetClientIp(), "DELETE", filename, false, ex.Message);
             return StatusCode(500, new { error = ex.Message });
         }
     }
@@ -185,6 +211,8 @@ public class FilesController : ControllerBase
     [HttpPost("upload")]
     public async Task<IActionResult> UploadFile(IFormFile file)
     {
+        var clientIp = GetClientIp();
+
         try
         {
             if (file == null || file.Length == 0)
@@ -192,23 +220,52 @@ public class FilesController : ControllerBase
                 return BadRequest(new { error = "No file provided" });
             }
 
-            var filePath = Path.Combine(_fileManager.UploadedFilesPath, file.FileName);
+            // Validate the file
+            var validation = FileSecurityValidator.ValidateFile(file.FileName, file.ContentType, file.Length);
+
+            if (!validation.IsValid)
+            {
+                SecurityAuditLogger.Instance.LogBlockedUpload(clientIp, file.FileName,
+                    string.Join("; ", validation.Errors));
+
+                return BadRequest(new
+                {
+                    error = "File validation failed",
+                    details = validation.Errors,
+                    code = validation.IsSuspicious ? "SUSPICIOUS_FILE" : "VALIDATION_FAILED"
+                });
+            }
+
+            // Use sanitized filename
+            var safeFilename = validation.SanitizedFilename;
+            var filePath = Path.Combine(_fileManager.UploadedFilesPath, safeFilename);
+
+            // Verify path is safe (defense in depth)
+            if (!FileSecurityValidator.IsPathSafe(_fileManager.UploadedFilesPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogBlockedUpload(clientIp, file.FileName, "Path traversal attempt detected");
+                return BadRequest(new { error = "Invalid file path", code = "PATH_TRAVERSAL" });
+            }
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
 
+            SecurityAuditLogger.Instance.LogFileOperation(clientIp, "UPLOAD", safeFilename, true);
+
             return Ok(new
             {
                 message = "File uploaded successfully",
-                filename = file.FileName,
+                filename = safeFilename,
+                originalFilename = file.FileName,
                 size = file.Length,
-                path = filePath
+                warnings = validation.Warnings.Count > 0 ? validation.Warnings : null
             });
         }
         catch (Exception ex)
         {
+            SecurityAuditLogger.Instance.LogFileOperation(clientIp, "UPLOAD", file?.FileName ?? "unknown", false, ex.Message);
             return StatusCode(500, new { error = ex.Message });
         }
     }
@@ -347,18 +404,31 @@ public class FilesController : ControllerBase
     {
         try
         {
+            if (!IsValidSessionId(sessionId))
+            {
+                return BadRequest(new { error = "Invalid session ID format" });
+            }
+
+            var safeFilename = FileSecurityValidator.SanitizeFilename(filename);
             var sessionPath = _fileManager.GetSessionGeneratedPath(sessionId);
-            var filePath = Path.Combine(sessionPath, filename);
+            var filePath = Path.Combine(sessionPath, safeFilename);
+
+            if (!FileSecurityValidator.IsPathSafe(sessionPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogSecurityIncident(GetClientIp(), "PATH_TRAVERSAL",
+                    $"Attempted path traversal in session download: {filename}");
+                return BadRequest(new { error = "Invalid file path" });
+            }
 
             if (!System.IO.File.Exists(filePath))
             {
                 return NotFound(new { error = "File not found" });
             }
 
-            var contentType = GetContentType(filename);
+            var contentType = GetContentType(safeFilename);
             var bytes = System.IO.File.ReadAllBytes(filePath);
 
-            return File(bytes, contentType, filename);
+            return File(bytes, contentType, safeFilename);
         }
         catch (Exception ex)
         {
@@ -374,8 +444,21 @@ public class FilesController : ControllerBase
     {
         try
         {
+            if (!IsValidSessionId(sessionId))
+            {
+                return BadRequest(new { error = "Invalid session ID format" });
+            }
+
+            var safeFilename = FileSecurityValidator.SanitizeFilename(filename);
             var sessionPath = _fileManager.GetSessionGeneratedPath(sessionId);
-            var filePath = Path.Combine(sessionPath, filename);
+            var filePath = Path.Combine(sessionPath, safeFilename);
+
+            if (!FileSecurityValidator.IsPathSafe(sessionPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogSecurityIncident(GetClientIp(), "PATH_TRAVERSAL",
+                    $"Attempted path traversal in session delete: {filename}");
+                return BadRequest(new { error = "Invalid file path" });
+            }
 
             if (!System.IO.File.Exists(filePath))
             {
@@ -425,6 +508,8 @@ public class FilesController : ControllerBase
     [HttpPost("upload/{sessionId}")]
     public async Task<IActionResult> UploadSessionFile(string sessionId, IFormFile file)
     {
+        var clientIp = GetClientIp();
+
         try
         {
             if (file == null || file.Length == 0)
@@ -437,8 +522,39 @@ public class FilesController : ControllerBase
                 return BadRequest(new { error = "Session ID is required" });
             }
 
+            // Validate session ID format (UUID)
+            if (!IsValidSessionId(sessionId))
+            {
+                return BadRequest(new { error = "Invalid session ID format", code = "INVALID_SESSION_ID" });
+            }
+
+            // Validate the file
+            var validation = FileSecurityValidator.ValidateFile(file.FileName, file.ContentType, file.Length);
+
+            if (!validation.IsValid)
+            {
+                SecurityAuditLogger.Instance.LogBlockedUpload(clientIp, file.FileName,
+                    string.Join("; ", validation.Errors));
+
+                return BadRequest(new
+                {
+                    error = "File validation failed",
+                    details = validation.Errors,
+                    code = validation.IsSuspicious ? "SUSPICIOUS_FILE" : "VALIDATION_FAILED"
+                });
+            }
+
+            // Use sanitized filename
+            var safeFilename = validation.SanitizedFilename;
             var sessionPath = _fileManager.GetSessionUploadPath(sessionId);
-            var filePath = Path.Combine(sessionPath, file.FileName);
+            var filePath = Path.Combine(sessionPath, safeFilename);
+
+            // Verify path is safe (defense in depth)
+            if (!FileSecurityValidator.IsPathSafe(sessionPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogBlockedUpload(clientIp, file.FileName, "Path traversal attempt detected");
+                return BadRequest(new { error = "Invalid file path", code = "PATH_TRAVERSAL" });
+            }
 
             // If file exists, create versioned name
             if (System.IO.File.Exists(filePath))
@@ -452,6 +568,8 @@ public class FilesController : ControllerBase
             }
 
             var info = new FileInfo(filePath);
+            SecurityAuditLogger.Instance.LogFileOperation(clientIp, "UPLOAD", $"{sessionId}/{info.Name}", true);
+
             return Ok(new
             {
                 success = true,
@@ -465,11 +583,13 @@ public class FilesController : ControllerBase
                     Created = info.CreationTime,
                     Modified = info.LastWriteTime,
                     DownloadUrl = $"/api/files/session/{sessionId}/{Uri.EscapeDataString(info.Name)}/download"
-                }
+                },
+                warnings = validation.Warnings.Count > 0 ? validation.Warnings : null
             });
         }
         catch (Exception ex)
         {
+            SecurityAuditLogger.Instance.LogFileOperation(clientIp, "UPLOAD", $"{sessionId}/{file?.FileName ?? "unknown"}", false, ex.Message);
             return StatusCode(500, new { error = ex.Message });
         }
     }
@@ -510,18 +630,31 @@ public class FilesController : ControllerBase
     {
         try
         {
+            if (!IsValidSessionId(sessionId))
+            {
+                return BadRequest(new { error = "Invalid session ID format" });
+            }
+
+            var safeFilename = FileSecurityValidator.SanitizeFilename(filename);
             var sessionPath = _fileManager.GetSessionUploadPath(sessionId);
-            var filePath = Path.Combine(sessionPath, filename);
+            var filePath = Path.Combine(sessionPath, safeFilename);
+
+            if (!FileSecurityValidator.IsPathSafe(sessionPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogSecurityIncident(GetClientIp(), "PATH_TRAVERSAL",
+                    $"Attempted path traversal in session file download: {filename}");
+                return BadRequest(new { error = "Invalid file path" });
+            }
 
             if (!System.IO.File.Exists(filePath))
             {
                 return NotFound(new { error = "File not found" });
             }
 
-            var contentType = GetContentType(filename);
+            var contentType = GetContentType(safeFilename);
             var bytes = System.IO.File.ReadAllBytes(filePath);
 
-            return File(bytes, contentType, filename);
+            return File(bytes, contentType, safeFilename);
         }
         catch (Exception ex)
         {
@@ -537,8 +670,21 @@ public class FilesController : ControllerBase
     {
         try
         {
+            if (!IsValidSessionId(sessionId))
+            {
+                return BadRequest(new { error = "Invalid session ID format" });
+            }
+
+            var safeFilename = FileSecurityValidator.SanitizeFilename(filename);
             var sessionPath = _fileManager.GetSessionUploadPath(sessionId);
-            var filePath = Path.Combine(sessionPath, filename);
+            var filePath = Path.Combine(sessionPath, safeFilename);
+
+            if (!FileSecurityValidator.IsPathSafe(sessionPath, filePath))
+            {
+                SecurityAuditLogger.Instance.LogSecurityIncident(GetClientIp(), "PATH_TRAVERSAL",
+                    $"Attempted path traversal in session file delete: {filename}");
+                return BadRequest(new { error = "Invalid file path" });
+            }
 
             if (!System.IO.File.Exists(filePath))
             {
@@ -546,10 +692,12 @@ public class FilesController : ControllerBase
             }
 
             System.IO.File.Delete(filePath);
-            return Ok(new { message = $"File '{filename}' deleted successfully" });
+            SecurityAuditLogger.Instance.LogFileOperation(GetClientIp(), "DELETE", $"{sessionId}/{safeFilename}", true);
+            return Ok(new { message = $"File '{safeFilename}' deleted successfully" });
         }
         catch (Exception ex)
         {
+            SecurityAuditLogger.Instance.LogFileOperation(GetClientIp(), "DELETE", $"{sessionId}/{filename}", false, ex.Message);
             return StatusCode(500, new { error = ex.Message });
         }
     }
@@ -660,6 +808,42 @@ public class FilesController : ControllerBase
             size /= 1024;
         }
         return $"{size:0.##} {sizes[order]}";
+    }
+
+    /// <summary>
+    /// Get the client IP address from the request
+    /// </summary>
+    private string GetClientIp()
+    {
+        var forwardedFor = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+        if (!string.IsNullOrEmpty(forwardedFor))
+        {
+            return forwardedFor.Split(',')[0].Trim();
+        }
+
+        var realIp = HttpContext.Request.Headers["X-Real-IP"].FirstOrDefault();
+        if (!string.IsNullOrEmpty(realIp))
+        {
+            return realIp;
+        }
+
+        return HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+    }
+
+    /// <summary>
+    /// Validate session ID format (should be UUID)
+    /// </summary>
+    private static bool IsValidSessionId(string sessionId)
+    {
+        // Allow UUID format (with or without hyphens)
+        if (Guid.TryParse(sessionId, out _))
+            return true;
+
+        // Also allow alphanumeric session IDs (max 64 chars)
+        if (sessionId.Length <= 64 && System.Text.RegularExpressions.Regex.IsMatch(sessionId, @"^[a-zA-Z0-9_-]+$"))
+            return true;
+
+        return false;
     }
 }
 

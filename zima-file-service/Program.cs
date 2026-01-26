@@ -1,5 +1,6 @@
 using ZimaFileService;
 using ZimaFileService.Api;
+using ZimaFileService.Middleware;
 
 // Check if running in MCP mode (stdio) or HTTP mode
 var runMode = args.Length > 0 && args[0] == "--http" ? "http" : "mcp";
@@ -25,14 +26,44 @@ if (runMode == "http")
     // Add services
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
+
+    // Configure CORS - use environment variable for allowed origins
+    var allowedOrigins = Environment.GetEnvironmentVariable("ZIMA_ALLOWED_ORIGINS")?.Split(',', StringSplitOptions.RemoveEmptyEntries)
+        ?? new[] { "*" };
+
     builder.Services.AddCors(options =>
     {
-        options.AddPolicy("AllowAll", policy =>
+        options.AddPolicy("ConfiguredCors", policy =>
         {
-            policy.AllowAnyOrigin()
-                  .AllowAnyMethod()
-                  .AllowAnyHeader();
+            if (allowedOrigins.Length == 1 && allowedOrigins[0] == "*")
+            {
+                // Development mode - allow all (with warning)
+                Console.Error.WriteLine("[SECURITY WARNING] CORS is set to allow all origins. Set ZIMA_ALLOWED_ORIGINS for production.");
+                policy.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            }
+            else
+            {
+                // Production mode - restrict to specific origins
+                policy.WithOrigins(allowedOrigins)
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+                      .AllowCredentials();
+            }
         });
+    });
+
+    // Configure request size limits
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        // Max request body size: 100 MB (for file uploads)
+        var maxSizeMb = int.TryParse(Environment.GetEnvironmentVariable("ZIMA_MAX_REQUEST_SIZE_MB"), out var mb) ? mb : 100;
+        options.Limits.MaxRequestBodySize = maxSizeMb * 1024 * 1024;
+
+        // Request header limits
+        options.Limits.MaxRequestHeaderCount = 100;
+        options.Limits.MaxRequestHeadersTotalSize = 32 * 1024; // 32 KB
     });
 
     // Add ZIMA service
@@ -40,8 +71,20 @@ if (runMode == "http")
 
     var app = builder.Build();
 
-    // Configure pipeline
-    app.UseCors("AllowAll");
+    // Security middleware pipeline (order matters!)
+    // 1. Security headers - always add security headers first
+    app.UseSecurityHeaders();
+
+    // 2. Rate limiting - protect against abuse before processing
+    app.UseRateLimiting();
+
+    // 3. API Key Authentication - verify identity before accessing resources
+    app.UseApiKeyAuthentication();
+
+    // 4. CORS - allow configured origins
+    app.UseCors("ConfiguredCors");
+
+    // Map controllers
     app.MapControllers();
 
     // Serve static files from generated_files for downloads
