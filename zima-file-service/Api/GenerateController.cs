@@ -203,8 +203,62 @@ public class GenerateController : ControllerBase
                 }).ToList();
             }
 
+            // Get uploaded file context for this session (same as non-streaming endpoint)
+            string? fileContext = null;
+            Console.Error.WriteLine($"[StreamGenerate] SessionId: '{request.SessionId ?? "NULL"}'");
+
+            if (!string.IsNullOrEmpty(request.SessionId))
+            {
+                Console.Error.WriteLine($"[StreamGenerate] Looking for files in session: {request.SessionId}");
+                var sessionFiles = _fileManager.GetSessionFileContents(request.SessionId);
+                Console.Error.WriteLine($"[StreamGenerate] Found {sessionFiles.Count} session files");
+
+                if (sessionFiles.Count > 0)
+                {
+                    var contextBuilder = new System.Text.StringBuilder();
+                    contextBuilder.AppendLine("\n=== UPLOADED FILES FOR THIS SESSION ===");
+                    contextBuilder.AppendLine($"The user has uploaded {sessionFiles.Count} file(s) for context.");
+                    contextBuilder.AppendLine("Note: Large files are automatically summarized. Use tools (read_excel, read_file_content) for full access.\n");
+
+                    foreach (var (fileName, content) in sessionFiles)
+                    {
+                        var loadInfo = content.LoadStrategy switch
+                        {
+                            "full" => "",
+                            "preview" => $" [PREVIEW: {content.LoadedLines}/{content.TotalLines} lines loaded]",
+                            "summary" => " [SUMMARY - use tools for full data]",
+                            "metadata" => " [METADATA ONLY]",
+                            _ => ""
+                        };
+
+                        if (content.IsText)
+                        {
+                            contextBuilder.AppendLine($"--- {fileName} ({FormatFileSize(content.Size)}){loadInfo} ---");
+                            contextBuilder.AppendLine(content.Content);
+                            contextBuilder.AppendLine();
+                        }
+                        else
+                        {
+                            contextBuilder.AppendLine($"--- {fileName} ({content.MimeType}, {FormatFileSize(content.Size)}){loadInfo} ---");
+                            contextBuilder.AppendLine(content.Content);
+                            contextBuilder.AppendLine();
+                        }
+                    }
+                    contextBuilder.AppendLine("=== END UPLOADED FILES ===\n");
+                    fileContext = contextBuilder.ToString();
+                    Console.Error.WriteLine($"[StreamGenerate] File context injected! Length: {fileContext.Length}");
+                }
+            }
+
+            // Combine file context with conversation context
+            var fullContext = request.Context;
+            if (!string.IsNullOrEmpty(fileContext))
+            {
+                fullContext = fileContext + (fullContext ?? "");
+            }
+
             // Stream events from the service
-            await foreach (var streamEvent in _zimaService.GenerateStreamingAsync(request.Prompt, request.Context, messages))
+            await foreach (var streamEvent in _zimaService.GenerateStreamingAsync(request.Prompt, fullContext, messages))
             {
                 await SendEvent(streamEvent.Type, streamEvent.Data ?? new { });
             }
