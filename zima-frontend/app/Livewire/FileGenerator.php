@@ -29,6 +29,8 @@ class FileGenerator extends Component
     public array $fileGroups = [];
     public array $expandedGroups = [];
     public array $sessions = [];
+    public array $allGeneratedFiles = [];  // All files across all sessions
+    public bool $showAllFiles = false;     // Toggle between session files and all files
     public ?string $currentSessionId = null;
     public bool $showSessionList = false;
 
@@ -47,6 +49,8 @@ class FileGenerator extends Component
     public array $sessionFiles = [];
     public bool $isUploading = false;
     public ?string $uploadError = null;
+    public array $allUploadedFiles = [];  // All uploaded files across all sessions
+    public bool $showAllUploads = false;  // Toggle between session uploads and all uploads
 
     // Phase 5: Async job state
     public ?string $currentJobId = null;
@@ -75,6 +79,7 @@ class FileGenerator extends Component
     {
         $this->loadSessions();
         $this->loadFiles();
+        $this->loadAllGeneratedFiles();  // Load all files on mount
 
         // Try to load the most recent session (don't auto-create)
         if ($this->currentSessionId) {
@@ -743,6 +748,79 @@ class FileGenerator extends Component
         }
     }
 
+    /**
+     * Load ALL generated files across all sessions
+     */
+    public function loadAllGeneratedFiles()
+    {
+        try {
+            $response = Http::get("{$this->apiUrl}/api/files/generated/by-session");
+            if ($response->successful()) {
+                $this->allGeneratedFiles = $response->json()['sessions'] ?? [];
+            } else {
+                $this->allGeneratedFiles = [];
+            }
+        } catch (\Exception $e) {
+            Log::error("Failed to load all generated files: " . $e->getMessage());
+            $this->allGeneratedFiles = [];
+        }
+    }
+
+    /**
+     * Toggle between session files and all files view
+     */
+    public function toggleAllFilesView()
+    {
+        $this->showAllFiles = !$this->showAllFiles;
+        if ($this->showAllFiles) {
+            $this->loadAllGeneratedFiles();
+        }
+    }
+
+    /**
+     * Refresh files - called by polling, handles both views
+     */
+    public function refreshFiles()
+    {
+        $this->loadFiles();  // Always refresh current session files
+        $this->loadSessionFiles();  // Also refresh uploaded files
+        if ($this->showAllFiles) {
+            $this->loadAllGeneratedFiles();  // Also refresh all files if in that view
+        }
+        if ($this->showAllUploads) {
+            $this->loadAllUploadedFiles();  // Also refresh all uploads if in that view
+        }
+    }
+
+    /**
+     * Load all uploaded files from all sessions
+     */
+    public function loadAllUploadedFiles()
+    {
+        try {
+            $response = Http::get("{$this->apiUrl}/api/files/uploaded/by-session");
+            if ($response->successful()) {
+                $this->allUploadedFiles = $response->json()['sessions'] ?? [];
+            } else {
+                $this->allUploadedFiles = [];
+            }
+        } catch (\Exception $e) {
+            Log::error("Failed to load all uploaded files: " . $e->getMessage());
+            $this->allUploadedFiles = [];
+        }
+    }
+
+    /**
+     * Toggle between session uploads and all uploads view
+     */
+    public function toggleAllUploadsView()
+    {
+        $this->showAllUploads = !$this->showAllUploads;
+        if ($this->showAllUploads) {
+            $this->loadAllUploadedFiles();
+        }
+    }
+
     public function toggleGroup(string $baseName)
     {
         if (in_array($baseName, $this->expandedGroups)) {
@@ -1214,6 +1292,110 @@ class FileGenerator extends Component
         $this->currentJobId = null;
         $this->jobProgress = 0;
         $this->jobStep = null;
+    }
+
+    /**
+     * Invoke a tool directly without AI processing
+     * Uses the new /api/tools/{tool_name} endpoint
+     */
+    public function invokeTool(string $toolName, array $arguments)
+    {
+        $this->isLoading = true;
+        $this->error = null;
+
+        try {
+            $response = Http::timeout(120)->post("{$this->apiUrl}/api/tools/{$toolName}", $arguments);
+
+            if ($response->successful()) {
+                $data = $response->json();
+
+                // Add result to messages
+                $resultMessage = "Tool `{$toolName}` executed successfully.\n\n";
+                if (isset($data['result'])) {
+                    $resultMessage .= $data['result'];
+                } else {
+                    $resultMessage .= json_encode($data, JSON_PRETTY_PRINT);
+                }
+
+                $this->messages[] = [
+                    'id' => uniqid(),
+                    'role' => 'assistant',
+                    'content' => $resultMessage,
+                    'timestamp' => now()->format('H:i'),
+                    'isError' => false,
+                ];
+
+                // Refresh file list
+                $this->loadFiles();
+
+                return $data;
+            } else {
+                throw new \Exception($response->body());
+            }
+        } catch (\Exception $e) {
+            $this->error = "Tool error: " . $e->getMessage();
+            $this->messages[] = [
+                'id' => uniqid(),
+                'role' => 'assistant',
+                'content' => "Error executing tool: " . $e->getMessage(),
+                'timestamp' => now()->format('H:i'),
+                'isError' => true,
+            ];
+        } finally {
+            $this->isLoading = false;
+        }
+    }
+
+    /**
+     * Quick action: Create Excel from simple data
+     */
+    public function quickCreateExcel(string $filename, array $headers, array $rows)
+    {
+        return $this->invokeTool('create_excel', [
+            'file_path' => $filename,
+            'headers' => $headers,
+            'rows' => $rows,
+        ]);
+    }
+
+    /**
+     * Quick action: Create Word document
+     */
+    public function quickCreateWord(string $filename, string $title, array $content)
+    {
+        return $this->invokeTool('create_word', [
+            'file_path' => $filename,
+            'title' => $title,
+            'content' => $content,
+        ]);
+    }
+
+    /**
+     * Quick action: Create PDF
+     */
+    public function quickCreatePdf(string $filename, string $title, array $content)
+    {
+        return $this->invokeTool('create_pdf', [
+            'file_path' => $filename,
+            'title' => $title,
+            'content' => $content,
+        ]);
+    }
+
+    /**
+     * Get list of available tools from API
+     */
+    public function getAvailableTools()
+    {
+        try {
+            $response = Http::get("{$this->apiUrl}/api/tools");
+            if ($response->successful()) {
+                return $response->json()['tools'] ?? [];
+            }
+        } catch (\Exception $e) {
+            Log::error("Failed to fetch tools: " . $e->getMessage());
+        }
+        return [];
     }
 
     public function render()

@@ -1,2 +1,30 @@
+# robots.txt for Process Documents Online
+# https://processdocuments.online
+
+# Allow all crawlers
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /livewire/
+Disallow: /_debugbar/
+
+# Disallow authentication pages from indexing
+Disallow: /password/
+Disallow: /email/
+Disallow: /two-factor/
+
+# Sitemap location
+Sitemap: https://processdocuments.online/sitemap.xml
+
+# Google-specific settings
+User-agent: Googlebot
+Allow: /
+
+# Bing-specific settings
+User-agent: Bingbot
+Allow: /

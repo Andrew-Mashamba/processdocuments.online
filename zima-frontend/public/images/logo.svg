@@ -1,0 +1,17 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#171717"/>
+
+  <!-- Document Icon -->
+  <g transform="translate(55, 40)">
+    <!-- Paper -->
+    <path d="M10 0 H70 L90 20 V120 H10 Z" fill="#ffffff"/>
+    <!-- Folded Corner -->
+    <path d="M70 0 V20 H90 Z" fill="#e5e5e5"/>
+    <!-- Lines -->
+    <rect x="25" y="40" width="50" height="6" rx="2" fill="#171717" opacity="0.2"/>
+    <rect x="25" y="55" width="40" height="6" rx="2" fill="#171717" opacity="0.2"/>
+    <rect x="25" y="70" width="45" height="6" rx="2" fill="#171717" opacity="0.2"/>
+    <rect x="25" y="85" width="35" height="6" rx="2" fill="#171717" opacity="0.2"/>
+  </g>
+</svg>

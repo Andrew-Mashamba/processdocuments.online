@@ -4,8 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="robots" content="index, follow">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ $title ?? config('app.name', 'Process Documents Online') }}</title>
+
+        @if(isset($description))
+        <meta name="description" content="{{ $description }}">
+        @endif
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="{{ url()->current() }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -16,6 +24,9 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        <!-- Additional Head Content -->
+        @stack('seo')
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
