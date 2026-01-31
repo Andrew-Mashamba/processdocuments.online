@@ -1,0 +1,9 @@
+{
+  "name": "compress_excel",
+  "description": "Compress Excel workbook to reduce file size",
+  "usage": "compress_excel(file, remove_hidden_sheets?, remove_comments?, optimize_images?, output_file?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool compress_excel"
+}

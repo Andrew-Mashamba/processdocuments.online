@@ -1,0 +1,9 @@
+{
+  "name": "repair_json",
+  "description": "Repair invalid/malformed JSON",
+  "usage": "repair_json(file, output_file?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool repair_json"
+}

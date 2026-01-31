@@ -1,0 +1,9 @@
+{
+  "name": "redact_sensitive_info",
+  "description": "Auto-detect and redact sensitive info (email, phone, SSN)",
+  "usage": "redact_sensitive_info(file, types[]?, redact_color?, language?, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool redact_sensitive_info"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "find_replace_ppt",
+  "description": "Find and replace text in presentation",
+  "usage": "find_replace_ppt(file, find, replace)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool find_replace_ppt"
+}

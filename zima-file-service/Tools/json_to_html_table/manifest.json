@@ -1,0 +1,9 @@
+{
+  "name": "json_to_html_table",
+  "description": "Convert JSON to HTML table",
+  "usage": "json_to_html_table(file, title?, include_styles?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool json_to_html_table"
+}

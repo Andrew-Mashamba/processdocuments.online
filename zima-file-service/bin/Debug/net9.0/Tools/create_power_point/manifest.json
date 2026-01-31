@@ -1,0 +1,16 @@
+{
+  "name": "create_power_point",
+  "description": "Custom tool: PowerPointTool",
+  "usage": null,
+  "category": "custom",
+  "inputs": {
+    "request": {
+      "type": "string",
+      "description": "JSON request data for the tool"
+    }
+  },
+  "required": [
+    "request"
+  ],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool create_power_point"
+}

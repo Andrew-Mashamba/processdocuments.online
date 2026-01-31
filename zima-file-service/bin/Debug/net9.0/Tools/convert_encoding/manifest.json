@@ -1,0 +1,9 @@
+{
+  "name": "convert_encoding",
+  "description": "Convert text encoding (UTF-8, ASCII, etc.)",
+  "usage": "convert_encoding(file, from, to)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool convert_encoding"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "add_page_numbers_word",
+  "description": "Add page numbers to Word document",
+  "usage": "add_page_numbers_word(file, position?, alignment?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_page_numbers_word"
+}

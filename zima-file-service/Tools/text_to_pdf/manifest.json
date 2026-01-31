@@ -1,0 +1,9 @@
+{
+  "name": "text_to_pdf",
+  "description": "Convert text file to PDF",
+  "usage": "text_to_pdf(file, title?, font_size?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool text_to_pdf"
+}

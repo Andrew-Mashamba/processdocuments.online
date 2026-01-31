@@ -1,0 +1,9 @@
+{
+  "name": "ocr_pdf",
+  "description": "Extract text from scanned/image-based PDF using OCR",
+  "usage": "ocr_pdf(file, language?, output_format?, pages?)",
+  "category": "ocr",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool ocr_pdf"
+}

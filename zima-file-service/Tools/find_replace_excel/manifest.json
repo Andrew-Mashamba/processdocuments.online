@@ -1,0 +1,9 @@
+{
+  "name": "find_replace_excel",
+  "description": "Find and replace in Excel",
+  "usage": "find_replace_excel(file, find, replace)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool find_replace_excel"
+}

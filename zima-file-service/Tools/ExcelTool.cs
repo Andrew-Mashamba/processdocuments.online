@@ -416,6 +416,11 @@ public class ExcelTool : IFileTool
                     .Select(e => e.GetString() ?? "")
                     .ToArray();
             }
+            // Handle List<object> from ToolsController conversion
+            if (value is List<object> list)
+            {
+                return list.Select(e => e?.ToString() ?? "").ToArray();
+            }
         }
         return null;
     }
@@ -429,6 +434,15 @@ public class ExcelTool : IFileTool
                 return je.EnumerateArray()
                     .Select(row => row.ValueKind == JsonValueKind.Array
                         ? row.EnumerateArray().Cast<object>().ToArray()
+                        : new object[] { row })
+                    .ToArray();
+            }
+            // Handle List<object> from ToolsController conversion
+            if (value is List<object> list)
+            {
+                return list
+                    .Select(row => row is List<object> innerList
+                        ? innerList.ToArray()
                         : new object[] { row })
                     .ToArray();
             }

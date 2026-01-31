@@ -1,0 +1,9 @@
+{
+  "name": "add_slide",
+  "description": "Add new slide to presentation",
+  "usage": "add_slide(file, position?, title?, content?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_slide"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "copy_file",
+  "description": "Copy a file to a new location",
+  "usage": "copy_file(source_path, dest_path, overwrite?)",
+  "category": "file",
+  "inputs": {
+    "source_path": {
+      "type": "string",
+      "description": "Source file"
+    },
+    "dest_path": {
+      "type": "string",
+      "description": "Destination"
+    },
+    "overwrite": {
+      "type": "boolean",
+      "description": "Overwrite if exists"
+    }
+  },
+  "required": [
+    "source_path",
+    "dest_path"
+  ],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool copy_file"
+}

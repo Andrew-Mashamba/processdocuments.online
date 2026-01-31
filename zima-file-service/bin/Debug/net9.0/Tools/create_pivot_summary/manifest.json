@@ -1,0 +1,9 @@
+{
+  "name": "create_pivot_summary",
+  "description": "Create pivot-table style summary",
+  "usage": "create_pivot_summary(file, row_field, value_field, aggregation?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool create_pivot_summary"
+}

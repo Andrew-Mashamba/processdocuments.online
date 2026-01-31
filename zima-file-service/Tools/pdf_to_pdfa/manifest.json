@@ -1,0 +1,9 @@
+{
+  "name": "pdf_to_pdfa",
+  "description": "Convert PDF to PDF/A archival format",
+  "usage": "pdf_to_pdfa(file, output_file?, conformance?)",
+  "category": "conversion",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool pdf_to_pdfa"
+}

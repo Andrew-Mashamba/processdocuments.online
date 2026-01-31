@@ -1,0 +1,9 @@
+{
+  "name": "remove_pages",
+  "description": "Remove specific pages from PDF",
+  "usage": "remove_pages(file, pages[], output_file)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool remove_pages"
+}

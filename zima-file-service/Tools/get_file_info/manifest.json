@@ -1,0 +1,16 @@
+{
+  "name": "get_file_info",
+  "description": "Get detailed information about a file",
+  "usage": "get_file_info(file_path) -\u003E {name, size, created, modified}",
+  "category": "file",
+  "inputs": {
+    "file_path": {
+      "type": "string",
+      "description": "Path to file"
+    }
+  },
+  "required": [
+    "file_path"
+  ],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool get_file_info"
+}

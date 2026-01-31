@@ -1,0 +1,9 @@
+{
+  "name": "compress_word",
+  "description": "Compress Word document to reduce file size",
+  "usage": "compress_word(file, remove_comments?, remove_revisions?, compress_images?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool compress_word"
+}

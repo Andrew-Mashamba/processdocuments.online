@@ -1,0 +1,9 @@
+{
+  "name": "extract_slides",
+  "description": "Extract specific slides from presentation",
+  "usage": "extract_slides(file, slides[])",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool extract_slides"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "unprotect_workbook",
+  "description": "Remove protection from Excel workbook",
+  "usage": "unprotect_workbook(file, password?, unprotect_sheets?, output_file?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool unprotect_workbook"
+}

@@ -1,0 +1,45 @@
+{
+  "jsonrpc": "2.0",
+  "id": "1",
+  "method": "tools/call",
+  "params": {
+    "name": "create_word",
+    "arguments": {
+      "file_path": "cities.docx",
+      "content": [
+        {
+          "type": "title",
+          "text": "Five Beautiful Cities Around the World"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here are five amazing cities from different continents, each offering unique experiences and attractions:"
+        },
+        {
+          "type": "paragraph",
+          "text": "1. Tokyo, Japan - The bustling capital known for its blend of traditional culture and modern technology, featuring ancient temples alongside futuristic skyscrapers."
+        },
+        {
+          "type": "paragraph",
+          "text": "2. Paris, France - The romantic City of Light famous for its art, fashion, and iconic landmarks like the Eiffel Tower and Louvre Museum."
+        },
+        {
+          "type": "paragraph",
+          "text": "3. New York City, USA - The energetic metropolis that never sleeps, home to Broadway, Central Park, Times Square, and the Statue of Liberty."
+        },
+        {
+          "type": "paragraph",
+          "text": "4. Sydney, Australia - The harbor city renowned for its stunning Opera House, beautiful beaches, and the famous Harbor Bridge."
+        },
+        {
+          "type": "paragraph",
+          "text": "5. Cairo, Egypt - The ancient city rich in history, home to the Great Pyramids, the Sphinx, and countless archaeological treasures."
+        },
+        {
+          "type": "paragraph",
+          "text": "Each of these cities represents a unique blend of culture, history, and modern attractions that make them must-visit destinations for travelers from around the world."
+        }
+      ]
+    }
+  }
+}

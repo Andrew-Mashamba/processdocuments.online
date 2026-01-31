@@ -1,0 +1,9 @@
+{
+  "name": "generate_json_signing_keys",
+  "description": "Generate RSA key pair for JSON signing",
+  "usage": "generate_json_signing_keys(key_size?, private_key_file?, public_key_file?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool generate_json_signing_keys"
+}

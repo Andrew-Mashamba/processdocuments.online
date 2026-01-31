@@ -1,0 +1,9 @@
+{
+  "name": "find_replace",
+  "description": "Find and replace text (supports regex)",
+  "usage": "find_replace(file, find, replace, use_regex?)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool find_replace"
+}

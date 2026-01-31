@@ -1,0 +1,16 @@
+{
+  "tool": "create_word",
+  "arguments": {
+    "file_path": "hello_world.docx",
+    "content": [
+      {
+        "type": "heading1",
+        "text": "Hello World Document"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hello World"
+      }
+    ]
+  }
+}

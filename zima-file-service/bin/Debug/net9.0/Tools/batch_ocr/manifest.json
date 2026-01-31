@@ -1,0 +1,9 @@
+{
+  "name": "batch_ocr",
+  "description": "OCR multiple files at once",
+  "usage": "batch_ocr(files[], language?, output_folder?)",
+  "category": "ocr",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool batch_ocr"
+}

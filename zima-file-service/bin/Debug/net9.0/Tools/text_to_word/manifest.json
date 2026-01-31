@@ -1,0 +1,9 @@
+{
+  "name": "text_to_word",
+  "description": "Convert text file to Word document",
+  "usage": "text_to_word(file, detect_headings?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool text_to_word"
+}

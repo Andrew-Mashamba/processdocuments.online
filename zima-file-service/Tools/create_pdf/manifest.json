@@ -1,0 +1,29 @@
+{
+  "name": "create_pdf",
+  "description": "Create PDF documents with text, tables, and professional formatting",
+  "usage": "create_pdf(file_path, title?, content[], page_size?)",
+  "category": "document",
+  "inputs": {
+    "file_path": {
+      "type": "string",
+      "description": "Filename or full path"
+    },
+    "title": {
+      "type": "string",
+      "description": "Document title"
+    },
+    "content": {
+      "type": "array",
+      "description": "Content blocks"
+    },
+    "page_size": {
+      "type": "string",
+      "description": "A4, Letter, Legal"
+    }
+  },
+  "required": [
+    "file_path",
+    "content"
+  ],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool create_pdf"
+}

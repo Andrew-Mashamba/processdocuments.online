@@ -1,0 +1,9 @@
+{
+  "name": "csv_to_excel",
+  "description": "Convert CSV to Excel",
+  "usage": "csv_to_excel(file, delimiter?, sheet_name?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool csv_to_excel"
+}

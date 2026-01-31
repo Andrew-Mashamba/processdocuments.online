@@ -1,0 +1,9 @@
+{
+  "name": "ppt_to_images",
+  "description": "Convert PowerPoint slides to images",
+  "usage": "ppt_to_images(file, format?, width?, height?, slides?, output_folder?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool ppt_to_images"
+}

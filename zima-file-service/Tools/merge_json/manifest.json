@@ -1,0 +1,9 @@
+{
+  "name": "merge_json",
+  "description": "Merge multiple JSON files",
+  "usage": "merge_json(files[], mode, output_file)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool merge_json"
+}

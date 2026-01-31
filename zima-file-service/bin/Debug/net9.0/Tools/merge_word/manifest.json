@@ -1,0 +1,9 @@
+{
+  "name": "merge_word",
+  "description": "Merge multiple Word documents",
+  "usage": "merge_word(files[], output_file)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool merge_word"
+}

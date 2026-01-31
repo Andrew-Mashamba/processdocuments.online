@@ -3,119 +3,224 @@ using System.Text.Json;
 
 namespace ZimaFileService.Api;
 
+/// <summary>
+/// API endpoints for tool discovery and execution.
+/// Used by the agent to discover and execute tools programmatically.
+/// </summary>
 [ApiController]
 [Route("api/tools")]
 public class ToolsController : ControllerBase
 {
-    private readonly McpServer _mcpServer;
-    private readonly JsonSerializerOptions _jsonOptions;
-
-    public ToolsController()
-    {
-        _mcpServer = new McpServer();
-        _jsonOptions = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
-    }
+    private static readonly McpServer _mcpServer = new();
 
     /// <summary>
-    /// List all available tools
+    /// List all available tools.
+    /// GET /api/tools
     /// </summary>
     [HttpGet]
-    public IActionResult ListTools()
+    public IActionResult ListTools([FromQuery] string? category = null)
     {
         var tools = ToolsRegistry.Instance.GetAllMcpTools();
+
+        if (!string.IsNullOrEmpty(category))
+        {
+            tools = tools.Where(t => t.Category?.Equals(category, StringComparison.OrdinalIgnoreCase) == true).ToList();
+        }
+
+        var result = tools.Select(t => new
+        {
+            name = t.Name,
+            description = t.Description,
+            category = t.Category,
+            usage = t.Usage,
+            isCustom = t.IsCustom
+        });
+
         return Ok(new
         {
-            count = tools.Count,
-            tools = tools.Select(t => new
-            {
-                name = t.Name,
-                description = t.Description,
-                category = t.Category
-            })
+            total = tools.Count,
+            tools = result
         });
     }
 
     /// <summary>
-    /// Invoke a tool directly
-    /// POST /api/tools/{toolName}
-    /// Session ID can be provided via:
-    /// - Header: X-Session-Id
-    /// - Body: session_id field (preferred for AI-generated requests)
-    /// - Query: ?sessionId=xxx
+    /// Get categories of tools.
+    /// GET /api/tools/categories
     /// </summary>
-    [HttpPost("{toolName}")]
-    public async Task<IActionResult> InvokeTool(
-        string toolName,
-        [FromBody] JsonElement body,
-        [FromHeader(Name = "X-Session-Id")] string? headerSessionId = null,
-        [FromQuery] string? sessionId = null)
+    [HttpGet("categories")]
+    public IActionResult ListCategories()
     {
+        var tools = ToolsRegistry.Instance.GetAllMcpTools();
+        var categories = tools
+            .Where(t => !string.IsNullOrEmpty(t.Category))
+            .GroupBy(t => t.Category)
+            .Select(g => new
+            {
+                name = g.Key,
+                count = g.Count()
+            })
+            .OrderByDescending(c => c.count);
+
+        return Ok(categories);
+    }
+
+    /// <summary>
+    /// Get schema for a specific tool.
+    /// GET /api/tools/{name}/schema
+    /// </summary>
+    [HttpGet("{name}/schema")]
+    public IActionResult GetToolSchema(string name)
+    {
+        var tool = ToolsRegistry.Instance.GetTool(name);
+        if (tool == null)
+        {
+            return NotFound(new { error = $"Tool '{name}' not found" });
+        }
+
+        return Ok(new
+        {
+            name = tool.Name,
+            description = tool.Description,
+            usage = tool.Usage,
+            category = tool.Category,
+            inputSchema = tool.InputSchema,
+            isCustom = tool.IsCustom
+        });
+    }
+
+    /// <summary>
+    /// Execute a tool with given arguments.
+    /// POST /api/tools/execute
+    /// Body: { "tool": "create_excel", "arguments": { "file_path": "...", ... } }
+    /// </summary>
+    [HttpPost("execute")]
+    public async Task<IActionResult> ExecuteTool([FromBody] ToolExecuteRequest request)
+    {
+        if (string.IsNullOrEmpty(request.Tool))
+        {
+            return BadRequest(new { error = "Tool name is required" });
+        }
+
+        var tool = ToolsRegistry.Instance.GetTool(request.Tool);
+        if (tool == null)
+        {
+            return NotFound(new { error = $"Tool '{request.Tool}' not found" });
+        }
+
         try
         {
-            // Convert JsonElement to Dictionary
+            // Convert arguments to Dictionary<string, object>
             var arguments = new Dictionary<string, object>();
-            foreach (var prop in body.EnumerateObject())
+            if (request.Arguments.ValueKind != JsonValueKind.Undefined && request.Arguments.ValueKind != JsonValueKind.Null)
             {
-                arguments[prop.Name] = prop.Value;
+                foreach (var prop in request.Arguments.EnumerateObject())
+                {
+                    arguments[prop.Name] = ConvertJsonElement(prop.Value);
+                }
             }
 
-            // Get session ID - QUERY PARAMETER takes priority (can't be overridden by AI)
-            string? effectiveSessionId = null;
+            // Execute the tool
+            var result = await _mcpServer.InvokeToolDirectAsync(request.Tool, arguments);
 
-            // Always remove session_id from body if present (don't let AI override)
-            if (arguments.ContainsKey("session_id"))
-            {
-                arguments.Remove("session_id");
-            }
-
-            // 1. Query parameter takes HIGHEST priority (set by server, not AI)
-            if (!string.IsNullOrEmpty(sessionId))
-            {
-                effectiveSessionId = sessionId;
-            }
-            // 2. Fall back to header
-            else if (!string.IsNullOrEmpty(headerSessionId))
-            {
-                effectiveSessionId = headerSessionId;
-            }
-
-            Console.WriteLine($"[ToolsController] Query sessionId: {sessionId ?? "NONE"}");
-            Console.WriteLine($"[ToolsController] Header sessionId: {headerSessionId ?? "NONE"}");
-            Console.WriteLine($"[ToolsController] Effective Session ID: {effectiveSessionId ?? "NONE"}");
-
-            // If sessionId provided, update file_path to use session folder
-            if (!string.IsNullOrEmpty(effectiveSessionId) && arguments.ContainsKey("file_path"))
-            {
-                var originalPath = arguments["file_path"]?.ToString() ?? "";
-                var fileName = Path.GetFileName(originalPath);
-                var sessionPath = FileManager.Instance.GetSessionGeneratedPath(effectiveSessionId);
-                arguments["file_path"] = Path.Combine(sessionPath, fileName);
-                Console.WriteLine($"[ToolsController] Session path: {arguments["file_path"]}");
-            }
-
-            Console.WriteLine($"[ToolsController] Invoking: {toolName}");
-            Console.WriteLine($"[ToolsController] Arguments: {JsonSerializer.Serialize(arguments)}");
-
-            var result = await _mcpServer.InvokeToolDirectAsync(toolName, arguments);
-
-            // Try to parse result as JSON, otherwise return as text
+            // Parse result (it's usually JSON)
             try
             {
-                var jsonResult = JsonSerializer.Deserialize<JsonElement>(result);
-                return Ok(jsonResult);
+                var parsed = JsonSerializer.Deserialize<JsonElement>(result);
+                return Ok(new
+                {
+                    success = true,
+                    tool = request.Tool,
+                    result = parsed
+                });
             }
             catch
             {
-                return Ok(new { success = true, result });
+                return Ok(new
+                {
+                    success = true,
+                    tool = request.Tool,
+                    result = result
+                });
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[ToolsController] Error: {ex.Message}");
-            return BadRequest(new { error = ex.Message });
+            return StatusCode(500, new
+            {
+                success = false,
+                tool = request.Tool,
+                error = ex.Message
+            });
         }
     }
+
+    /// <summary>
+    /// Execute a tool by name (shorthand).
+    /// POST /api/tools/{name}/execute
+    /// Body: { "file_path": "...", ... }
+    /// </summary>
+    [HttpPost("{name}/execute")]
+    public async Task<IActionResult> ExecuteToolByName(string name, [FromBody] JsonElement arguments)
+    {
+        var request = new ToolExecuteRequest
+        {
+            Tool = name,
+            Arguments = arguments
+        };
+        return await ExecuteTool(request);
+    }
+
+    /// <summary>
+    /// Search tools by name or description.
+    /// GET /api/tools/search?q=excel
+    /// </summary>
+    [HttpGet("search")]
+    public IActionResult SearchTools([FromQuery] string q)
+    {
+        if (string.IsNullOrEmpty(q))
+        {
+            return BadRequest(new { error = "Search query 'q' is required" });
+        }
+
+        var tools = ToolsRegistry.Instance.GetAllMcpTools();
+        var matches = tools.Where(t =>
+            t.Name.Contains(q, StringComparison.OrdinalIgnoreCase) ||
+            (t.Description?.Contains(q, StringComparison.OrdinalIgnoreCase) ?? false)
+        ).Select(t => new
+        {
+            name = t.Name,
+            description = t.Description,
+            category = t.Category,
+            usage = t.Usage
+        });
+
+        return Ok(new
+        {
+            query = q,
+            count = matches.Count(),
+            tools = matches
+        });
+    }
+
+    private static object ConvertJsonElement(JsonElement element)
+    {
+        return element.ValueKind switch
+        {
+            JsonValueKind.String => element.GetString() ?? "",
+            JsonValueKind.Number => element.TryGetInt64(out var l) ? l : element.GetDouble(),
+            JsonValueKind.True => true,
+            JsonValueKind.False => false,
+            JsonValueKind.Null => null!,
+            JsonValueKind.Array => element.EnumerateArray().Select(ConvertJsonElement).ToList(),
+            JsonValueKind.Object => element.EnumerateObject()
+                .ToDictionary(p => p.Name, p => ConvertJsonElement(p.Value)),
+            _ => element.GetRawText()
+        };
+    }
+}
+
+public class ToolExecuteRequest
+{
+    public string Tool { get; set; } = "";
+    public JsonElement Arguments { get; set; }
 }

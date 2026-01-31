@@ -1,0 +1,9 @@
+{
+  "name": "format_json",
+  "description": "Format/beautify JSON with indentation",
+  "usage": "format_json(file, indent?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool format_json"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "protect_word",
+  "description": "Protect Word document with password",
+  "usage": "protect_word(file, password, protection_type?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool protect_word"
+}

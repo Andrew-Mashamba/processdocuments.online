@@ -1,0 +1,9 @@
+{
+  "name": "extract_ppt_notes",
+  "description": "Extract speaker notes from slides",
+  "usage": "extract_ppt_notes(file, output_file?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool extract_ppt_notes"
+}

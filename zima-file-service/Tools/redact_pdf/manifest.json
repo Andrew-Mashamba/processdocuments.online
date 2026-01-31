@@ -1,0 +1,9 @@
+{
+  "name": "redact_pdf",
+  "description": "Redact/blackout areas in PDF",
+  "usage": "redact_pdf(file, areas[])",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool redact_pdf"
+}

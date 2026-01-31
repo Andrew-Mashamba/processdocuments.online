@@ -1,0 +1,9 @@
+{
+  "name": "mail_merge",
+  "description": "Mail merge with data placeholders",
+  "usage": "mail_merge(file, data[], output_prefix?, single_output?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool mail_merge"
+}

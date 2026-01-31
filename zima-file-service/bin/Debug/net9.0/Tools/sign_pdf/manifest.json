@@ -1,0 +1,9 @@
+{
+  "name": "sign_pdf",
+  "description": "Sign PDF with digital certificate (PFX/P12)",
+  "usage": "sign_pdf(file, certificate, password, reason?, location?, visible?, page?, x?, y?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool sign_pdf"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "json_to_excel",
+  "description": "Convert JSON array to Excel",
+  "usage": "json_to_excel(file, sheet_name?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool json_to_excel"
+}

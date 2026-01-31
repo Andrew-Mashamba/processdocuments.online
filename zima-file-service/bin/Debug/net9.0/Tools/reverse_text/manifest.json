@@ -1,0 +1,9 @@
+{
+  "name": "reverse_text",
+  "description": "Reverse text (lines or characters)",
+  "usage": "reverse_text(file, mode)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool reverse_text"
+}

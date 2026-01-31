@@ -1,0 +1,9 @@
+{
+  "name": "filter_lines",
+  "description": "Filter lines by pattern",
+  "usage": "filter_lines(file, pattern, use_regex?, invert?)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool filter_lines"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "verify_json_signature",
+  "description": "Verify JSON digital signature",
+  "usage": "verify_json_signature(file, secret?, public_key?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool verify_json_signature"
+}

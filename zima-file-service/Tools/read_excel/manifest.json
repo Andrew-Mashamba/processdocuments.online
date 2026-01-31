@@ -1,0 +1,24 @@
+{
+  "name": "read_excel",
+  "description": "Read data from Excel spreadsheets",
+  "usage": "read_excel(file_path, sheet_name?, has_headers?) -\u003E {headers, rows}",
+  "category": "document",
+  "inputs": {
+    "file_path": {
+      "type": "string",
+      "description": "Path to Excel file"
+    },
+    "sheet_name": {
+      "type": "string",
+      "description": "Sheet to read"
+    },
+    "has_headers": {
+      "type": "boolean",
+      "description": "First row is headers"
+    }
+  },
+  "required": [
+    "file_path"
+  ],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool read_excel"
+}

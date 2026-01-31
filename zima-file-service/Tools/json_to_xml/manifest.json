@@ -1,0 +1,9 @@
+{
+  "name": "json_to_xml",
+  "description": "Convert JSON to XML",
+  "usage": "json_to_xml(file, root_element?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool json_to_xml"
+}

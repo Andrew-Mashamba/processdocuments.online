@@ -1,0 +1,9 @@
+{
+  "name": "remove_json_keys",
+  "description": "Remove specific keys from JSON",
+  "usage": "remove_json_keys(file, keys[], recursive?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool remove_json_keys"
+}

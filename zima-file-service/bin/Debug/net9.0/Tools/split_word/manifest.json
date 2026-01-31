@@ -1,0 +1,9 @@
+{
+  "name": "split_word",
+  "description": "Split Word document by sections or headings",
+  "usage": "split_word(file, mode)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool split_word"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "text_to_html",
+  "description": "Convert text to HTML document",
+  "usage": "text_to_html(file, title?)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool text_to_html"
+}

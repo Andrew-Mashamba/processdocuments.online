@@ -1,0 +1,9 @@
+{
+  "name": "json_to_pdf",
+  "description": "Convert JSON data to PDF document",
+  "usage": "json_to_pdf(file, title?, style?, page_size?, landscape?, output_file?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool json_to_pdf"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "redact_strings",
+  "description": "Redact text patterns from image using OCR",
+  "usage": "redact_strings(file, patterns[], use_regex?, redact_color?, language?, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool redact_strings"
+}

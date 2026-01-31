@@ -1,0 +1,9 @@
+{
+  "name": "reorder_sheets",
+  "description": "Reorder sheets in workbook",
+  "usage": "reorder_sheets(file, new_order[])",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool reorder_sheets"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "clear_conditional_formatting",
+  "description": "Clear conditional formatting from Excel",
+  "usage": "clear_conditional_formatting(file, range?, clear_all?, output_file?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool clear_conditional_formatting"
+}

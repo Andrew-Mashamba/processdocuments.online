@@ -1,0 +1,9 @@
+{
+  "name": "add_link",
+  "description": "Add link annotation to PDF (URL or internal page)",
+  "usage": "add_link(file, page, x, y, width, height, url?, target_page?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_link"
+}

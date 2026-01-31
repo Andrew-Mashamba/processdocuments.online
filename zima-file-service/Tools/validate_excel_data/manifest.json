@@ -1,0 +1,9 @@
+{
+  "name": "validate_excel_data",
+  "description": "Validate Excel data against rules",
+  "usage": "validate_excel_data(file, rules[])",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool validate_excel_data"
+}

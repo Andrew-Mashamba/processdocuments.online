@@ -1,0 +1,9 @@
+{
+  "name": "split_json",
+  "description": "Split large JSON array into files",
+  "usage": "split_json(file, items_per_file)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool split_json"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "convert_case",
+  "description": "Convert text case (upper/lower/title)",
+  "usage": "convert_case(file, case_type)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool convert_case"
+}

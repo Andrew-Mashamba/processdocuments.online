@@ -1,0 +1,9 @@
+{
+  "name": "add_formulas",
+  "description": "Add formulas to Excel cells",
+  "usage": "add_formulas(file, formulas)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_formulas"
+}

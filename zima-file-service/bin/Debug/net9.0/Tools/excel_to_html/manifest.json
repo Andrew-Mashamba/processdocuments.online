@@ -1,0 +1,9 @@
+{
+  "name": "excel_to_html",
+  "description": "Convert Excel to HTML table",
+  "usage": "excel_to_html(file, sheet?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool excel_to_html"
+}

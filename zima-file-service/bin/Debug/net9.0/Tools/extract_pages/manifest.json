@@ -1,0 +1,9 @@
+{
+  "name": "extract_pages",
+  "description": "Extract specific pages from PDF",
+  "usage": "extract_pages(file, pages[], output_file)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool extract_pages"
+}

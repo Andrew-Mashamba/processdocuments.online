@@ -1,0 +1,9 @@
+{
+  "name": "extract_sheets",
+  "description": "Extract specific sheets from workbook",
+  "usage": "extract_sheets(file, sheets[])",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool extract_sheets"
+}

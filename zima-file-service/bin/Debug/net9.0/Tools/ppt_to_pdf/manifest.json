@@ -1,0 +1,9 @@
+{
+  "name": "ppt_to_pdf",
+  "description": "Convert PowerPoint to PDF",
+  "usage": "ppt_to_pdf(file, output_file?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool ppt_to_pdf"
+}

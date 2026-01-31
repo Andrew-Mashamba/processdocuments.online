@@ -1,0 +1,9 @@
+{
+  "name": "add_image_watermark",
+  "description": "Add image watermark to another image",
+  "usage": "add_image_watermark(file, watermark_image, position?, opacity?, scale?, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_image_watermark"
+}

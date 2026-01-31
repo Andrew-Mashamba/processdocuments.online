@@ -1,0 +1,9 @@
+{
+  "name": "ocr_image",
+  "description": "Extract text from image file (JPG, PNG, TIFF)",
+  "usage": "ocr_image(file, language?)",
+  "category": "ocr",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool ocr_image"
+}

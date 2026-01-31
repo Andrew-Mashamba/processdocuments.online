@@ -1,0 +1,28 @@
+[
+  {
+    "type": "title",
+    "text": "Beautiful Baby Names"
+  },
+  {
+    "type": "paragraph",
+    "text": "Here are five wonderful baby names to consider:"
+  },
+  {
+    "type": "list",
+    "items": [
+      "Emma - A timeless and elegant name meaning 'universal'",
+      "Liam - A strong and popular name meaning 'strong-willed warrior'",
+      "Sophia - A graceful name meaning 'wisdom'",
+      "Oliver - A classic name meaning 'olive tree'",
+      "Isabella - A beautiful name meaning 'pledged to God'"
+    ]
+  },
+  {
+    "type": "paragraph",
+    "text": "Each of these names has a special meaning and has been beloved by families around the world."
+  },
+  {
+    "type": "paragraph",
+    "text": "Generated on January 26, 2026"
+  }
+]

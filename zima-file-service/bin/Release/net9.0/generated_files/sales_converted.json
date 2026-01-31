@@ -1,0 +1,98 @@
+[
+  {
+    "Date": "2024-01-05",
+    "Product": "Widget A",
+    "Region": "North",
+    "Quantity": "150",
+    "Unit Price": "29.99",
+    "Total": "4498.50"
+  },
+  {
+    "Date": "2024-01-05",
+    "Product": "Widget B",
+    "Region": "South",
+    "Quantity": "200",
+    "Unit Price": "19.99",
+    "Total": "3998.00"
+  },
+  {
+    "Date": "2024-01-06",
+    "Product": "Widget A",
+    "Region": "East",
+    "Quantity": "175",
+    "Unit Price": "29.99",
+    "Total": "5248.25"
+  },
+  {
+    "Date": "2024-01-06",
+    "Product": "Widget C",
+    "Region": "West",
+    "Quantity": "80",
+    "Unit Price": "49.99",
+    "Total": "3999.20"
+  },
+  {
+    "Date": "2024-01-07",
+    "Product": "Widget B",
+    "Region": "North",
+    "Quantity": "220",
+    "Unit Price": "19.99",
+    "Total": "4397.80"
+  },
+  {
+    "Date": "2024-01-07",
+    "Product": "Widget A",
+    "Region": "South",
+    "Quantity": "140",
+    "Unit Price": "29.99",
+    "Total": "4198.60"
+  },
+  {
+    "Date": "2024-01-08",
+    "Product": "Widget C",
+    "Region": "East",
+    "Quantity": "95",
+    "Unit Price": "49.99",
+    "Total": "4749.05"
+  },
+  {
+    "Date": "2024-01-08",
+    "Product": "Widget B",
+    "Region": "West",
+    "Quantity": "180",
+    "Unit Price": "19.99",
+    "Total": "3598.20"
+  },
+  {
+    "Date": "2024-01-09",
+    "Product": "Widget A",
+    "Region": "North",
+    "Quantity": "160",
+    "Unit Price": "29.99",
+    "Total": "4798.40"
+  },
+  {
+    "Date": "2024-01-09",
+    "Product": "Widget C",
+    "Region": "South",
+    "Quantity": "110",
+    "Unit Price": "49.99",
+    "Total": "5498.90"
+  },
+  {
+    "Date": "2024-01-10",
+    "Product": "Widget B",
+    "Region": "East",
+    "Quantity": "250",
+    "Unit Price": "19.99",
+    "Total": "4997.50"
+  },
+  {
+    "Date": "2024-01-10",
+    "Product": "Widget A",
+    "Region": "West",
+    "Quantity": "130",
+    "Unit Price": "29.99",
+    "Total": "3898.70"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "create_powerpoint",
+  "description": "Create PowerPoint presentations (.pptx) with slides, titles, and content",
+  "usage": "create_powerpoint(filename, slides[])",
+  "category": "document",
+  "inputs": {
+    "filename": {
+      "type": "string",
+      "description": "Filename or full path"
+    },
+    "slides": {
+      "type": "array",
+      "description": "Slide objects"
+    }
+  },
+  "required": [
+    "filename",
+    "slides"
+  ],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool create_powerpoint"
+}

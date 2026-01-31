@@ -1,0 +1,9 @@
+{
+  "name": "text_to_json",
+  "description": "Convert text file to JSON",
+  "usage": "text_to_json(file, format)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool text_to_json"
+}

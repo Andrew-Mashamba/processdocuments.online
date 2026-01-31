@@ -1,0 +1,9 @@
+{
+  "name": "pdf_to_text",
+  "description": "Extract text from PDF",
+  "usage": "pdf_to_text(file, pages?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool pdf_to_text"
+}
