@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("zima-file-service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76e789cee39a425d0803c8ec42a7ee8f48368041")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cea75fc3095c77763b62a711d6b493161d0007e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("zima-file-service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("zima-file-service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
