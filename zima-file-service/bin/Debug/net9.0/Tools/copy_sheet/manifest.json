@@ -1,0 +1,9 @@
+{
+  "name": "copy_sheet",
+  "description": "Copy sheet within workbook",
+  "usage": "copy_sheet(file, sheet, new_name)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool copy_sheet"
+}

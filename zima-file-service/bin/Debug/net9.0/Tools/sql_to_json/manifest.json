@@ -1,0 +1,9 @@
+{
+  "name": "sql_to_json",
+  "description": "Convert SQL query/schema to JSON",
+  "usage": "sql_to_json(file?, sql?, mode?, row_count?, output_file?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool sql_to_json"
+}

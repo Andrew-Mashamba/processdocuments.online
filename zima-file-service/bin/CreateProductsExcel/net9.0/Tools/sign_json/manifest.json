@@ -1,0 +1,9 @@
+{
+  "name": "sign_json",
+  "description": "Sign JSON with digital signature (HMAC/RSA)",
+  "usage": "sign_json(file, algorithm?, secret?, private_key?, output_file?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool sign_json"
+}

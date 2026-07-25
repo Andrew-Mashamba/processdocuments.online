@@ -1,0 +1,9 @@
+{
+  "name": "add_watermark_word",
+  "description": "Add watermark to Word document",
+  "usage": "add_watermark_word(file, text)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_watermark_word"
+}

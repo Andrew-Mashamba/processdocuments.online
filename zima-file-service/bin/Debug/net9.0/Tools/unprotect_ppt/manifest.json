@@ -1,0 +1,9 @@
+{
+  "name": "unprotect_ppt",
+  "description": "Remove protection from PowerPoint presentation",
+  "usage": "unprotect_ppt(file, output_file?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool unprotect_ppt"
+}

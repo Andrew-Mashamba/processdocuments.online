@@ -1,0 +1,9 @@
+{
+  "name": "unprotect_word",
+  "description": "Remove protection from Word document",
+  "usage": "unprotect_word(file, password?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool unprotect_word"
+}

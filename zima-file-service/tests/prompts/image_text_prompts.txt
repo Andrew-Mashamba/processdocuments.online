@@ -1,0 +1,83 @@
+# IMAGE AND TEXT PROCESSING TEST PROMPTS
+# Copy and paste these prompts to test image and text tool functionality
+
+## IMAGE_001: Add Text Watermark
+Create a sample chart image from the sales data and add a "SAMPLE" text watermark diagonally across it.
+
+---
+
+## IMAGE_002: Redact Sensitive Info
+Create an image containing sample text with email addresses and phone numbers, then automatically redact all sensitive information.
+
+---
+
+## IMAGE_003: Resize Image
+Create a chart image from Excel data and resize it to 800x600 pixels.
+
+---
+
+## IMAGE_004: Convert Image Format
+Create a PNG image from a chart and convert it to JPEG format.
+
+---
+
+## IMAGE_005: Crop Image
+Create a chart image and crop it to show only the central portion.
+
+---
+
+## IMAGE_006: Rotate Image
+Create an image and rotate it 90 degrees clockwise.
+
+---
+
+## TEXT_001: Word Count
+Count the words, lines, characters, and paragraphs in tests/input/report_content.txt.
+
+---
+
+## TEXT_002: Find and Replace
+In tests/input/report_content.txt, replace all occurrences of "Widget" with "Product" and "2024" with "2025". Save to a new file.
+
+---
+
+## TEXT_003: Filter Lines
+Extract all lines from tests/input/report_content.txt that contain the word "revenue" or "Revenue".
+
+---
+
+## TEXT_004: Text Statistics
+Analyze tests/input/report_content.txt and provide statistics: most common words, average sentence length, reading level estimate.
+
+---
+
+## TEXT_005: Text to JSON Structure
+Parse tests/input/report_content.txt and convert it to a structured JSON with:
+- title
+- sections (array of section objects with heading and content)
+- metadata (word count, date mentioned, etc.)
+
+---
+
+## TEXT_006: Wrap Text
+Read tests/input/report_content.txt and wrap all lines to a maximum of 80 characters.
+
+---
+
+## TEXT_007: Extract Columns
+If tests/input/sales_data.csv is treated as text, extract just the Product and Total columns.
+
+---
+
+## TEXT_008: Reverse Text
+Read tests/input/report_content.txt and create a version with all lines in reverse order (last line first).
+
+---
+
+## OCR_001: OCR Test (if image available)
+If you have a scanned document image, perform OCR to extract all text content.
+
+---
+
+## OCR_002: OCR with Redaction
+Perform OCR on a document image and redact any detected email addresses or phone numbers.

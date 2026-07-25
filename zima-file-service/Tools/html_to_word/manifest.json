@@ -1,0 +1,9 @@
+{
+  "name": "html_to_word",
+  "description": "Convert HTML file or content to Word document",
+  "usage": "html_to_word(file?, html?, output_file?, preserve_styles?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool html_to_word"
+}

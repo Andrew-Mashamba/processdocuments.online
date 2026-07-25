@@ -1,0 +1,9 @@
+{
+  "name": "crop_pdf",
+  "description": "Crop PDF page margins",
+  "usage": "crop_pdf(file, left, bottom, right, top)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool crop_pdf"
+}

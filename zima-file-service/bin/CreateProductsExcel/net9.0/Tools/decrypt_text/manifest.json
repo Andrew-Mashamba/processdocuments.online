@@ -1,0 +1,9 @@
+{
+  "name": "decrypt_text",
+  "description": "Decrypt AES-encrypted file",
+  "usage": "decrypt_text(file, password)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool decrypt_text"
+}

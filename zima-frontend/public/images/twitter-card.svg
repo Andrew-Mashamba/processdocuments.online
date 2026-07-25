@@ -1,0 +1,40 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#171717"/>
+      <stop offset="100%" style="stop-color:#262626"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="600" fill="url(#bg2)"/>
+
+  <!-- Document Icon -->
+  <g transform="translate(100, 150)">
+    <rect x="0" y="0" width="100" height="130" rx="8" fill="#ffffff" opacity="0.1"/>
+    <rect x="15" y="35" width="70" height="6" rx="2" fill="#ffffff" opacity="0.3"/>
+    <rect x="15" y="50" width="50" height="6" rx="2" fill="#ffffff" opacity="0.3"/>
+    <rect x="15" y="65" width="60" height="6" rx="2" fill="#ffffff" opacity="0.3"/>
+    <rect x="15" y="80" width="40" height="6" rx="2" fill="#ffffff" opacity="0.3"/>
+  </g>
+
+  <!-- Title -->
+  <text x="260" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#ffffff">
+    Process Documents Online
+  </text>
+
+  <!-- Subtitle -->
+  <text x="260" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#a3a3a3">
+    AI-Powered Document Processing Platform
+  </text>
+
+  <!-- Features -->
+  <text x="260" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#737373">
+    PDF | Excel | Word | PowerPoint | OCR | Convert
+  </text>
+
+  <!-- URL -->
+  <text x="260" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#525252">
+    processdocuments.online
+  </text>
+</svg>

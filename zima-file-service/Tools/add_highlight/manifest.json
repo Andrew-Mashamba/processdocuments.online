@@ -1,0 +1,9 @@
+{
+  "name": "add_highlight",
+  "description": "Add highlight annotation to PDF",
+  "usage": "add_highlight(file, page, x, y, width, height, color?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_highlight"
+}

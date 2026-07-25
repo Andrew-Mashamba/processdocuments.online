@@ -1,0 +1,9 @@
+{
+  "name": "merge_text",
+  "description": "Merge multiple text files",
+  "usage": "merge_text(files[], output_file, separator?)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool merge_text"
+}

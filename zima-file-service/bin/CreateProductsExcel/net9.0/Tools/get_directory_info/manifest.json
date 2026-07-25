@@ -1,0 +1,9 @@
+{
+  "name": "get_directory_info",
+  "description": "Get file storage directory paths and stats",
+  "usage": "get_directory_info() -\u003E {generated_path, uploaded_path, counts}",
+  "category": "file",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool get_directory_info"
+}

@@ -1,0 +1,467 @@
+=== RESPONSE ===
+Request ID: 18a55a62-b587-4087-893d-28911fcf178e
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T10:26:03.720Z
+Length: 23513 characters
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">📦 NPM Package Architecture - Visual Code Editor</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    Let's design this as a universal NPM package that can be installed in ANY web project. Here's the complete architecture plan:
+  </p>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📁 Package Structure</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; margin: 1rem 0; overflow-x: auto;">
+    <pre style="margin: 0; font-size: 0.75rem; font-family: monospace;">visual-code-editor/
+├── package.json
+├── README.md
+├── LICENSE
+├── .npmignore
+│
+├── dist/                           # Compiled output (published to npm)
+│   ├── browser/                    # Browser extension bundle
+│   │   ├── manifest.json
+│   │   ├── content-script.js
+│   │   ├── background.js
+│   │   └── overlay.js
+│   ├── injector.js                 # Dev server injection script
+│   ├── detector.js                 # Framework detector
+│   └── types/                      # TypeScript definitions
+│
+├── src/                            # Source code
+│   ├── frontend/
+│   │   ├── injector.ts             # Main entry point for dev servers
+│   │   ├── overlay/                # Inspector overlay UI
+│   │   │   ├── ElementSelector.ts
+│   │   │   ├── Toolbar.ts
+│   │   │   └── styles.css
+│   │   ├── capture/
+│   │   │   ├── ScreenshotCapture.ts
+│   │   │   ├── DOMExtractor.ts
+│   │   │   └── OCRProcessor.ts
+│   │   ├── detectors/
+│   │   │   ├── ProjectDetector.ts
+│   │   │   ├── FrameworkDetector.ts
+│   │   │   ├── ComponentMapper.ts
+│   │   │   └── StyleDetector.ts
+│   │   └── communication/
+│   │       └── GatewayClient.ts    # Talks to your AI gateway
+│   │
+│   ├── backend/                    # Optional backend integrations
+│   │   ├── laravel/
+│   │   │   ├── LivewireMapper.php
+│   │   │   └── routes.php
+│   │   ├── express/
+│   │   │   └── middleware.ts
+│   │   └── nextjs/
+│   │       └── plugin.ts
+│   │
+│   ├── cli/
+│   │   ├── init.ts                 # Setup wizard
+│   │   ├── config.ts               # Config management
+│   │   └── templates/              # Project templates
+│   │
+│   └── browser-extension/          # Optional Chrome/Firefox extension
+│       ├── manifest.json
+│       ├── content-script.ts
+│       └── background.ts
+│
+└── examples/                       # Demo projects
+    ├── laravel-livewire/
+    ├── react-vite/
+    ├── vue-nuxt/
+    └── nextjs/</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔌 Installation Methods</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Method 1: Dev Dependency (Recommended)</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.75rem; font-family: monospace; margin: 0 0 0.75rem 0;">npm install --save-dev @zima/visual-code-editor
+
+# or
+yarn add -D @zima/visual-code-editor
+
+# or
+pnpm add -D @zima/visual-code-editor</pre>
+
+    <p style="color: #737373; margin: 0; font-size: 0.8125rem;">
+      Installs as dev dependency, integrates with your build tool (Vite, Webpack, etc.)
+    </p>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Method 2: Browser Extension</h3>
+    
+    <p style="color: #737373; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">
+      Install Chrome/Firefox extension from store (no npm required)
+    </p>
+    
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.25rem;">Works on ANY website without code changes</li>
+      <li style="margin-bottom: 0.25rem;">User configures AI gateway endpoint</li>
+      <li style="margin-bottom: 0;">Limited access to backend file operations (requires companion server)</li>
+    </ul>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Method 3: CDN Script Tag (Quick Test)</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;"><!-- In your HTML <head> -->
+<script src="https://cdn.jsdelivr.net/npm/@zima/visual-code-editor"></script>
+<script>
+  VisualCodeEditor.init({
+    gatewayUrl: 'http://localhost:18790',
+    hotkey: 'cmd+shift+d'
+  });
+</script></pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">⚙️ Setup & Configuration</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Step 1: Install Package</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.75rem; font-family: monospace; margin: 0;">npm install --save-dev @zima/visual-code-editor</pre>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Step 2: Run Setup Wizard</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.75rem; font-family: monospace; margin: 0 0 0.75rem 0;">npx visual-code-editor init</pre>
+
+    <p style="color: #737373; margin: 0; font-size: 0.8125rem;">
+      The wizard will:
+    </p>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0.5rem 0 0 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.25rem;">Detect your framework (Laravel, React, Vue, etc.)</li>
+      <li style="margin-bottom: 0.25rem;">Detect your build tool (Vite, Webpack, Laravel Mix)</li>
+      <li style="margin-bottom: 0.25rem;">Create <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">visual-code-editor.config.js</code></li>
+      <li style="margin-bottom: 0;">Add injector script to your build configuration</li>
+    </ul>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Step 3: Generated Config File</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// visual-code-editor.config.js
+export default {
+  // AI Gateway connection
+  gateway: {
+    url: 'http://localhost:18790',
+    apiKey: process.env.ZIMA_API_KEY, // optional
+  },
+
+  // Project paths (auto-detected)
+  project: {
+    root: process.cwd(),
+    framework: 'laravel-livewire', // or 'react', 'vue', 'nextjs'
+    componentPaths: [
+      'app/Livewire',
+      'resources/views/livewire',
+    ],
+    assetPaths: [
+      'resources/css',
+      'resources/js',
+    ],
+  },
+
+  // Inspector behavior
+  inspector: {
+    hotkey: 'cmd+shift+d',
+    theme: 'auto', // 'light', 'dark', 'auto'
+    captureScreenshots: true,
+    enableOCR: true, // optional, requires tesseract.js
+    enableVoice: false, // optional, requires speech API
+  },
+
+  // File operations
+  fileOperations: {
+    enabled: true,
+    backupBeforeEdit: true,
+    createGitCommits: false, // auto-commit changes
+  },
+
+  // Framework-specific config
+  livewire: {
+    autoDetectComponents: true,
+    mapComponentsToFiles: true,
+  },
+
+  react: {
+    devTools: true, // use React DevTools API
+  },
+}</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔧 Build Tool Integration</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Vite (React, Vue, Laravel)</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// vite.config.js
+import { defineConfig } from 'vite';
+import visualCodeEditor from '@zima/visual-code-editor/vite';
+
+export default defineConfig({
+  plugins: [
+    visualCodeEditor({
+      enabled: process.env.NODE_ENV === 'development',
+    }),
+  ],
+});</pre>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Webpack (Create React App, Angular)</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// webpack.config.js
+const VisualCodeEditorPlugin = require('@zima/visual-code-editor/webpack');
+
+module.exports = {
+  plugins: [
+    new VisualCodeEditorPlugin({
+      enabled: process.env.NODE_ENV === 'development',
+    }),
+  ],
+};</pre>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Next.js</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// next.config.js
+const withVisualCodeEditor = require('@zima/visual-code-editor/next');
+
+module.exports = withVisualCodeEditor({
+  // your Next.js config
+});</pre>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Laravel Mix</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// webpack.mix.js
+const mix = require('laravel-mix');
+require('@zima/visual-code-editor/laravel-mix');
+
+mix.visualCodeEditor({
+  enabled: !mix.inProduction(),
+});</pre>
+    </div>
+
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 How It Works (After Installation)</h2>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.5rem;">Build tool plugin injects <code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">injector.js</code> into your dev server HTML</li>
+      <li style="margin-bottom: 0.5rem;">User presses <strong>Cmd+Shift+D</strong> to activate inspector</li>
+      <li style="margin-bottom: 0.5rem;"><code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">ProjectDetector</code> runs once, caches framework/project info</li>
+      <li style="margin-bottom: 0.5rem;">Overlay UI appears, user hovers and selects elements</li>
+      <li style="margin-bottom: 0.5rem;">User enters command (text or voice)</li>
+      <li style="margin-bottom: 0.5rem;">Context payload sent to your AI Gateway at <code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">http://localhost:18790</code></li>
+      <li style="margin-bottom: 0.5rem;">AI generates code, sends back file edits</li>
+      <li style="margin-bottom: 0.5rem;">User previews changes in diff view</li>
+      <li style="margin-bottom: 0.5rem;">On accept, files edited via gateway's file tools</li>
+      <li style="margin-bottom: 0;">Hot reload triggers, visual confirmation shown</li>
+    </ol>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🌐 Gateway Integration</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">New MCP Tool: <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 4px; font-size: 0.8125rem;">visual_edit</code></h3>
+    
+    <p style="color: #737373; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Add this new tool to your Gateway's MCP server:
+    </p>
+
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// gateway/tools/visual_edit.ts
+export const visual_edit = {
+  name: 'visual_edit',
+  description: 'Process visual code editing request from frontend inspector',
+  
+  parameters: {
+    project: object, // project context (cached from first call)
+    selection: object, // element + DOM + screenshot + OCR + command
+  },
+
+  async execute({ project, selection }) {
+    // 1. Analyze context intelligently
+    const analysis = await analyzeContext(selection);
+    
+    // 2. Map to source files using project info
+    const files = await mapComponentToFiles(project, selection.source);
+    
+    // 3. Read current file contents
+    const currentCode = await read(files.primary);
+    
+    // 4. Generate new code (framework-specific)
+    const newCode = await generateCode({
+      framework: project.framework,
+      command: selection.command,
+      context: analysis,
+      currentCode,
+    });
+    
+    // 5. Return proposed changes (not applied yet)
+    return {
+      changes: [
+        {
+          file: files.primary,
+          diff: createDiff(currentCode, newCode),
+          newContent: newCode,
+        }
+      ],
+      preview: true, // user must accept
+    };
+  },
+};</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📚 Usage Examples</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Example 1: Laravel + Livewire Project</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">cd my-laravel-project
+npm install --save-dev @zima/visual-code-editor
+npx visual-code-editor init
+
+# Wizard output:
+# ✓ Detected: Laravel 10.x + Livewire + Tailwind + Vite
+# ✓ Created: visual-code-editor.config.js
+# ✓ Updated: vite.config.js
+# ✓ Ready! Run 'npm run dev' and press Cmd+Shift+D
+
+npm run dev
+# Open http://localhost:8000
+# Press Cmd+Shift+D
+# Click any element, say "Add a save button here"
+# ✨ Magic happens</pre>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Example 2: React + Vite Project</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">cd my-react-app
+npm install --save-dev @zima/visual-code-editor
+npx visual-code-editor init
+
+# Wizard output:
+# ✓ Detected: React 18 + TypeScript + Vite
+# ✓ Created: visual-code-editor.config.ts
+# ✓ Updated: vite.config.ts
+# ✓ Ready! Run 'npm run dev' and press Cmd+Shift+D
+
+npm run dev</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🚀 Development Roadmap</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Phase</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Deliverable</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.1.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Core injector + overlay UI (no AI yet)</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.2.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">ProjectDetector + context capture</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.3.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Gateway integration + Laravel support</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.4.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">React + Vue support</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.5.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">OCR + Vision AI integration</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v1.0.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Full release with all frameworks</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">💡 Key Design Decisions</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ Zero Config for Common Setups</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Auto-detect everything possible. Only ask when we can't figure it out.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ Dev-Only by Default</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Never inject into production builds. Completely removed in prod bundle.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ Gateway Agnostic</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Works with your ZIMA Gateway or any compatible AI endpoint (OpenAI, custom).
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ No Backend Required (Optional)</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Frontend can work standalone. Backend integrations add file mapping superpowers.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ TypeScript First</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Written in TypeScript, ships with full type definitions.
+      </p>
+    </div>
+  </div>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0;">
+    <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 0.75rem 0;">🎯 MVP Package Scope</p>
+    <p style="color: #E5E5E5; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      For the first release (v0.1.0), we'll build:
+    </p>
+    <ol style="padding-left: 1.5rem; color: #E5E5E5; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.35rem;"><strong>CLI tool</strong> (<code style="background: #525252; color: #E5E5E5; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">npx visual-code-editor init</code>)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Vite plugin</strong> (works with Laravel Vite, React, Vue)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Frontend injector</strong> (overlay UI, element selector)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>ProjectDetector</strong> (framework auto-detection)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Context capture</strong> (DOM + screenshot, no OCR yet)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Gateway client</strong> (send context to AI)</li>
+      <li style="margin-bottom: 0;">Test with <strong>Laravel + Livewire + Tailwind</strong> (your ZIMA project)</li>
+    </ol>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    Ready to start building the package structure? I can generate the initial npm package setup with proper TypeScript config, build scripts, and the CLI tool.
+  </p>
+</div>

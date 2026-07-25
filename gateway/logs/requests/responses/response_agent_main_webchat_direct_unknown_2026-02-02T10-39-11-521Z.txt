@@ -1,0 +1,488 @@
+=== RESPONSE ===
+Request ID: 7b0b9182-1366-4d35-bb38-10e9bb04edaa
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T10:39:11.521Z
+Length: 19786 characters
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">🔌 Adding "visualEditor" Channel Type</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    I've analyzed your gateway architecture. Let me show you exactly what needs to be added to support the <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.8125rem;">visualEditor</code> channel type for receiving prompts from the npm package.
+  </p>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📋 Current Architecture Overview</h2>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0 0 0.5rem 0; font-weight: 600;">Current Flow:</p>
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.35rem;">Message arrives at <code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">POST /api/chat</code> or <code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">WebSocket</code></li>
+      <li style="margin-bottom: 0.35rem;"><strong>HybridMessageRouter</strong> normalizes the message</li>
+      <li style="margin-bottom: 0.35rem;"><strong>SessionKeyBuilder</strong> creates session key: <code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">agent:main:webchat:direct:user-id</code></li>
+      <li style="margin-bottom: 0.35rem;"><strong>HybridContextManager</strong> processes the message</li>
+      <li style="margin-bottom: 0;">Response sent back to channel</li>
+    </ol>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 Required Changes</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">File</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Change Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">src/types/index.ts</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Add VisualEditorContext interface</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">src/config/config.ts</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Add visualEditor channel config</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">src/server.ts</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Add POST /api/visual-edit endpoint</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">src/router/message-router.ts</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Handle visualEditor messages</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">(NEW) src/visual-editor/handler.ts</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Process visual edit requests</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📝 Implementation Plan</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">1️⃣ Define Visual Editor Types</h3>
+    
+    <p style="color: #737373; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Add these interfaces to <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">src/types/index.ts</code>:
+    </p>
+
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// Visual Editor Types (add to src/types/index.ts)
+
+export interface VisualEditorContext {
+  // Project metadata (cached on first call)
+  project: {
+    root: string;
+    framework: string; // 'laravel-livewire', 'react', 'vue', etc.
+    language: string;
+    cssFramework: string;
+    componentPaths: string[];
+    assetPaths: string[];
+  };
+
+  // User selection
+  selection: {
+    // Visual context
+    screenshot?: string; // base64 data URL
+    element: {
+      tag: string;
+      classList: string[];
+      id?: string;
+      text?: string;
+      computed: Record<string, any>; // computed styles
+      bounds: { x: number; y: number; width: number; height: number };
+    };
+
+    // DOM context
+    dom: {
+      html: string; // surrounding HTML
+      ancestors: Array<{ tag: string; classes: string[]; id?: string }>;
+      siblings?: string; // optional
+    };
+
+    // OCR context (optional)
+    ocr?: {
+      text: string;
+      confidence: number;
+    };
+
+    // Component source (if detected)
+    source?: {
+      component: string; // e.g., 'ChatInterface'
+      filePath?: string; // if mapped by backend
+      lineNumber?: number;
+    };
+
+    // User command
+    command: string; // "Add a download button here"
+  };
+
+  // Session info
+  sessionKey: string; // Will be created if not provided
+  userId: string; // developer's ID
+  timestamp: number;
+}
+
+export interface VisualEditResponse {
+  success: boolean;
+  changes?: Array<{
+    file: string;
+    diff: string; // unified diff format
+    newContent: string;
+  }>;
+  preview?: {
+    url: string; // URL to view diff in browser
+  };
+  error?: string;
+  metadata?: {
+    model: string;
+    usage: UsageInfo;
+  };
+}</pre>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">2️⃣ Add Config Entry</h3>
+    
+    <p style="color: #737373; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Add visualEditor channel to <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">gateway.config.json</code>:
+    </p>
+
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">{
+  "gateway": {
+    "port": 18790,
+    "bind": "0.0.0.0",
+    "cors": {
+      "origins": ["*"]
+    }
+  },
+  "channels": {
+    "webchat": { "enabled": true },
+    "whatsapp": { "enabled": false },
+    "email": { "enabled": false },
+    "visualEditor": {
+      "enabled": true,
+      "requireAuth": false,
+      "allowedOrigins": ["http://localhost:*"],
+      "maxScreenshotSize": 5242880,
+      "enableOCR": true
+    }
+  }
+}</pre>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">3️⃣ Create Visual Editor Handler</h3>
+    
+    <p style="color: #737373; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Create new file: <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">src/visual-editor/handler.ts</code>
+    </p>
+
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">/**
+ * Visual Editor Request Handler
+ * Processes visual code editing requests from the npm package
+ */
+
+import { VisualEditorContext, VisualEditResponse } from '../types';
+import { HybridMessageRouter } from '../router/message-router';
+
+export class VisualEditorHandler {
+  constructor(private router: HybridMessageRouter) {}
+
+  async processVisualEdit(context: VisualEditorContext): Promise<VisualEditResponse> {
+    try {
+      // 1. Build or use existing session key
+      const sessionKey = context.sessionKey || this.buildSessionKey(context);
+
+      // 2. Build rich system prompt for visual editing
+      const systemPrompt = this.buildVisualEditPrompt(context);
+
+      // 3. Build message content
+      const message = this.buildMessageContent(context);
+
+      // 4. Route through hybrid message router
+      const result = await this.router.routeMessage({
+        channel: 'visualEditor',
+        chatType: 'direct',
+        sender: { id: context.userId },
+        message,
+        metadata: {
+          systemPrompt,
+          projectContext: context.project,
+          visualContext: context.selection
+        }
+      });
+
+      // 5. Parse AI response and extract file changes
+      const changes = this.parseFileChanges(result.output);
+
+      return {
+        success: true,
+        changes,
+        metadata: {
+          model: result.model,
+          usage: result.usage
+        }
+      };
+    } catch (error: any) {
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
+
+  private buildSessionKey(context: VisualEditorContext): string {
+    // Format: agent:main:visualEditor:direct:userId
+    return `agent:main:visualEditor:direct:${context.userId}`;
+  }
+
+  private buildVisualEditPrompt(context: VisualEditorContext): string {
+    return `You are a visual code editor assistant. You help developers edit their code by understanding visual context.
+
+Project Info:
+- Framework: ${context.project.framework}
+- Language: ${context.project.language}
+- CSS Framework: ${context.project.cssFramework}
+
+Your task:
+1. Analyze the visual context (screenshot, DOM, OCR if available)
+2. Understand what the user wants to change: "${context.selection.command}"
+3. Identify the correct file to edit (use component source if provided)
+4. Generate the necessary code changes
+5. Return changes in a structured format
+
+CRITICAL: Always return file changes in this format:
+\`\`\`diff:path/to/file.php
+... unified diff here ...
+\`\`\`
+
+Be precise. Only change what's necessary. Maintain existing code style.`;
+  }
+
+  private buildMessageContent(context: VisualEditorContext): string {
+    const { selection } = context;
+    
+    let message = `**Visual Edit Request**\n\n`;
+    message += `**Command:** ${selection.command}\n\n`;
+    
+    // Add element context
+    message += `**Selected Element:**\n`;
+    message += `- Tag: ${selection.element.tag}\n`;
+    message += `- Classes: ${selection.element.classList.join(', ')}\n`;
+    if (selection.element.id) {
+      message += `- ID: ${selection.element.id}\n`;
+    }
+    message += `\n`;
+
+    // Add DOM context
+    message += `**DOM Context:**\n\`\`\`html\n${selection.dom.html}\n\`\`\`\n\n`;
+
+    // Add OCR if available
+    if (selection.ocr) {
+      message += `**OCR Text (from screenshot):**\n${selection.ocr.text}\n\n`;
+    }
+
+    // Add source file info if known
+    if (selection.source?.filePath) {
+      message += `**Source File:** ${selection.source.filePath}\n`;
+      if (selection.source.lineNumber) {
+        message += `**Line Number:** ${selection.source.lineNumber}\n`;
+      }
+    }
+
+    return message;
+  }
+
+  private parseFileChanges(output: string): Array<{ file: string; diff: string; newContent: string }> {
+    // Parse the AI response to extract file changes
+    // Look for ```diff:path/to/file patterns
+    const changes: Array<{ file: string; diff: string; newContent: string }> = [];
+    
+    const diffBlocks = output.matchAll(/```diff:(.+?)\n([\s\S]+?)```/g);
+    
+    for (const match of diffBlocks) {
+      const file = match[1].trim();
+      const diff = match[2];
+      
+      // TODO: Apply diff to get newContent
+      // For now, just store the diff
+      changes.push({
+        file,
+        diff,
+        newContent: '' // Will be computed by applying diff
+      });
+    }
+
+    return changes;
+  }
+}</pre>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">4️⃣ Add API Endpoint</h3>
+    
+    <p style="color: #737373; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Add to <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">src/server.ts</code> in <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">setupHttpRoutes()</code>:
+    </p>
+
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// Add at top of server.ts
+import { VisualEditorHandler } from './visual-editor/handler';
+
+// Inside GatewayServer class
+private visualEditorHandler: VisualEditorHandler | null = null;
+
+// In start() method, after router initialization:
+this.visualEditorHandler = new VisualEditorHandler(this.router);
+
+// In setupHttpRoutes() method:
+// Visual Editor endpoint
+this.app.post('/api/visual-edit', async (req, res) => {
+  try {
+    if (!this.visualEditorHandler) {
+      return res.status(503).json({ error: 'Visual Editor not initialized' });
+    }
+
+    // Validate request
+    const context = req.body as VisualEditorContext;
+    if (!context.project || !context.selection || !context.selection.command) {
+      return res.status(400).json({
+        error: 'Invalid request',
+        required: ['project', 'selection', 'selection.command']
+      });
+    }
+
+    // Process visual edit
+    const result = await this.visualEditorHandler.processVisualEdit(context);
+    res.json(result);
+
+  } catch (error: any) {
+    console.error('Error in /api/visual-edit:', error);
+    res.status(500).json({
+      error: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    });
+  }
+});</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔄 Request/Response Flow</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">┌─────────────────────┐
+│  NPM Package        │  (Browser)
+│  @zima/visual-code- │
+│  editor             │
+└──────────┬──────────┘
+           │
+           │ POST /api/visual-edit
+           │ {
+           │   project: { framework, paths... },
+           │   selection: { screenshot, dom, command },
+           │   userId: "dev-123"
+           │ }
+           ▼
+┌─────────────────────┐
+│  Gateway Server     │
+│  (Port 18790)       │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ VisualEditorHandler │
+│  - Build prompt     │
+│  - Format context   │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ HybridMessageRouter │
+│  - Create session   │
+│  - Route to AI      │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ AI Agent Runtime    │
+│  - Analyze context  │
+│  - Generate code    │
+│  - Use file tools   │
+└──────────┬──────────┘
+           │
+           │ Response:
+           │ {
+           │   success: true,
+           │   changes: [
+           │     { file: "...", diff: "...", newContent: "..." }
+           │   ]
+           │ }
+           ▼
+┌─────────────────────┐
+│  NPM Package        │
+│  - Show diff UI     │
+│  - Apply on accept  │
+└─────────────────────┘</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🧪 Example Request</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// From the NPM package in the browser:
+await fetch('http://localhost:18790/api/visual-edit', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    project: {
+      root: '/Users/dev/my-laravel-app',
+      framework: 'laravel-livewire',
+      language: 'php',
+      cssFramework: 'tailwind',
+      componentPaths: ['app/Livewire', 'resources/views/livewire'],
+      assetPaths: ['resources/css', 'resources/js']
+    },
+    selection: {
+      screenshot: 'data:image/png;base64,...',
+      element: {
+        tag: 'div',
+        classList: ['chat-header', 'flex', 'items-center'],
+        id: 'chat-header',
+        text: 'Chat Interface',
+        computed: { backgroundColor: 'rgb(255,255,255)', ... },
+        bounds: { x: 100, y: 50, width: 800, height: 60 }
+      },
+      dom: {
+        html: '<div class="chat-header">...</div>',
+        ancestors: [
+          { tag: 'body', classes: [] },
+          { tag: 'div', classes: ['livewire-component'] }
+        ]
+      },
+      command: 'Add a download button next to the title'
+    },
+    userId: 'dev-123',
+    timestamp: Date.now()
+  })
+});</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">✅ Next Steps</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0;">
+    <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 0.75rem 0;">Ready to implement?</p>
+    <p style="color: #E5E5E5; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      I can generate all the files for you:
+    </p>
+    <ol style="padding-left: 1.5rem; color: #E5E5E5; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.35rem;">Update <code style="background: #525252; color: #E5E5E5; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">src/types/index.ts</code></li>
+      <li style="margin-bottom: 0.35rem;">Create <code style="background: #525252; color: #E5E5E5; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">src/visual-editor/handler.ts</code></li>
+      <li style="margin-bottom: 0.35rem;">Update <code style="background: #525252; color: #E5E5E5; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">src/server.ts</code></li>
+      <li style="margin-bottom: 0.35rem;">Update <code style="background: #525252; color: #E5E5E5; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">gateway.config.json</code></li>
+      <li style="margin-bottom: 0;">Test with a mock request</li>
+    </ol>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    Should I proceed with implementing these changes?
+  </p>
+</div>

@@ -1,0 +1,60 @@
+=== RESPONSE ===
+Request ID: fc3f1d72-9f12-490b-b859-3575cc7b4331
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T09:05:35.337Z
+Length: 3893 characters
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">🇹🇿 Karibu! Tuanze kwa Kiswahili</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    <strong>Habari yako!</strong> Ninafuraha sana kuzungumza nawe kwa Kiswahili. Niko tayari kukusaidia na:
+  </p>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">🛠️ Nini Ninaweza Kukusaidia?</h3>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0;">
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>Kuunda hati</strong> - Excel, PDF, Word, PowerPoint kwa Kiswahili</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>Kutafsiri</strong> - Kutoka Kiswahili kwenda Kiingereza au lugha nyingine</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>Kusoma faili</strong> - Kuchambua na kuhariri hati zako</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>Maswali yoyote</strong> - Utafiti, programu, au msaada wa kiufundi</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>OCR</strong> - Kutoa maandishi kutoka kwa picha zenye Kiswahili</li>
+    </ul>
+  </div>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0; font-weight: 600;">💡 Kumbuka</p>
+    <p style="color: #525252; margin: 0.5rem 0 0 0; font-size: 0.8125rem;">
+      Kiswahili changu ni cha kiwango cha msingi hadi wa kati. Ninaweza kuzungumza na kukusaidia, lakini kwa maneno magumu sana au mazungumzo ya kitaalamu, Kiingereza kinaweza kuwa bora zaidi.
+    </p>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">Mfano wa Kazi Tunazoweza Kufanya</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">📊 Kuunda Jedwali la Excel</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">"Nitengenezee Excel ya orodha ya wateja wangu"</p>
+    </div>
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">📄 Kuandika Waraka</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">"Nisaidie kuandika barua ya biashara kwa Kiswahili"</p>
+    </div>
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">🔍 Kutafsiri Hati</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">"Tafsiri hii PDF kutoka Kiingereza kwenda Kiswahili"</p>
+    </div>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    <strong>Ungependa tufanye nini leo?</strong> Niambie tu, niko hapa kukusaidia! 😊
+  </p>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem; margin: 1rem 0;">
+    <p style="color: #737373; margin: 0; font-size: 0.75rem; font-style: italic;">
+      <strong>Note:</strong> If at any point you'd prefer to switch back to English for more precise technical discussions, just let me know!
+    </p>
+  </div>
+</div>

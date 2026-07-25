@@ -1,0 +1,23 @@
+[
+  {
+    "Country": "Brazil",
+    "Capital": "Bras\u00EDlia",
+    "Population (millions)": "215.3",
+    "Area (km\u00B2)": "8,515,767",
+    "Continent": "South America"
+  },
+  {
+    "Country": "India",
+    "Capital": "New Delhi",
+    "Population (millions)": "1,380.0",
+    "Area (km\u00B2)": "3,287,263",
+    "Continent": "Asia"
+  },
+  {
+    "Country": "China",
+    "Capital": "Beijing",
+    "Population (millions)": "1,439.3",
+    "Area (km\u00B2)": "9,596,960",
+    "Continent": "Asia"
+  }
+]

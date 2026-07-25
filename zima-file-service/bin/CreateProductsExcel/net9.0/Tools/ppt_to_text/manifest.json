@@ -1,0 +1,9 @@
+{
+  "name": "ppt_to_text",
+  "description": "Extract text from presentation",
+  "usage": "ppt_to_text(file, include_notes?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool ppt_to_text"
+}

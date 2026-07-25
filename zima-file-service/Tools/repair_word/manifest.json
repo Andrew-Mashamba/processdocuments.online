@@ -1,0 +1,9 @@
+{
+  "name": "repair_word",
+  "description": "Repair corrupted Word document",
+  "usage": "repair_word(file, output_file?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool repair_word"
+}

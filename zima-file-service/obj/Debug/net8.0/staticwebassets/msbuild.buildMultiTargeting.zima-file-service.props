@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/zima-file-service.props" />
+</Project>

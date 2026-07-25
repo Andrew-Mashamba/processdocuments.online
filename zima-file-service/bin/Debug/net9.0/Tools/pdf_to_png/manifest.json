@@ -1,0 +1,9 @@
+{
+  "name": "pdf_to_png",
+  "description": "Convert PDF pages to PNG images (lossless)",
+  "usage": "pdf_to_png(file, output_folder?, dpi?, pages?)",
+  "category": "conversion",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool pdf_to_png"
+}

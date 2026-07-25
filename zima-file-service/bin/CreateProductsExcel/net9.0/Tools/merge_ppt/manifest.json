@@ -1,0 +1,9 @@
+{
+  "name": "merge_ppt",
+  "description": "Merge multiple PowerPoint presentations",
+  "usage": "merge_ppt(files[], output_file)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool merge_ppt"
+}

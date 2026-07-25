@@ -1,0 +1,9 @@
+{
+  "name": "reorder_slides",
+  "description": "Reorder slides in presentation",
+  "usage": "reorder_slides(file, new_order[])",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool reorder_slides"
+}

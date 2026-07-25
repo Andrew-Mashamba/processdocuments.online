@@ -1,0 +1,9 @@
+{
+  "name": "pdf_to_word",
+  "description": "Convert PDF to Word document (.docx)",
+  "usage": "pdf_to_word(file, output_file?, preserve_layout?)",
+  "category": "conversion",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool pdf_to_word"
+}

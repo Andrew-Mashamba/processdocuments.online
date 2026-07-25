@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const { Command } = require('commander');
+const program = new Command();
+
+program
+  .name('visual-editor')
+  .description('ZIMA Visual Code Editor CLI')
+  .version('1.0.0');
+
+program
+  .command('init')
+  .description('Initialize visual editor in your project')
+  .action(async () => {
+    const { init } = require('../dist/cli/init');
+    await init();
+  });
+
+program
+  .command('start')
+  .description('Start the visual editor agent server')
+  .action(async () => {
+    const { start } = require('../dist/cli/start');
+    await start();
+  });
+
+program.parse(process.argv);

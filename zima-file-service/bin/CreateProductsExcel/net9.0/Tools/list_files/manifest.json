@@ -1,0 +1,18 @@
+{
+  "name": "list_files",
+  "description": "List files in generated_files or uploaded_files directory",
+  "usage": "list_files(folder?, pattern?) -\u003E [{name, size, modified}]",
+  "category": "file",
+  "inputs": {
+    "folder": {
+      "type": "string",
+      "description": "\u0027generated\u0027 or \u0027uploaded\u0027"
+    },
+    "pattern": {
+      "type": "string",
+      "description": "Filter pattern (*.xlsx)"
+    }
+  },
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool list_files"
+}

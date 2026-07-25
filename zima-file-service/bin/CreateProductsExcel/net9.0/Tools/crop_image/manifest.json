@@ -1,0 +1,9 @@
+{
+  "name": "crop_image",
+  "description": "Crop an image",
+  "usage": "crop_image(file, x, y, width, height, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool crop_image"
+}

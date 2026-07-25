@@ -1,0 +1,9 @@
+{
+  "name": "accept_track_changes",
+  "description": "Accept or reject track changes",
+  "usage": "accept_track_changes(file, action)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool accept_track_changes"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "protect_ppt",
+  "description": "Protect PowerPoint presentation with password",
+  "usage": "protect_ppt(file, password, protect_structure?, read_only?, output_file?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool protect_ppt"
+}

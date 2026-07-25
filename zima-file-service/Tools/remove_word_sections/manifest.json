@@ -1,0 +1,9 @@
+{
+  "name": "remove_word_sections",
+  "description": "Remove sections from Word document",
+  "usage": "remove_word_sections(file, sections[])",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool remove_word_sections"
+}

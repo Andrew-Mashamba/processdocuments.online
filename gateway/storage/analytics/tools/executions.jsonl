@@ -1,0 +1,19 @@
+{"toolName":"write","timestamp":"2026-01-31T14:14:47.124Z","duration":2,"success":true,"sessionKey":"mcp-session","inputSize":640,"outputSize":72}
+{"toolName":"create_excel","timestamp":"2026-01-31T14:32:57.315Z","duration":3,"success":false,"error":"ZIMA API connection refused at http://localhost:5000. API may not be running.","sessionKey":"mcp-session","inputSize":142,"outputSize":79}
+{"toolName":"create_excel","timestamp":"2026-01-31T14:34:22.965Z","duration":68,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":142,"outputSize":67}
+{"toolName":"create_excel","timestamp":"2026-01-31T15:02:11.547Z","duration":3,"success":false,"error":"ZIMA API connection refused at http://localhost:5000. API may not be running.","sessionKey":"mcp-session","inputSize":240,"outputSize":79}
+{"toolName":"create_excel","timestamp":"2026-01-31T15:02:38.508Z","duration":2,"success":false,"error":"ZIMA API connection refused at http://localhost:5000. API may not be running.","sessionKey":"mcp-session","inputSize":240,"outputSize":79}
+{"toolName":"create_excel","timestamp":"2026-01-31T15:03:21.539Z","duration":6,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":240,"outputSize":67}
+{"toolName":"create_excel","timestamp":"2026-01-31T15:26:56.321Z","duration":4,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":162,"outputSize":67}
+{"toolName":"get_file_info","timestamp":"2026-01-31T15:27:09.483Z","duration":0,"success":false,"error":"Unknown tool: get_file_info","sessionKey":"mcp-session","inputSize":33,"outputSize":29}
+{"toolName":"create_excel","timestamp":"2026-01-31T15:33:03.233Z","duration":4,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":220,"outputSize":67}
+{"toolName":"get_file_info","timestamp":"2026-01-31T15:33:39.738Z","duration":0,"success":false,"error":"Unknown tool: get_file_info","sessionKey":"mcp-session","inputSize":90,"outputSize":29}
+{"toolName":"create_excel","timestamp":"2026-01-31T15:34:28.174Z","duration":3,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":326,"outputSize":67}
+{"toolName":"get_file_info","timestamp":"2026-01-31T15:34:28.183Z","duration":0,"success":false,"error":"Unknown tool: get_file_info","sessionKey":"mcp-session","inputSize":93,"outputSize":29}
+{"toolName":"create_excel","timestamp":"2026-01-31T15:36:42.988Z","duration":5,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":734,"outputSize":67}
+{"toolName":"create_word","timestamp":"2026-02-02T10:05:05.506Z","duration":2,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":24684,"outputSize":66}
+{"toolName":"create_word","timestamp":"2026-02-02T11:16:34.807Z","duration":3,"success":false,"error":"Request failed with status code 404","sessionKey":"mcp-session","inputSize":21036,"outputSize":66}
+{"toolName":"gateway","timestamp":"2026-02-02T12:03:31.214Z","duration":0,"success":true,"sessionKey":"mcp-session","inputSize":23,"outputSize":613}
+{"toolName":"sessions_spawn","timestamp":"2026-02-02T12:19:14.023Z","duration":1,"success":true,"sessionKey":"mcp-session","inputSize":1325,"outputSize":173}
+{"toolName":"sessions_list","timestamp":"2026-02-02T12:54:02.722Z","duration":1,"success":true,"sessionKey":"mcp-session","inputSize":35,"outputSize":154}
+{"toolName":"sessions_list","timestamp":"2026-02-02T12:55:03.208Z","duration":1,"success":true,"sessionKey":"mcp-session","inputSize":2,"outputSize":154}

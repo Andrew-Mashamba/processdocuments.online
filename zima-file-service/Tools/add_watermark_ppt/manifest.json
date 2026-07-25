@@ -1,0 +1,9 @@
+{
+  "name": "add_watermark_ppt",
+  "description": "Add watermark to all slides",
+  "usage": "add_watermark_ppt(file, text)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_watermark_ppt"
+}

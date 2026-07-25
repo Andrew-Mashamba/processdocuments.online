@@ -1,0 +1,9 @@
+{
+  "name": "split_ppt",
+  "description": "Split presentation by slides",
+  "usage": "split_ppt(file, slides_per_file?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool split_ppt"
+}

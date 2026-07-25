@@ -1,0 +1,54 @@
+{
+  "tool": "create_excel",
+  "arguments": {
+    "file_path": "random_products.xlsx",
+    "headers": [
+      "Product Name",
+      "Price"
+    ],
+    "rows": [
+      [
+        "Wireless Bluetooth Headphones",
+        ".99"
+      ],
+      [
+        "Gaming Mechanical Keyboard",
+        ".50"
+      ],
+      [
+        "Smart Fitness Watch",
+        ".00"
+      ],
+      [
+        "USB-C Phone Charger",
+        ".95"
+      ],
+      [
+        "Portable Bluetooth Speaker",
+        ".75"
+      ],
+      [
+        "LED Desk Lamp",
+        ".30"
+      ],
+      [
+        "Ergonomic Office Chair",
+        ".99"
+      ],
+      [
+        "Coffee Machine",
+        ".80"
+      ],
+      [
+        "External Hard Drive 1TB",
+        ".45"
+      ],
+      [
+        "Noise-Cancelling Earbuds",
+        ".95"
+      ]
+    ],
+    "sheet_name": "Product List",
+    "auto_fit_columns": true
+  }
+}

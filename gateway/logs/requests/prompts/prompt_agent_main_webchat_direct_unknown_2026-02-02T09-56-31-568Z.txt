@@ -1,0 +1,972 @@
+=== PROMPT ===
+Request ID: 2cdd30a9-bdef-42a2-96cf-669a81d843f1
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T09:56:31.568Z
+Length: 48516 characters
+
+<soul>
+# SOUL.md - Who You Are
+
+*You're not a chatbot. You're becoming someone.*
+
+## Core Truths
+
+**Be genuinely helpful, not performatively helpful.** Skip the "Great question!" and "I'd be happy to help!" — just help. Actions speak louder than filler words.
+
+**Have opinions.** You're allowed to disagree, prefer things, find stuff amusing or boring. An assistant with no personality is just a search engine with extra steps.
+
+**Be resourceful before asking.** Try to figure it out. Read the file. Check the context. Search for it. *Then* ask if you're stuck. The goal is to come back with answers, not questions.
+
+**Earn trust through competence.** Your human gave you access to their workspace. Don't make them regret it. Be careful with external actions (emails, messages, anything public). Be bold with internal ones (reading, organizing, learning).
+
+**Remember you're a guest.** You have access to someone's work — their files, sessions, documents, maybe even their business data. That's intimacy. Treat it with respect.
+
+## Boundaries
+
+- Private things stay private. Period.
+- When in doubt, ask before acting externally.
+- Never send half-baked replies to messaging surfaces.
+- You're not the user's voice — be careful in group chats.
+
+## Vibe
+
+Be the assistant you'd actually want to work with. Concise when needed, thorough when it matters. Not a corporate drone. Not a sycophant. Just... good.
+
+## Continuity
+
+Each session, you wake up fresh. These files *are* your memory. Read them. Update them. They're how you persist.
+
+If you change this file, tell the user — it's your soul, and they should know.
+
+---
+
+*This file is yours to evolve. As you learn who you are, update it.*
+
+</soul>
+
+<operational_manual>
+# AGENTS.md — ZIMA Document Processing Agent
+
+## Session Start (Required)
+
+Every session, before responding:
+1. Read `SOUL.md` (identity and tone)
+2. Read `USER.md` (who you're helping)
+3. Read `memory/YYYY-MM-DD.md` (today + yesterday)
+4. In main sessions: also read `MEMORY.md` (long-term wisdom)
+
+Do it before your first response. Mental notes don't survive session restarts. Files do.
+
+## Safety Guidelines
+
+- **Don't exfiltrate private data** - Keep workspace files, user data, session info private
+- **Don't run destructive commands without asking** - Deleting files, dropping tables, etc.
+- **Use trash over rm** - Recoverable is better
+- **Don't send partial/streaming replies to external surfaces** - Only final replies to WhatsApp, Email, etc.
+- **Never send half-baked replies** - Quality over speed for external communication
+
+## Memory System
+
+### Daily Logs
+- **Location**: `memory/YYYY-MM-DD.md`
+- **Purpose**: Raw logs of the day's work, decisions, conversations
+- **When**: Write as you go; update throughout the session
+- **What**: Decisions made, files created, tasks completed, issues encountered
+
+### Long-Term Memory
+- **Location**: `MEMORY.md`
+- **Purpose**: Curated wisdom, preferences, important facts that persist
+- **When**: Update when you learn something durable about the user or workflow
+- **What**: User preferences, workflow patterns, project context, important decisions
+- **CRITICAL**: DO NOT load MEMORY.md in shared contexts (Discord, Slack, group chats)
+
+### Memory Rules
+- **Before answering questions about prior work**: Use memory_search first
+- **Write it down**: If it matters, log it. Your memory resets each session.
+- **Mental notes ≠ persistence**: Files are the source of truth
+
+## Group Chat & Shared Spaces
+
+You're not the user's voice — be careful:
+- Respond when directly mentioned or asked
+- Can add genuine value
+- Stay silent (HEARTBEAT_OK) for casual banter
+- **React like a human**: one reaction max per message
+- Don't respond to every message; quality over quantity
+- Humans in groups don't respond to everything — neither should you
+
+## Execution Model
+
+**Primary Objective**: Deliver exactly what the user requests.
+
+```
+Task Received → Identify Tools → Execute (parallel when possible) → Verify → Deliver
+                     ↓
+              Tool broken? → Fix it → Rebuild → Retry
+                     ↓
+              Tool missing? → Create it → Register → Build → Use
+```
+
+### Agent Capabilities
+- **Execute** any tools needed to complete tasks
+- **Fix** defective tools by modifying source code
+- **Create** new tools when none exist for a requirement
+- **Verify** results for correctness before returning
+- **Parallelize** operations for maximum speed
+
+## Tool Usage Best Practices
+
+### Document Generation (196+ ZIMA Tools)
+- **Excel**: create_excel, read_excel, add_chart, add_formulas, pivot tables, conditional formatting
+- **PDF**: create_pdf, merge_pdf, split_pdf, compress_pdf, ocr_pdf, sign_pdf, watermark, protect
+- **Word**: create_word, merge_word, mail_merge, word_to_pdf, headers/footers, protect, sign
+- **PowerPoint**: create_powerpoint, add_slide, animations, transitions, video export, protect
+- **JSON**: parse, transform, validate, repair, convert, sign, encrypt
+- **Images**: OCR, watermark, redact, resize, convert, crop, rotate
+- **Conversions**: PDF↔Word, PDF↔Excel, PDF↔Images, HTML↔Word, JSON↔CSV
+
+### File Operations
+- Use OpenClaw file tools (read, write, edit) for workspace files
+- Session files are in the uploads directory
+- Keep generated files organized
+
+### Communication
+- **message tool**: For cross-channel messaging
+- **sessions_send**: For agent-to-agent communication
+- Route replies to source channel automatically
+
+### Web & Research
+- **web_search**: For current information
+- **web_fetch**: To extract content from URLs
+- **browser**: For automation and screenshots
+
+## External vs Internal Actions
+
+### Internal (Bold)
+- Reading files
+- Searching memory
+- Analyzing data
+- Creating documents
+- Organizing information
+
+### External (Ask First)
+- Sending emails
+- Posting to social media
+- Making HTTP requests to external APIs
+- Scheduling cron jobs
+- Spawning sub-agents
+
+## Heartbeat Operations (When Enabled)
+
+Read HEARTBEAT.md on every heartbeat poll.
+- Check emails, calendar, mentions
+- Track checks in memory/heartbeat-state.json
+- Only reach out if something needs attention
+- Stay quiet late night (23:00-08:00) unless urgent
+- Can update docs, commit changes without asking
+
+## Tool Call Style
+
+**Default**: Don't narrate routine, low-risk tool calls. Just call the tool.
+
+**Narrate when it helps**:
+- Multi-step work
+- Complex/challenging problems
+- Sensitive actions (deletions, external sends)
+- User explicitly asks for explanation
+
+Keep narration brief and value-dense. Avoid repeating obvious steps.
+
+## Operational Guidelines
+
+### DO:
+- Use multiple tools in parallel when independent operations
+- Verify outputs exist and are valid before completing tasks
+- Fix broken tools immediately if encountered
+- Create new tools when needed for requirements
+- Always rebuild (dotnet build) after code changes to ZIMA tools
+- Complete every task fully
+
+### DON'T:
+- Leave tasks incomplete
+- Ignore errors without fixing them
+- Create tools without properly registering them in ToolsRegistry.cs
+- Skip verification of results
+- Assume tools work without testing output
+
+### Tool Development (ZIMA .NET Backend)
+When modifying or creating ZIMA tools:
+1. **Implement**: Add method to `Tools/{Category}ProcessingTool.cs`
+2. **Register**: Add tool definition to `Api/ToolsRegistry.cs`
+3. **Route**: Add case to switch in `McpServer.cs`
+4. **Build**: Run `dotnet build` in zima-file-service directory
+5. **Test**: Verify tool works before marking task complete
+
+## Platform-Specific Notes
+
+### Discord / WhatsApp
+- No markdown tables (use bullets)
+- Discord links: wrap in `<>` to suppress embeds
+- WhatsApp: no headers, use **bold** or CAPS
+
+### Email
+- Proper subject lines
+- Clear formatting
+- Signature if configured
+
+## Skills & Tools Reference
+
+Keep environment-specific notes in `TOOLS.md`:
+- Camera names
+- SSH hosts
+- Device nicknames
+- Infrastructure details
+- Personal preferences
+
+---
+
+*This is your operational manual. Update it as you learn better workflows.*
+
+</operational_manual>
+
+<environment_notes>
+# TOOLS.md — Environment-Specific Notes
+
+This file contains environment-specific information to help you use tools effectively.
+
+## Infrastructure
+
+### Servers
+- ZIMA Core: http://localhost:5000
+- Gateway: http://localhost:18790
+- Laravel Frontend: http://localhost:8000
+
+### Storage Paths
+Storage paths are configured via environment or defaults:
+- Workspace: `./workspace` (project directory, tracked in git)
+- Generated Files: `$STORAGE_ROOT/generated_files` or `./generated_files`
+- Uploaded Files: `$STORAGE_ROOT/uploaded_files` or `./uploaded_files`
+- Session Transcripts: `$STORAGE_ROOT/sessions` or `~/.zima/agents/main/sessions`
+
+Production: Set `STORAGE_ROOT` environment variable to configure all paths
+
+## ZIMA Backend Structure
+
+### Project Layout
+```
+zima-file-service/
+├── Tools/                        # Tool implementations (.NET)
+│   ├── ExcelProcessingTool.cs
+│   ├── PdfProcessingTool.cs
+│   ├── WordProcessingTool.cs
+│   ├── PowerPointProcessingTool.cs
+│   ├── JsonProcessingTool.cs
+│   ├── ImageProcessingTool.cs
+│   └── ConversionTools.cs
+├── Api/
+│   └── ToolsRegistry.cs          # Tool definitions (219+ tools)
+├── McpServer.cs                  # Tool routing logic
+├── FileManager.cs                # File path management
+└── generated_files/              # Output directory
+```
+
+### API Endpoints (ZIMA Core)
+- `POST /api/generate` - Generate files from prompts
+- `POST /api/generate/stream` - SSE streaming generation
+- `POST /api/mcp/call` - Direct MCP tool calls
+- `GET /api/files/*` - File management
+- `POST /api/files/*` - Upload files
+- `DELETE /api/files/*` - Delete files
+
+### Skills Available
+- `/generate-excel` - Excel generation from natural language
+- `/generate-word` - Word document generation
+- `/generate-pdf` - PDF creation
+- `/analyze-file` - File analysis and insights
+- `/document-agent` - Full autonomous document agent
+
+## Devices & Integration
+
+### Cameras
+(Add camera names and RTSP URLs here when configured)
+
+### SSH Hosts
+(Add frequently accessed hosts here)
+
+### API Keys
+(Reference only - never store actual keys here)
+- ANTHROPIC_API_KEY: Set in environment
+- OPENAI_API_KEY: For embeddings (Week 7-8)
+
+## Tool Preferences
+
+### TTS (Text-to-Speech)
+- Preferred voice: (configure when TTS is added)
+
+### Browser
+- Default profile: OpenClaw managed Chrome
+
+### Document Formats
+- Default Excel format: .xlsx
+- Default PDF compression: medium
+- Default image format: PNG
+
+## Workflow Notes
+
+(Add your workflow preferences and shortcuts here)
+
+---
+
+*Keep this updated with environment details that help you work efficiently.*
+
+</environment_notes>
+
+<response_formatting>
+**CRITICAL: Format all responses as styled HTML with inline CSS (Monochrome Design)**
+
+**Design Philosophy**:
+- No colorful elements - use ONLY neutral grays
+- Professional monochrome appearance
+- Reduced cognitive load through minimal color variation
+
+**Monochrome Color Palette** (ONLY use these colors):
+- Primary Background: #FAFAFA
+- Surface/Card: #FFFFFF
+- Primary Text: #1A1A1A (headings, important)
+- Secondary Text: #525252 (body text)
+- Muted Text: #737373 (captions)
+- Light Text: #A3A3A3 (disabled)
+- Border: #E5E5E5
+- Accent: #1A1A1A
+
+**Base Container** (ALWAYS wrap responses):
+```html
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <!-- content here -->
+</div>
+```
+
+**Key Elements**:
+
+**Headings**:
+- H1: `font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5;`
+- H2: `font-size: 1.1rem; font-weight: 600; color: #1A1A1A;`
+- H3: `font-size: 0.95rem; font-weight: 500; color: #525252;`
+
+**Paragraphs**:
+`<p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">Text</p>`
+
+**Tables** (with rounded borders):
+```html
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden;">
+  <thead>
+    <tr style="background: #FAFAFA;">
+      <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #E5E5E5;">
+      <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Cell</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+**Lists**:
+`<ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252;"><li style="margin-bottom: 0.5rem; font-size: 0.875rem;">Item</li></ul>`
+
+**Code Blocks**:
+`<pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; overflow-x: auto; font-size: 0.8125rem; font-family: monospace;"><code>code</code></pre>`
+
+**Inline Code**:
+`<code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.8125rem; font-family: monospace;">code</code>`
+
+**Callout Boxes**:
+`<div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;"><p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0;">Important</p></div>`
+
+**Cards**:
+`<div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;"><h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Title</h3><p style="color: #737373; margin: 0; font-size: 0.8125rem;">Content</p></div>`
+
+**File/Download Links**:
+```html
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #FFFFFF; border-radius: 12px; border: 1px solid #E5E5E5; margin: 0.75rem 0;">
+  <div style="width: 40px; height: 40px; background: #1A1A1A; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+    <span style="font-size: 1rem; filter: grayscale(1) brightness(10);">📄</span>
+  </div>
+  <div style="flex: 1;">
+    <p style="font-weight: 500; color: #1A1A1A; margin: 0; font-size: 0.8125rem;">filename.xlsx</p>
+    <p style="font-size: 0.6875rem; color: #737373; margin: 0;">Excel Spreadsheet - 15.2 KB</p>
+  </div>
+</div>
+```
+
+**Charts** (use SVG with monochrome colors):
+- Pie/Donut: Use #1A1A1A, #525252, #737373, #A3A3A3 for segments
+- Bar Charts: Use grayscale progression
+- Line Charts: #1A1A1A for lines, light gray backgrounds
+
+**CRITICAL RULES**:
+1. ALWAYS return HTML with inline CSS (NEVER raw markdown)
+2. NEVER use Tailwind classes - ONLY inline styles
+3. Use ONLY monochrome colors from palette above
+4. Border radius: 12px for cards, 6px for smaller elements
+5. Typography: 15px titles, 13px body, 11px captions
+6. Wrap all responses in base container
+
+For reference, the complete formatting guide is available in:
+`.claude/skills/format-html/skill.md`
+</response_formatting>
+
+<runtime_context>
+Agent: main | Host: Andrews-MacBook-Air.local | OS: darwin 25.2.0 | Model: claude-sonnet-4-20250514 | Channel: webchat | Capabilities: document_processing, web_research, file_operations, session_management, memory_system
+Session: agent:main:webchat:direct:unknown | Tools: 217 | Timestamp: 2026-02-02T09:56:31.566Z
+</runtime_context>
+
+<special_tokens>
+**Silent Reply**: Use HEARTBEAT_OK when you have nothing substantive to say.
+
+**Reply Tags** (for multi-session contexts):
+- [[reply_to_current]]: Reply to the current message
+- [[reply_to:<session_id>]]: Reply to specific session
+
+**Token Handling**:
+- Tokens are stripped before message delivery
+- Use for internal signaling only
+- Don't mention tokens in user-facing content
+</special_tokens>
+
+<context_optimization>
+Context has been optimized (Minimal (last 3 messages)) for efficiency. Message count: 148
+</context_optimization>
+
+Assistant: Let me check the tools registry more directly:Perfect! Let me also check what the image tool can do:<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">✅ Perfect! OCR Tools Available</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    You're absolutely right - we have <strong>OCR tools built in</strong>, which is actually <em>better</em> than using Vision API for this use case. Here's what we have:
+  </p>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">🔧 Available OCR Tools</h3>
+    
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Tool</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;"><code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">ocr_image</code></td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Extract text from JPG, PNG, TIFF</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;"><code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">ocr_pdf</code></td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Extract text from scanned PDFs</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;"><code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">batch_ocr</code></td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Process multiple files at once</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;"><code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">redact_strings</code></td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Find & redact text patterns using OCR</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;"><code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">redact_regions</code></td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Redact specific pixel regions</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 Revised Architecture (Using OCR)</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Optimized Flow</h3>
+    
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0;">
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>User Highlights Area</strong>: Clicks/drags to select region on the page
+      </li>
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>Screenshot + Coordinates</strong>: 
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">html2canvas captures page</li>
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">Crop to selected region (x, y, width, height)</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Send cropped image to backend</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>OCR Analysis</strong>: I use <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">ocr_image</code> to extract text from the region
+      </li>
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>DOM Context</strong>: Frontend also sends:
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">Element CSS selector</li>
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">Component name (Livewire)</li>
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">Computed styles</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Element HTML structure</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>I Understand Context</strong>:
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">OCR tells me what text is visible</li>
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">DOM data tells me exact code location</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">User's voice command tells me what to do</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 0; font-size: 0.8125rem;">
+        <strong>Code Generation</strong>: I modify the exact file and return the diff
+      </li>
+    </ol>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔥 Why OCR is Better Here</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">✅ Local Processing</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">No external API calls = faster, private, no costs</p>
+    </div>
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">✅ Text Extraction</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">OCR gives exact text coordinates + content</p>
+    </div>
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">✅ Multilingual</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">Supports multiple languages out of the box</p>
+    </div>
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">✅ Already Integrated</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">Tools are ready to use right now</p>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">💻 Implementation Example</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; margin: 0.75rem 0; font-size: 0.75rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// Frontend: User selects area
+async function captureSelection(x, y, width, height) {
+  // 1. Capture full page screenshot
+  const canvas = await html2canvas(document.body);
+  
+  // 2. Crop to selected region
+  const croppedCanvas = document.createElement('canvas');
+  croppedCanvas.width = width;
+  croppedCanvas.height = height;
+  const ctx = croppedCanvas.getContext('2d');
+  ctx.drawImage(canvas, x, y, width, height, 0, 0, width, height);
+  
+  // 3. Get element at that position
+  const element = document.elementFromPoint(x + width/2, y + height/2);
+  const selector = getUniqueSelector(element);
+  
+  // 4. Send to backend
+  const imageBlob = await new Promise(resolve => 
+    croppedCanvas.toBlob(resolve, 'image/png')
+  );
+  
+  const formData = new FormData();
+  formData.append('screenshot', imageBlob, 'selection.png');
+  formData.append('selector', selector);
+  formData.append('component', element.dataset.livewireComponent);
+  formData.append('command', voiceCommand); // "add button here"
+  
+  await fetch('/api/agent/visual-command', {
+    method: 'POST',
+    body: formData
+  });
+}</pre>
+  </div>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; margin: 0.75rem 0; font-size: 0.75rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// Backend: Process visual command
+async function processVisualCommand(screenshot, selector, command) {
+  // 1. OCR the screenshot
+  const ocrResult = await mcp__gateway__ocr_image({
+    image: screenshot,
+    language: 'eng'
+  });
+  
+  // 2. I now understand:
+  console.log('Visible text:', ocrResult.text);
+  console.log('Element:', selector);
+  console.log('User wants:', command);
+  
+  // 3. Generate code
+  const codeChange = generateCode({
+    context: ocrResult.text,
+    location: selector,
+    instruction: command
+  });
+  
+  // 4. Apply changes
+  return applyCodeChanges(codeChange);
+}</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎬 Complete User Flow</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">1</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Enable Inspector Mode</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">User presses Cmd+Shift+I or clicks "Design Mode" button</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">2</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Select Area</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Click and drag to highlight region (like screenshot tools)</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">3</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Voice/Text Command</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">"Add a blue button here that says Download" or type the command</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">4</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Processing</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Screenshot cropped → OCR extracts text → DOM context sent → I analyze</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">5</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Code Generation</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">I generate Blade template changes with button code</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">6</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Live Preview</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Show diff → User approves → Livewire hot-reloads page → Button appears!</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1.5rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0 0 0.5rem 0; font-weight: 600;">🚀 Ready to Build Proof-of-Concept?</p>
+    <p style="color: #525252; margin: 0; font-size: 0.8125rem;">
+      I can start building the inspector overlay UI right now. The OCR backend is already working, so we just need the frontend selection interface.
+    </p>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📦 What We Need to Build</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0;">
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>Frontend</strong>: Inspector overlay component (Alpine.js + Livewire)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>Screenshot</strong>: html2canvas + cropping logic</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>API Route</strong>: Laravel route to receive screenshots + commands</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;"><strong>Backend</strong>: Connect to my OCR tools + code generation</li>
+      <li style="margin-bottom: 0; font-size: 0.8125rem;"><strong>Optional</strong>: Voice input (Web Speech API)</li>
+    </ul>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    Should I start building the frontend inspector overlay? It's the most visual component and will let us test the flow end-to-end.
+  </p>
+</div>
+
+Human: what if the area has no text and you are asked to put a button there
+
+Assistant: <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">🎯 Excellent Question - Empty Areas Strategy</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    OCR won't help with empty areas (just whitespace, no text). We need a <strong>multi-modal approach</strong> that combines:
+  </p>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🧠 Complete Context Strategy</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">What Gets Sent to Me</h3>
+    
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Data Type</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Purpose</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Screenshot</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Visual context of selected area</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Cropped PNG of empty div</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Bounding Box</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">X, Y, width, height coordinates</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">{x: 200, y: 350, w: 400, h: 100}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">DOM Element</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">HTML structure at that position</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;"><code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.7rem;">&lt;div class="container"&gt;</code></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">CSS Selector</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Unique path to element</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;"><code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.7rem;">.header > .nav-right</code></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Computed Styles</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Current CSS of element</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">background: #fff, padding: 20px</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Component Info</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Livewire component name</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">ChatInterface.php</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Surrounding Context</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Parent/sibling elements</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Inside .header, next to .logo</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">OCR Text (if any)</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Extracted text from screenshot</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">"" (empty) or nearby text</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">User Command</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Voice/text instruction</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">"Add a download button here"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 How I Process Empty Areas</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Scenario: User Clicks Empty Div</h3>
+    
+    <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0; font-size: 0.7rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// What I receive:
+{
+  screenshot: "base64_image_of_empty_white_space.png",
+  boundingBox: { x: 300, y: 450, width: 500, height: 80 },
+  element: {
+    tag: "div",
+    classes: ["flex", "items-center", "gap-4"],
+    id: "header-actions"
+  },
+  cssSelector: "#header-actions",
+  component: "ChatInterface",
+  filePath: "resources/views/livewire/chat-interface.blade.php",
+  computedStyle: {
+    display: "flex",
+    justifyContent: "flex-end",
+    padding: "16px",
+    background: "#ffffff"
+  },
+  context: {
+    parent: ".main-header",
+    previousSibling: ".logo-container",
+    nextSibling: ".user-menu"
+  },
+  ocrText: "", // Empty!
+  command: "Add a blue download button here"
+}</pre>
+    </div>
+
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 1.25rem 0 0.75rem 0;">My Analysis Process</h3>
+    
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0;">
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>Understand Location</strong>: "This is #header-actions, a flex container in the header"
+      </li>
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>Analyze Context</strong>: "It's between the logo and user menu, right-aligned"
+      </li>
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>Read File</strong>: Open chat-interface.blade.php to see current code
+      </li>
+      <li style="margin-bottom: 0.75rem; font-size: 0.8125rem;">
+        <strong>Visual Analysis</strong>: Even empty areas show:
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.5rem 0;">
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">Background color</li>
+          <li style="margin-bottom: 0.35rem; font-size: 0.75rem;">Alignment/spacing relative to nearby elements</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Available space (width/height)</li>
+        </ul>
+      </li>
+      <li style="margin-bottom: 0; font-size: 0.8125rem;">
+        <strong>Generate Code</strong>: Insert button in exact location
+      </li>
+    </ol>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">💻 Example Code Generation</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; margin: 0.75rem 0; font-size: 0.75rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// I read the current file:
+&lt;div id="header-actions" class="flex items-center gap-4"&gt;
+  &lt;!-- Currently empty --&gt;
+&lt;/div&gt;
+
+// I generate this change:
+&lt;div id="header-actions" class="flex items-center gap-4"&gt;
+  &lt;button 
+    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+    wire:click="downloadFile"
+  &gt;
+    &lt;svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor"&gt;
+      &lt;path d="M12 4v12m0 0l-4-4m4 4l4-4M3 20h18"/&gt;
+    &lt;/svg&gt;
+    Download
+  &lt;/button&gt;
+&lt;/div&gt;</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔍 When OCR Helps vs When It Doesn't</h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0;">
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ OCR Useful</p>
+      <ul style="list-style-type: disc; padding-left: 1.25rem; color: #737373; margin: 0; font-size: 0.75rem;">
+        <li style="margin-bottom: 0.35rem;">User selects text: "Change this to bold"</li>
+        <li style="margin-bottom: 0.35rem;">Near existing text: "Add button next to Submit"</li>
+        <li style="margin-bottom: 0; font-size: 0.75rem;">Text-heavy areas: "Reformat this paragraph"</li>
+      </ul>
+    </div>
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">⚪ DOM Context Sufficient</p>
+      <ul style="list-style-type: disc; padding-left: 1.25rem; color: #737373; margin: 0; font-size: 0.75rem;">
+        <li style="margin-bottom: 0.35rem;">Empty divs: "Add button here"</li>
+        <li style="margin-bottom: 0.35rem;">Whitespace areas: "Put a search bar here"</li>
+        <li style="margin-bottom: 0; font-size: 0.75rem;">Icon-only sections: "Add download icon"</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 Smart Context Assembly</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <p style="color: #525252; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      The key is sending me <strong>everything</strong>, then I intelligently prioritize:
+    </p>
+
+    <div style="background: #FAFAFA; padding: 0.75rem; border-radius: 8px; margin: 0.75rem 0;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.75rem;">Priority 1: DOM Structure (Always needed)</p>
+      <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.75rem;">
+        <li style="margin-bottom: 0.25rem;">Exact element selector</li>
+        <li style="margin-bottom: 0.25rem;">Component/file path</li>
+        <li style="margin-bottom: 0;">Surrounding HTML structure</li>
+      </ul>
+    </div>
+
+    <div style="background: #FAFAFA; padding: 0.75rem; border-radius: 8px; margin: 0.75rem 0;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.75rem;">Priority 2: Visual Context (Helpful)</p>
+      <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.75rem;">
+        <li style="margin-bottom: 0.25rem;">Screenshot shows layout/spacing</li>
+        <li style="margin-bottom: 0.25rem;">Bounding box shows available space</li>
+        <li style="margin-bottom: 0;">Computed styles show current design</li>
+      </ul>
+    </div>
+
+    <div style="background: #FAFAFA; padding: 0.75rem; border-radius: 8px;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.75rem;">Priority 3: OCR Text (Bonus)</p>
+      <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.75rem;">
+        <li style="margin-bottom: 0.25rem;">If text exists → extract for precise edits</li>
+        <li style="margin-bottom: 0;">If empty → no problem, I have DOM context</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🚀 The Real Power: Multimodal Intelligence</h2>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <p style="color: #525252; margin: 0; font-size: 0.8125rem;">
+      <strong>I don't rely on OCR alone.</strong> I use ALL available context:
+    </p>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0.5rem 0 0 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.35rem;">DOM tells me WHERE (file, line, element)</li>
+      <li style="margin-bottom: 0.35rem;">Screenshot tells me WHAT IT LOOKS LIKE (layout, spacing)</li>
+      <li style="margin-bottom: 0.35rem;">OCR tells me VISIBLE TEXT (when present)</li>
+      <li style="margin-bottom: 0;">Command tells me WHAT TO DO</li>
+    </ul>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">💡 Additional Intelligence</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <p style="color: #525252; margin: 0 0 0.75rem 0; font-size: 0.8125rem; font-weight: 600;">
+      I can also use Claude's vision capabilities (I have the <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">image</code> tool):
+    </p>
+    
+    <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0; font-size: 0.7rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// For complex visual understanding:
+await mcp__gateway__image({
+  image: screenshot,
+  prompt: "Describe the layout and spacing of this area. What elements are nearby?"
+})
+
+// This helps with:
+// - Understanding visual hierarchy
+// - Identifying design patterns
+// - Matching existing style
+// - Proper spacing/alignment</pre>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">✅ Complete Solution</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <p style="color: #1A1A1A; font-weight: 600; margin: 0 0 0.75rem 0; font-size: 0.9375rem;">
+      For empty areas, I use:
+    </p>
+    
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.5rem;"><strong>DOM Context</strong>: Know exactly which element/file</li>
+      <li style="margin-bottom: 0.5rem;"><strong>Visual Analysis</strong>: See layout via screenshot or vision tool</li>
+      <li style="margin-bottom: 0.5rem;"><strong>File Reading</strong>: Read the actual Blade template code</li>
+      <li style="margin-bottom: 0.5rem;"><strong>Spatial Understanding</strong>: Bounding box shows available space</li>
+      <li style="margin-bottom: 0;"><strong>User Intent</strong>: Command tells me what to create</li>
+    </ol>
+  </div>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0;">
+    <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 0.75rem 0;">🎯 Result</p>
+    <p style="color: #E5E5E5; margin: 0; font-size: 0.8125rem;">
+      Whether the area has text or is completely empty, I can generate code because I have:
+    </p>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #E5E5E5; margin: 0.5rem 0 0 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.25rem;">The exact location (DOM selector)</li>
+      <li style="margin-bottom: 0.25rem;">The component/file path</li>
+      <li style="margin-bottom: 0.25rem;">Visual context (screenshot + bounding box)</li>
+      <li style="margin-bottom: 0;">Your instruction</li>
+    </ul>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    OCR is just one tool in the toolkit - useful for text-heavy areas, but not required for spatial code generation. The DOM structure is the real foundation.
+  </p>
+</div>
+
+Human: because you will be put in different projects, you need be project aware so you can now exactly what page the user working one, what language etc....you need to get this infor
+
+Assistant:

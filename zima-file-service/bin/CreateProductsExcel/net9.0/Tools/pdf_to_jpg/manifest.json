@@ -1,0 +1,9 @@
+{
+  "name": "pdf_to_jpg",
+  "description": "Convert PDF pages to JPG images",
+  "usage": "pdf_to_jpg(file, output_folder?, dpi?, quality?, pages?)",
+  "category": "conversion",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool pdf_to_jpg"
+}

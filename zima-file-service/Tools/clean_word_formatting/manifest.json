@@ -1,0 +1,9 @@
+{
+  "name": "clean_word_formatting",
+  "description": "Clean formatting from Word document",
+  "usage": "clean_word_formatting(file, keep_structure?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool clean_word_formatting"
+}

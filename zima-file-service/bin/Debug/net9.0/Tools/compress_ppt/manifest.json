@@ -1,0 +1,9 @@
+{
+  "name": "compress_ppt",
+  "description": "Compress PowerPoint presentation to reduce file size",
+  "usage": "compress_ppt(file, remove_notes?, remove_comments?, compress_images?, output_file?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool compress_ppt"
+}

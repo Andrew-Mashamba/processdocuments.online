@@ -1,0 +1,9 @@
+{
+  "name": "compress_pdf",
+  "description": "Compress/optimize PDF file size",
+  "usage": "compress_pdf(file, output_file)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool compress_pdf"
+}

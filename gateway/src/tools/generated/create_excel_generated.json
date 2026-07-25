@@ -1,0 +1,39 @@
+{
+  "name": "create_excel_generated",
+  "description": "Create Excel spreadsheets (.xlsx) with data, formatting, formulas, and multiple sheets (Generated alternative implementation using exceljs)",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "file_path": {
+        "type": "string",
+        "description": "Filename or full path"
+      },
+      "sheet_name": {
+        "type": "string",
+        "description": "Worksheet name (default: Sheet1)"
+      },
+      "headers": {
+        "type": "array",
+        "description": "Column headers",
+        "items": {
+          "type": "string"
+        }
+      },
+      "rows": {
+        "type": "array",
+        "description": "Data rows",
+        "items": {
+          "type": "array"
+        }
+      },
+      "auto_fit_columns": {
+        "type": "boolean",
+        "description": "Auto-fit column widths"
+      }
+    },
+    "required": [
+      "file_path",
+      "rows"
+    ]
+  }
+}

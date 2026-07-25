@@ -1,0 +1,9 @@
+{
+  "name": "rename_sheets",
+  "description": "Rename sheets in workbook",
+  "usage": "rename_sheets(file, rename_map)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool rename_sheets"
+}

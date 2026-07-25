@@ -1,0 +1,9 @@
+{
+  "name": "sort_json_keys",
+  "description": "Sort JSON object keys alphabetically",
+  "usage": "sort_json_keys(file, recursive?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool sort_json_keys"
+}

@@ -1,0 +1,69 @@
+{
+  "file_path": "/Volumes/DATA/QWEN/zima-file-service/generated_files/claude_quarterly_report.pdf",
+  "title": "Quarterly Business Report - Q4 2024",
+  "content": [
+    {
+      "type": "heading",
+      "text": "QUARTERLY BUSINESS REPORT",
+      "level": 1
+    },
+    {
+      "type": "heading",
+      "text": "Q4 2024",
+      "level": 2
+    },
+    {
+      "type": "heading",
+      "text": "EXECUTIVE SUMMARY",
+      "level": 2
+    },
+    {
+      "type": "text",
+      "text": "This report summarizes the key performance indicators and achievements for Q4 2024. Overall, the company exceeded revenue targets by 15% while maintaining operational efficiency."
+    },
+    {
+      "type": "heading",
+      "text": "KEY HIGHLIGHTS",
+      "level": 2
+    },
+    {
+      "type": "text",
+      "text": "1. Revenue Growth\n   • Total revenue: $12.5 million\n   • Year-over-year growth: 23%\n   • New customer acquisition: 450 accounts"
+    },
+    {
+      "type": "text",
+      "text": "2. Product Performance\n   • Widget A: Best seller with 45% market share\n   • Widget B: Growing demand in enterprise segment\n   • Widget C: Premium product with highest margins"
+    },
+    {
+      "type": "text",
+      "text": "3. Regional Performance\n   • North Region: Exceeded targets by 20%\n   • South Region: Strong growth in new markets\n   • East Region: Stable performance\n   • West Region: Expansion opportunities identified"
+    },
+    {
+      "type": "heading",
+      "text": "CHALLENGES AND RISKS",
+      "level": 2
+    },
+    {
+      "type": "text",
+      "text": "• Supply chain delays affecting Widget C production\n• Increased competition in the Widget B segment\n• Currency fluctuations impacting international sales"
+    },
+    {
+      "type": "heading",
+      "text": "RECOMMENDATIONS",
+      "level": 2
+    },
+    {
+      "type": "text",
+      "text": "1. Increase production capacity for Widget A\n2. Develop new marketing strategy for Widget B\n3. Explore new supplier partnerships for Widget C\n4. Expand sales team in West Region"
+    },
+    {
+      "type": "heading",
+      "text": "FINANCIAL OUTLOOK",
+      "level": 2
+    },
+    {
+      "type": "text",
+      "text": "The company is well-positioned for continued growth in 2025. Based on current trends, we project:\n• Q1 2025 revenue: $13.2 million\n• Full year 2025: $55 million (projected)\n\nCONFIDENTIAL - Internal Use Only\nContact: reports@acme.com"
+    }
+  ]
+}

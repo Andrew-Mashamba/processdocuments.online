@@ -1,0 +1,9 @@
+{
+  "name": "remove_annotations",
+  "description": "Remove annotations from PDF",
+  "usage": "remove_annotations(file, type?, pages?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool remove_annotations"
+}

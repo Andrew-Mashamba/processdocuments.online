@@ -1,0 +1,9 @@
+{
+  "name": "manage_word_comments",
+  "description": "Extract or remove comments",
+  "usage": "manage_word_comments(file, action)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool manage_word_comments"
+}

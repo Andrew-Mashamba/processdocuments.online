@@ -1,0 +1,9 @@
+{
+  "name": "image_to_pdf",
+  "description": "Convert images to PDF document",
+  "usage": "image_to_pdf(images[], output_file)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool image_to_pdf"
+}

@@ -1,0 +1,9 @@
+{
+  "name": "add_conditional_formatting",
+  "description": "Add conditional formatting to Excel",
+  "usage": "add_conditional_formatting(file, range, format_type, condition?, value1?, value2?, background_color?, output_file?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_conditional_formatting"
+}

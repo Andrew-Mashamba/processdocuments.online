@@ -1,0 +1,9 @@
+{
+  "name": "add_sticky_note",
+  "description": "Add sticky note (text annotation) to PDF",
+  "usage": "add_sticky_note(file, page, x, y, title?, content?, color?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_sticky_note"
+}

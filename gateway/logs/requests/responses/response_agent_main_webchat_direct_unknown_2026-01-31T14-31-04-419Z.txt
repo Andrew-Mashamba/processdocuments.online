@@ -1,0 +1,7 @@
+=== RESPONSE ===
+Request ID: f6a88ad4-01d8-42c7-855f-950148e06973
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-01-31T14:31:04.419Z
+Length: 30 characters
+
+Hey. What can I help you with?

@@ -1,0 +1,9 @@
+{
+  "name": "html_to_pdf",
+  "description": "Convert HTML to PDF",
+  "usage": "html_to_pdf(file, output_file)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool html_to_pdf"
+}

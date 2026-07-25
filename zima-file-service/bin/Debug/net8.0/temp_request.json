@@ -1,0 +1,16 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "create_excel",
+    "arguments": {
+      "file_path": "real_test.xlsx",
+      "headers": ["Name", "Score"],
+      "rows": [
+        ["Alice", "95"],
+        ["Bob", "87"]
+      ]
+    }
+  }
+}

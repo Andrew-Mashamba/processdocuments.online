@@ -1,0 +1,9 @@
+{
+  "name": "merge_pdf",
+  "description": "Merge multiple PDF files into one",
+  "usage": "merge_pdf(files[], output_file)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool merge_pdf"
+}

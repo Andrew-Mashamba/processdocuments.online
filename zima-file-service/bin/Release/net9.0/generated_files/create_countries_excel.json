@@ -1,0 +1,33 @@
+{
+  "tool": "create_excel",
+  "params": {
+    "filename": "five_countries.xlsx",
+    "sheets": [{
+      "name": "Countries",
+      "headers": ["Country", "Capital", "Population", "Area (km²)", "Currency"],
+      "rows": [
+        ["USA", "Washington D.C.", "331,900,000", "9,833,517", "USD"],
+        ["UK", "London", "67,800,000", "243,610", "GBP"],
+        ["France", "Paris", "68,400,000", "643,801", "EUR"],
+        ["Germany", "Berlin", "83,200,000", "357,022", "EUR"],
+        ["Japan", "Tokyo", "125,800,000", "377,975", "JPY"]
+      ],
+      "formatting": {
+        "headerStyle": {
+          "bold": true,
+          "backgroundColor": "#4472C4",
+          "fontColor": "white"
+        },
+        "columnWidths": {
+          "Country": 15,
+          "Capital": 20,
+          "Population": 15,
+          "Area (km²)": 15,
+          "Currency": 12
+        },
+        "alternateRowColors": true,
+        "borders": true
+      }
+    }]
+  }
+}

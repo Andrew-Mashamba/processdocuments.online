@@ -1,0 +1,9 @@
+{
+  "name": "add_free_text",
+  "description": "Add free text box annotation to PDF",
+  "usage": "add_free_text(file, page, x, y, width, height, content, font_size?, color?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_free_text"
+}

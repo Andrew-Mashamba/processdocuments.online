@@ -1,0 +1,9 @@
+{
+  "name": "unlock_pdf",
+  "description": "Unlock password-protected PDF",
+  "usage": "unlock_pdf(file, password)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool unlock_pdf"
+}

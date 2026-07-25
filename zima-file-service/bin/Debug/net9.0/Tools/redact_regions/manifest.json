@@ -1,0 +1,9 @@
+{
+  "name": "redact_regions",
+  "description": "Redact specific regions from image",
+  "usage": "redact_regions(file, regions[], redact_color?, blur?, blur_radius?, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool redact_regions"
+}

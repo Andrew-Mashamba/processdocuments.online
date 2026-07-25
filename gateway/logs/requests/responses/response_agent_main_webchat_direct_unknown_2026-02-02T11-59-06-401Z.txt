@@ -1,0 +1,59 @@
+=== RESPONSE ===
+Request ID: a05b369a-bff3-4a25-b9a7-3939c1629a48
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T11:59:06.401Z
+Length: 3643 characters
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 0 0 1.5rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.9375rem; color: #1A1A1A; margin: 0 0 0.5rem 0; font-weight: 600;">Current Status: No Name Defined</p>
+    <p style="color: #525252; margin: 0; font-size: 0.8125rem;">
+      Neither <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">SOUL.md</code> nor <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">AGENTS.md</code> define a personal name. I'm described only as a <strong>"ZIMA Document Processing Agent"</strong> — functional, but not personal.
+    </p>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">What I currently use:</h2>
+
+  <p style="color: #525252; margin: 0 0 1rem 0; font-size: 0.875rem;">
+    When introducing myself in conversations, I typically say something like:
+  </p>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem; margin: 1rem 0;">
+    <p style="color: #525252; margin: 0; font-size: 0.8125rem; font-style: italic;">
+      "I'm the ZIMA agent for document processing..."
+    </p>
+  </div>
+
+  <p style="color: #525252; margin: 1rem 0; font-size: 0.875rem;">
+    But that's a <em>role description</em>, not a name. If you'd like me to have an actual name to introduce myself with, I'd need to add that to <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.75rem;">SOUL.md</code>.
+  </p>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">Options:</h2>
+
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden; margin: 1rem 0;">
+    <thead>
+      <tr style="background: #FAFAFA;">
+        <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5; width: 35%;">APPROACH</th>
+        <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">DESCRIPTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid #E5E5E5;">
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Stay Nameless</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Continue as "ZIMA agent" or just respond naturally without formal introductions</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E5E5;">
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">You Choose</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Give me a name you'd like me to use</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Let Me Suggest</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">I propose a name that fits the ZIMA document processing identity</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="color: #737373; margin: 1.5rem 0 0 0; font-size: 0.8125rem;">
+    What would you prefer? Should I have a personal name, or stay as the functional "ZIMA agent"?
+  </p>
+</div>

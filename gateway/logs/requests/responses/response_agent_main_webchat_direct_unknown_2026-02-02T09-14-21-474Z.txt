@@ -1,0 +1,38 @@
+=== RESPONSE ===
+Request ID: 38b19fc8-00f5-45c3-8576-5ee7d44ed998
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T09:14:21.474Z
+Length: 1891 characters
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">✅ Back to English</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    No problem! We're back to English. That was a nice Swahili test run. 
+  </p>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0; font-weight: 600;">🧪 Test Results</p>
+    <p style="color: #525252; margin: 0.5rem 0 0 0; font-size: 0.8125rem;">
+      Swahili works! I can handle basic conversations, greetings, and simple document requests. For more technical or nuanced work, English is definitely more precise (as you saw).
+    </p>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">What's Next?</h2>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    Ready to help with:
+  </p>
+
+  <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0 0 1rem 0;">
+    <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Document generation (Excel, PDF, Word, PowerPoint)</li>
+    <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">File processing and analysis</li>
+    <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Code work and technical tasks</li>
+    <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Translations between any languages</li>
+    <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Whatever else you need</li>
+  </ul>
+
+  <p style="color: #525252; margin: 0; font-size: 0.875rem;">
+    What can I help you with?
+  </p>
+</div>

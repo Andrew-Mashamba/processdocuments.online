@@ -1,0 +1,9 @@
+{
+  "name": "set_pdf_metadata",
+  "description": "Set PDF metadata (title, author, etc.)",
+  "usage": "set_pdf_metadata(file, title?, author?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool set_pdf_metadata"
+}

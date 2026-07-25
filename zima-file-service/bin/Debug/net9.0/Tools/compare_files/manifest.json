@@ -1,0 +1,9 @@
+{
+  "name": "compare_files",
+  "description": "Compare two text files (diff)",
+  "usage": "compare_files(file1, file2, output_file?)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool compare_files"
+}

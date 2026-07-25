@@ -1,0 +1,9 @@
+{
+  "name": "csv_to_json",
+  "description": "Convert CSV to JSON array",
+  "usage": "csv_to_json(file, delimiter?, has_header?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool csv_to_json"
+}

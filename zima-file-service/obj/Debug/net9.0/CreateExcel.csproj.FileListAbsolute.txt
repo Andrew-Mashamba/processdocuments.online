@@ -1,0 +1,6 @@
+/Volumes/DATA/QWEN/zima-file-service/obj/Debug/net9.0/CreateExcel.csproj.AssemblyReference.cache
+/Volumes/DATA/QWEN/zima-file-service/obj/Debug/net9.0/CreateExcel.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/DATA/QWEN/zima-file-service/obj/Debug/net9.0/CreateExcel.AssemblyInfoInputs.cache
+/Volumes/DATA/QWEN/zima-file-service/obj/Debug/net9.0/CreateExcel.AssemblyInfo.cs
+/Volumes/DATA/QWEN/zima-file-service/obj/Debug/net9.0/CreateExcel.csproj.CoreCompileInputs.cache
+/Volumes/DATA/QWEN/zima-file-service/obj/Debug/net9.0/CreateExcel.sourcelink.json

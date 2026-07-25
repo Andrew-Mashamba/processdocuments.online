@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "framework": "laravel-livewire",
+    "buildTool": "vite",
+    "root": "/Volumes/DATA/QWEN/visual_code_test",
+    "componentPaths": [
+      "resources/views/components"
+    ],
+    "assetPaths": [
+      "resources/css",
+      "resources/js"
+    ]
+  },
+  "agent": {
+    "port": 9876,
+    "model": "claude-sonnet-4-5-20250514",
+    "temperature": 0.7,
+    "maxTokens": 8192,
+    "contextOptimization": "adaptive",
+    "memoryEnabled": true,
+    "streamingEnabled": true
+  },
+  "visual": {
+    "activationMethod": "floating-button",
+    "highlightColor": "#3b82f6",
+    "overlayZIndex": 999999,
+    "screenshotQuality": 0.8,
+    "ocrEnabled": true
+  },
+  "tools": {
+    "zimaFileService": "http://localhost:5000",
+    "enableDocumentTools": true,
+    "enableWebTools": true,
+    "enableMemoryTools": true
+  },
+  "performance": {
+    "cacheEnabled": true,
+    "cacheTTL": 3600,
+    "promptCaching": true,
+    "tierOptimization": true
+  },
+  "security": {
+    "allowedOrigins": [
+      "http://localhost:8000",
+      "http://localhost:3000"
+    ],
+    "rateLimit": 100
+  },
+  "logging": {
+    "level": "info",
+    "console": true
+  }
+}

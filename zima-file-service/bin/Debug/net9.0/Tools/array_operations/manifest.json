@@ -1,0 +1,9 @@
+{
+  "name": "array_operations",
+  "description": "JSON array operations (concat, slice, reverse, shuffle, unique)",
+  "usage": "array_operations(file, operation, options?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool array_operations"
+}

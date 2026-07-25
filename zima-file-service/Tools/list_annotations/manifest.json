@@ -1,0 +1,9 @@
+{
+  "name": "list_annotations",
+  "description": "List all annotations in PDF",
+  "usage": "list_annotations(file)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool list_annotations"
+}

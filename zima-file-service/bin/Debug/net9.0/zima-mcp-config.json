@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "zima": {
+      "command": "/Volumes/DATA/QWEN/zima-file-service/bin/Debug/net9.0/zima-file-service",
+      "args": [],
+      "env": {}
+    }
+  }
+}

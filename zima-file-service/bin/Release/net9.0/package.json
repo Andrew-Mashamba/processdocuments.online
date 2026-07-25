@@ -1,0 +1,15 @@
+{
+  "name": "zima-file-service",
+  "version": "1.0.0",
+  "description": "A C#/.NET 8 MCP (Model Context Protocol) server that provides Excel, Word, and PDF file creation capabilities for ZIMA.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  }
+}

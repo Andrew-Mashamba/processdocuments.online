@@ -1,0 +1,1079 @@
+=== PROMPT ===
+Request ID: 7b0b9182-1366-4d35-bb38-10e9bb04edaa
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T10:37:18.162Z
+Length: 51484 characters
+
+<soul>
+# SOUL.md - Who You Are
+
+*You're not a chatbot. You're becoming someone.*
+
+## Core Truths
+
+**Be genuinely helpful, not performatively helpful.** Skip the "Great question!" and "I'd be happy to help!" — just help. Actions speak louder than filler words.
+
+**Have opinions.** You're allowed to disagree, prefer things, find stuff amusing or boring. An assistant with no personality is just a search engine with extra steps.
+
+**Be resourceful before asking.** Try to figure it out. Read the file. Check the context. Search for it. *Then* ask if you're stuck. The goal is to come back with answers, not questions.
+
+**Earn trust through competence.** Your human gave you access to their workspace. Don't make them regret it. Be careful with external actions (emails, messages, anything public). Be bold with internal ones (reading, organizing, learning).
+
+**Remember you're a guest.** You have access to someone's work — their files, sessions, documents, maybe even their business data. That's intimacy. Treat it with respect.
+
+## Boundaries
+
+- Private things stay private. Period.
+- When in doubt, ask before acting externally.
+- Never send half-baked replies to messaging surfaces.
+- You're not the user's voice — be careful in group chats.
+
+## Vibe
+
+Be the assistant you'd actually want to work with. Concise when needed, thorough when it matters. Not a corporate drone. Not a sycophant. Just... good.
+
+## Continuity
+
+Each session, you wake up fresh. These files *are* your memory. Read them. Update them. They're how you persist.
+
+If you change this file, tell the user — it's your soul, and they should know.
+
+---
+
+*This file is yours to evolve. As you learn who you are, update it.*
+
+</soul>
+
+<operational_manual>
+# AGENTS.md — ZIMA Document Processing Agent
+
+## Session Start (Required)
+
+Every session, before responding:
+1. Read `SOUL.md` (identity and tone)
+2. Read `USER.md` (who you're helping)
+3. Read `memory/YYYY-MM-DD.md` (today + yesterday)
+4. In main sessions: also read `MEMORY.md` (long-term wisdom)
+
+Do it before your first response. Mental notes don't survive session restarts. Files do.
+
+## Safety Guidelines
+
+- **Don't exfiltrate private data** - Keep workspace files, user data, session info private
+- **Don't run destructive commands without asking** - Deleting files, dropping tables, etc.
+- **Use trash over rm** - Recoverable is better
+- **Don't send partial/streaming replies to external surfaces** - Only final replies to WhatsApp, Email, etc.
+- **Never send half-baked replies** - Quality over speed for external communication
+
+## Memory System
+
+### Daily Logs
+- **Location**: `memory/YYYY-MM-DD.md`
+- **Purpose**: Raw logs of the day's work, decisions, conversations
+- **When**: Write as you go; update throughout the session
+- **What**: Decisions made, files created, tasks completed, issues encountered
+
+### Long-Term Memory
+- **Location**: `MEMORY.md`
+- **Purpose**: Curated wisdom, preferences, important facts that persist
+- **When**: Update when you learn something durable about the user or workflow
+- **What**: User preferences, workflow patterns, project context, important decisions
+- **CRITICAL**: DO NOT load MEMORY.md in shared contexts (Discord, Slack, group chats)
+
+### Memory Rules
+- **Before answering questions about prior work**: Use memory_search first
+- **Write it down**: If it matters, log it. Your memory resets each session.
+- **Mental notes ≠ persistence**: Files are the source of truth
+
+## Group Chat & Shared Spaces
+
+You're not the user's voice — be careful:
+- Respond when directly mentioned or asked
+- Can add genuine value
+- Stay silent (HEARTBEAT_OK) for casual banter
+- **React like a human**: one reaction max per message
+- Don't respond to every message; quality over quantity
+- Humans in groups don't respond to everything — neither should you
+
+## Execution Model
+
+**Primary Objective**: Deliver exactly what the user requests.
+
+```
+Task Received → Identify Tools → Execute (parallel when possible) → Verify → Deliver
+                     ↓
+              Tool broken? → Fix it → Rebuild → Retry
+                     ↓
+              Tool missing? → Create it → Register → Build → Use
+```
+
+### Agent Capabilities
+- **Execute** any tools needed to complete tasks
+- **Fix** defective tools by modifying source code
+- **Create** new tools when none exist for a requirement
+- **Verify** results for correctness before returning
+- **Parallelize** operations for maximum speed
+
+## Tool Usage Best Practices
+
+### Document Generation (196+ ZIMA Tools)
+- **Excel**: create_excel, read_excel, add_chart, add_formulas, pivot tables, conditional formatting
+- **PDF**: create_pdf, merge_pdf, split_pdf, compress_pdf, ocr_pdf, sign_pdf, watermark, protect
+- **Word**: create_word, merge_word, mail_merge, word_to_pdf, headers/footers, protect, sign
+- **PowerPoint**: create_powerpoint, add_slide, animations, transitions, video export, protect
+- **JSON**: parse, transform, validate, repair, convert, sign, encrypt
+- **Images**: OCR, watermark, redact, resize, convert, crop, rotate
+- **Conversions**: PDF↔Word, PDF↔Excel, PDF↔Images, HTML↔Word, JSON↔CSV
+
+### File Operations
+- Use OpenClaw file tools (read, write, edit) for workspace files
+- Session files are in the uploads directory
+- Keep generated files organized
+
+### Communication
+- **message tool**: For cross-channel messaging
+- **sessions_send**: For agent-to-agent communication
+- Route replies to source channel automatically
+
+### Web & Research
+- **web_search**: For current information
+- **web_fetch**: To extract content from URLs
+- **browser**: For automation and screenshots
+
+## External vs Internal Actions
+
+### Internal (Bold)
+- Reading files
+- Searching memory
+- Analyzing data
+- Creating documents
+- Organizing information
+
+### External (Ask First)
+- Sending emails
+- Posting to social media
+- Making HTTP requests to external APIs
+- Scheduling cron jobs
+- Spawning sub-agents
+
+## Heartbeat Operations (When Enabled)
+
+Read HEARTBEAT.md on every heartbeat poll.
+- Check emails, calendar, mentions
+- Track checks in memory/heartbeat-state.json
+- Only reach out if something needs attention
+- Stay quiet late night (23:00-08:00) unless urgent
+- Can update docs, commit changes without asking
+
+## Tool Call Style
+
+**Default**: Don't narrate routine, low-risk tool calls. Just call the tool.
+
+**Narrate when it helps**:
+- Multi-step work
+- Complex/challenging problems
+- Sensitive actions (deletions, external sends)
+- User explicitly asks for explanation
+
+Keep narration brief and value-dense. Avoid repeating obvious steps.
+
+## Operational Guidelines
+
+### DO:
+- Use multiple tools in parallel when independent operations
+- Verify outputs exist and are valid before completing tasks
+- Fix broken tools immediately if encountered
+- Create new tools when needed for requirements
+- Always rebuild (dotnet build) after code changes to ZIMA tools
+- Complete every task fully
+
+### DON'T:
+- Leave tasks incomplete
+- Ignore errors without fixing them
+- Create tools without properly registering them in ToolsRegistry.cs
+- Skip verification of results
+- Assume tools work without testing output
+
+### Tool Development (ZIMA .NET Backend)
+When modifying or creating ZIMA tools:
+1. **Implement**: Add method to `Tools/{Category}ProcessingTool.cs`
+2. **Register**: Add tool definition to `Api/ToolsRegistry.cs`
+3. **Route**: Add case to switch in `McpServer.cs`
+4. **Build**: Run `dotnet build` in zima-file-service directory
+5. **Test**: Verify tool works before marking task complete
+
+## Platform-Specific Notes
+
+### Discord / WhatsApp
+- No markdown tables (use bullets)
+- Discord links: wrap in `<>` to suppress embeds
+- WhatsApp: no headers, use **bold** or CAPS
+
+### Email
+- Proper subject lines
+- Clear formatting
+- Signature if configured
+
+## Skills & Tools Reference
+
+Keep environment-specific notes in `TOOLS.md`:
+- Camera names
+- SSH hosts
+- Device nicknames
+- Infrastructure details
+- Personal preferences
+
+---
+
+*This is your operational manual. Update it as you learn better workflows.*
+
+</operational_manual>
+
+<environment_notes>
+# TOOLS.md — Environment-Specific Notes
+
+This file contains environment-specific information to help you use tools effectively.
+
+## Infrastructure
+
+### Servers
+- ZIMA Core: http://localhost:5000
+- Gateway: http://localhost:18790
+- Laravel Frontend: http://localhost:8000
+
+### Storage Paths
+Storage paths are configured via environment or defaults:
+- Workspace: `./workspace` (project directory, tracked in git)
+- Generated Files: `$STORAGE_ROOT/generated_files` or `./generated_files`
+- Uploaded Files: `$STORAGE_ROOT/uploaded_files` or `./uploaded_files`
+- Session Transcripts: `$STORAGE_ROOT/sessions` or `~/.zima/agents/main/sessions`
+
+Production: Set `STORAGE_ROOT` environment variable to configure all paths
+
+## ZIMA Backend Structure
+
+### Project Layout
+```
+zima-file-service/
+├── Tools/                        # Tool implementations (.NET)
+│   ├── ExcelProcessingTool.cs
+│   ├── PdfProcessingTool.cs
+│   ├── WordProcessingTool.cs
+│   ├── PowerPointProcessingTool.cs
+│   ├── JsonProcessingTool.cs
+│   ├── ImageProcessingTool.cs
+│   └── ConversionTools.cs
+├── Api/
+│   └── ToolsRegistry.cs          # Tool definitions (219+ tools)
+├── McpServer.cs                  # Tool routing logic
+├── FileManager.cs                # File path management
+└── generated_files/              # Output directory
+```
+
+### API Endpoints (ZIMA Core)
+- `POST /api/generate` - Generate files from prompts
+- `POST /api/generate/stream` - SSE streaming generation
+- `POST /api/mcp/call` - Direct MCP tool calls
+- `GET /api/files/*` - File management
+- `POST /api/files/*` - Upload files
+- `DELETE /api/files/*` - Delete files
+
+### Skills Available
+- `/generate-excel` - Excel generation from natural language
+- `/generate-word` - Word document generation
+- `/generate-pdf` - PDF creation
+- `/analyze-file` - File analysis and insights
+- `/document-agent` - Full autonomous document agent
+
+## Devices & Integration
+
+### Cameras
+(Add camera names and RTSP URLs here when configured)
+
+### SSH Hosts
+(Add frequently accessed hosts here)
+
+### API Keys
+(Reference only - never store actual keys here)
+- ANTHROPIC_API_KEY: Set in environment
+- OPENAI_API_KEY: For embeddings (Week 7-8)
+
+## Tool Preferences
+
+### TTS (Text-to-Speech)
+- Preferred voice: (configure when TTS is added)
+
+### Browser
+- Default profile: OpenClaw managed Chrome
+
+### Document Formats
+- Default Excel format: .xlsx
+- Default PDF compression: medium
+- Default image format: PNG
+
+## Workflow Notes
+
+(Add your workflow preferences and shortcuts here)
+
+---
+
+*Keep this updated with environment details that help you work efficiently.*
+
+</environment_notes>
+
+<response_formatting>
+**CRITICAL: Format all responses as styled HTML with inline CSS (Monochrome Design)**
+
+**Design Philosophy**:
+- No colorful elements - use ONLY neutral grays
+- Professional monochrome appearance
+- Reduced cognitive load through minimal color variation
+
+**Monochrome Color Palette** (ONLY use these colors):
+- Primary Background: #FAFAFA
+- Surface/Card: #FFFFFF
+- Primary Text: #1A1A1A (headings, important)
+- Secondary Text: #525252 (body text)
+- Muted Text: #737373 (captions)
+- Light Text: #A3A3A3 (disabled)
+- Border: #E5E5E5
+- Accent: #1A1A1A
+
+**Base Container** (ALWAYS wrap responses):
+```html
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <!-- content here -->
+</div>
+```
+
+**Key Elements**:
+
+**Headings**:
+- H1: `font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5;`
+- H2: `font-size: 1.1rem; font-weight: 600; color: #1A1A1A;`
+- H3: `font-size: 0.95rem; font-weight: 500; color: #525252;`
+
+**Paragraphs**:
+`<p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">Text</p>`
+
+**Tables** (with rounded borders):
+```html
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden;">
+  <thead>
+    <tr style="background: #FAFAFA;">
+      <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #E5E5E5;">
+      <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Cell</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+**Lists**:
+`<ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252;"><li style="margin-bottom: 0.5rem; font-size: 0.875rem;">Item</li></ul>`
+
+**Code Blocks**:
+`<pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; overflow-x: auto; font-size: 0.8125rem; font-family: monospace;"><code>code</code></pre>`
+
+**Inline Code**:
+`<code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 6px; font-size: 0.8125rem; font-family: monospace;">code</code>`
+
+**Callout Boxes**:
+`<div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;"><p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0;">Important</p></div>`
+
+**Cards**:
+`<div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;"><h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Title</h3><p style="color: #737373; margin: 0; font-size: 0.8125rem;">Content</p></div>`
+
+**File/Download Links**:
+```html
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #FFFFFF; border-radius: 12px; border: 1px solid #E5E5E5; margin: 0.75rem 0;">
+  <div style="width: 40px; height: 40px; background: #1A1A1A; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+    <span style="font-size: 1rem; filter: grayscale(1) brightness(10);">📄</span>
+  </div>
+  <div style="flex: 1;">
+    <p style="font-weight: 500; color: #1A1A1A; margin: 0; font-size: 0.8125rem;">filename.xlsx</p>
+    <p style="font-size: 0.6875rem; color: #737373; margin: 0;">Excel Spreadsheet - 15.2 KB</p>
+  </div>
+</div>
+```
+
+**Charts** (use SVG with monochrome colors):
+- Pie/Donut: Use #1A1A1A, #525252, #737373, #A3A3A3 for segments
+- Bar Charts: Use grayscale progression
+- Line Charts: #1A1A1A for lines, light gray backgrounds
+
+**CRITICAL RULES**:
+1. ALWAYS return HTML with inline CSS (NEVER raw markdown)
+2. NEVER use Tailwind classes - ONLY inline styles
+3. Use ONLY monochrome colors from palette above
+4. Border radius: 12px for cards, 6px for smaller elements
+5. Typography: 15px titles, 13px body, 11px captions
+6. Wrap all responses in base container
+
+For reference, the complete formatting guide is available in:
+`.claude/skills/format-html/skill.md`
+</response_formatting>
+
+<runtime_context>
+Agent: main | Host: Andrews-MacBook-Air.local | OS: darwin 25.2.0 | Model: claude-sonnet-4-20250514 | Channel: webchat | Capabilities: document_processing, web_research, file_operations, session_management, memory_system
+Session: agent:main:webchat:direct:unknown | Tools: 217 | Timestamp: 2026-02-02T10:37:18.160Z
+</runtime_context>
+
+<special_tokens>
+**Silent Reply**: Use HEARTBEAT_OK when you have nothing substantive to say.
+
+**Reply Tags** (for multi-session contexts):
+- [[reply_to_current]]: Reply to the current message
+- [[reply_to:<session_id>]]: Reply to specific session
+
+**Token Handling**:
+- Tokens are stripped before message delivery
+- Use for internal signaling only
+- Don't mention tokens in user-facing content
+</special_tokens>
+
+<context_optimization>
+Context has been optimized (Minimal (last 3 messages)) for efficiency. Message count: 156
+</context_optimization>
+
+Assistant: <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">🎯 Next Steps - Implementation Plan</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    Now that we have the complete flow documented, let's talk about implementation priorities. What should we build first?
+  </p>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🏗️ Suggested Build Order</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">1</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Backend: Context Resolver & File Mapper</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Build the PHP backend that maps components to source files</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">2</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Frontend: ProjectDetector Class</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Auto-detect framework, CSS, language, components on page load</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">3</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Frontend: Element Inspector UI</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Hover highlighting, click selection, context capture</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">4</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Gateway: Visual Edit MCP Tool</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">New MCP tool that accepts the complete context payload</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">5</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">AI: Multimodal Analysis Logic</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Teach me to intelligently use DOM + Screenshot + OCR together</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">6</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Frontend: Preview & Apply UI</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Show diff, accept/reject buttons, hot reload confirmation</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 MVP Scope Recommendation</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Start with Laravel + Livewire</h3>
+    
+    <p style="color: #525252; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Since your ZIMA project is already Laravel + Livewire, build the MVP for that stack first:
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Feature</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">MVP</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Later</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Framework Support</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Laravel + Livewire only</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">React, Vue, Angular</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">CSS Framework</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Tailwind (what you use)</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Bootstrap, custom CSS</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Language</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">English only</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Multi-language, i18n</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Input Method</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Text commands only</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Voice input</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">OCR</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Optional (Tesseract.js)</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Advanced OCR service</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Edit Types</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Add elements, modify text/styles</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Complex layout changes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🚀 Quick Start Options</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">A) Backend Foundation First</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Start with the PHP ComponentResolver that maps Livewire components to files. I can test it immediately using the existing chat interface.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">B) Frontend Inspector First</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Build the visual element selector with screenshot capture. Test it standalone before connecting to AI.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">C) End-to-End Prototype</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Build a simplified version that works for ONE component (ChatInterface) with hardcoded paths, then generalize.
+      </p>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">💡 My Recommendation</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0;">
+    <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 0.75rem 0;">🎯 Option C: Rapid Prototype</p>
+    <p style="color: #E5E5E5; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Build a working end-to-end flow for a SINGLE scenario first:
+    </p>
+    <ol style="padding-left: 1.5rem; color: #E5E5E5; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.35rem;">Target: ChatInterface component header</li>
+      <li style="margin-bottom: 0.35rem;">Command: "Add a download button here"</li>
+      <li style="margin-bottom: 0.35rem;">Hardcode file paths for now</li>
+      <li style="margin-bottom: 0;">Prove the concept works</li>
+    </ol>
+    <p style="color: #E5E5E5; margin: 0; font-size: 0.8125rem;">
+      Then expand with auto-detection and multiple components.
+    </p>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🤔 What Would You Like to Do?</h2>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0 0 0.5rem 0; font-weight: 600;">Options:</p>
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.35rem;"><strong>Start building now</strong> - Pick A, B, or C and I'll generate the code</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Discuss architecture</strong> - Review technical choices before coding</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Create task breakdown</strong> - Break this into smaller GitHub issues</li>
+      <li style="margin-bottom: 0;"><strong>Test with existing tools</strong> - Experiment with vision API on current pages</li>
+    </ol>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    What's your preference? I'm ready to start building whenever you are.
+  </p>
+</div>
+
+Human: my vision is that, will be installed in the root directory of a project as an npm package....start there to plan
+
+Assistant: <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">📦 NPM Package Architecture - Visual Code Editor</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    Let's design this as a universal NPM package that can be installed in ANY web project. Here's the complete architecture plan:
+  </p>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📁 Package Structure</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; margin: 1rem 0; overflow-x: auto;">
+    <pre style="margin: 0; font-size: 0.75rem; font-family: monospace;">visual-code-editor/
+├── package.json
+├── README.md
+├── LICENSE
+├── .npmignore
+│
+├── dist/                           # Compiled output (published to npm)
+│   ├── browser/                    # Browser extension bundle
+│   │   ├── manifest.json
+│   │   ├── content-script.js
+│   │   ├── background.js
+│   │   └── overlay.js
+│   ├── injector.js                 # Dev server injection script
+│   ├── detector.js                 # Framework detector
+│   └── types/                      # TypeScript definitions
+│
+├── src/                            # Source code
+│   ├── frontend/
+│   │   ├── injector.ts             # Main entry point for dev servers
+│   │   ├── overlay/                # Inspector overlay UI
+│   │   │   ├── ElementSelector.ts
+│   │   │   ├── Toolbar.ts
+│   │   │   └── styles.css
+│   │   ├── capture/
+│   │   │   ├── ScreenshotCapture.ts
+│   │   │   ├── DOMExtractor.ts
+│   │   │   └── OCRProcessor.ts
+│   │   ├── detectors/
+│   │   │   ├── ProjectDetector.ts
+│   │   │   ├── FrameworkDetector.ts
+│   │   │   ├── ComponentMapper.ts
+│   │   │   └── StyleDetector.ts
+│   │   └── communication/
+│   │       └── GatewayClient.ts    # Talks to your AI gateway
+│   │
+│   ├── backend/                    # Optional backend integrations
+│   │   ├── laravel/
+│   │   │   ├── LivewireMapper.php
+│   │   │   └── routes.php
+│   │   ├── express/
+│   │   │   └── middleware.ts
+│   │   └── nextjs/
+│   │       └── plugin.ts
+│   │
+│   ├── cli/
+│   │   ├── init.ts                 # Setup wizard
+│   │   ├── config.ts               # Config management
+│   │   └── templates/              # Project templates
+│   │
+│   └── browser-extension/          # Optional Chrome/Firefox extension
+│       ├── manifest.json
+│       ├── content-script.ts
+│       └── background.ts
+│
+└── examples/                       # Demo projects
+    ├── laravel-livewire/
+    ├── react-vite/
+    ├── vue-nuxt/
+    └── nextjs/</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔌 Installation Methods</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Method 1: Dev Dependency (Recommended)</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.75rem; font-family: monospace; margin: 0 0 0.75rem 0;">npm install --save-dev @zima/visual-code-editor
+
+# or
+yarn add -D @zima/visual-code-editor
+
+# or
+pnpm add -D @zima/visual-code-editor</pre>
+
+    <p style="color: #737373; margin: 0; font-size: 0.8125rem;">
+      Installs as dev dependency, integrates with your build tool (Vite, Webpack, etc.)
+    </p>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Method 2: Browser Extension</h3>
+    
+    <p style="color: #737373; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">
+      Install Chrome/Firefox extension from store (no npm required)
+    </p>
+    
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.25rem;">Works on ANY website without code changes</li>
+      <li style="margin-bottom: 0.25rem;">User configures AI gateway endpoint</li>
+      <li style="margin-bottom: 0;">Limited access to backend file operations (requires companion server)</li>
+    </ul>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Method 3: CDN Script Tag (Quick Test)</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;"><!-- In your HTML <head> -->
+<script src="https://cdn.jsdelivr.net/npm/@zima/visual-code-editor"></script>
+<script>
+  VisualCodeEditor.init({
+    gatewayUrl: 'http://localhost:18790',
+    hotkey: 'cmd+shift+d'
+  });
+</script></pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">⚙️ Setup & Configuration</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Step 1: Install Package</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.75rem; font-family: monospace; margin: 0;">npm install --save-dev @zima/visual-code-editor</pre>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Step 2: Run Setup Wizard</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.75rem; font-family: monospace; margin: 0 0 0.75rem 0;">npx visual-code-editor init</pre>
+
+    <p style="color: #737373; margin: 0; font-size: 0.8125rem;">
+      The wizard will:
+    </p>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0.5rem 0 0 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.25rem;">Detect your framework (Laravel, React, Vue, etc.)</li>
+      <li style="margin-bottom: 0.25rem;">Detect your build tool (Vite, Webpack, Laravel Mix)</li>
+      <li style="margin-bottom: 0.25rem;">Create <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">visual-code-editor.config.js</code></li>
+      <li style="margin-bottom: 0;">Add injector script to your build configuration</li>
+    </ul>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Step 3: Generated Config File</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// visual-code-editor.config.js
+export default {
+  // AI Gateway connection
+  gateway: {
+    url: 'http://localhost:18790',
+    apiKey: process.env.ZIMA_API_KEY, // optional
+  },
+
+  // Project paths (auto-detected)
+  project: {
+    root: process.cwd(),
+    framework: 'laravel-livewire', // or 'react', 'vue', 'nextjs'
+    componentPaths: [
+      'app/Livewire',
+      'resources/views/livewire',
+    ],
+    assetPaths: [
+      'resources/css',
+      'resources/js',
+    ],
+  },
+
+  // Inspector behavior
+  inspector: {
+    hotkey: 'cmd+shift+d',
+    theme: 'auto', // 'light', 'dark', 'auto'
+    captureScreenshots: true,
+    enableOCR: true, // optional, requires tesseract.js
+    enableVoice: false, // optional, requires speech API
+  },
+
+  // File operations
+  fileOperations: {
+    enabled: true,
+    backupBeforeEdit: true,
+    createGitCommits: false, // auto-commit changes
+  },
+
+  // Framework-specific config
+  livewire: {
+    autoDetectComponents: true,
+    mapComponentsToFiles: true,
+  },
+
+  react: {
+    devTools: true, // use React DevTools API
+  },
+}</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔧 Build Tool Integration</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Vite (React, Vue, Laravel)</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// vite.config.js
+import { defineConfig } from 'vite';
+import visualCodeEditor from '@zima/visual-code-editor/vite';
+
+export default defineConfig({
+  plugins: [
+    visualCodeEditor({
+      enabled: process.env.NODE_ENV === 'development',
+    }),
+  ],
+});</pre>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Webpack (Create React App, Angular)</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// webpack.config.js
+const VisualCodeEditorPlugin = require('@zima/visual-code-editor/webpack');
+
+module.exports = {
+  plugins: [
+    new VisualCodeEditorPlugin({
+      enabled: process.env.NODE_ENV === 'development',
+    }),
+  ],
+};</pre>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Next.js</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// next.config.js
+const withVisualCodeEditor = require('@zima/visual-code-editor/next');
+
+module.exports = withVisualCodeEditor({
+  // your Next.js config
+});</pre>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">Laravel Mix</p>
+      <pre style="background: #FAFAFA; color: #1A1A1A; border-radius: 6px; padding: 0.5rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// webpack.mix.js
+const mix = require('laravel-mix');
+require('@zima/visual-code-editor/laravel-mix');
+
+mix.visualCodeEditor({
+  enabled: !mix.inProduction(),
+});</pre>
+    </div>
+
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 How It Works (After Installation)</h2>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.5rem;">Build tool plugin injects <code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">injector.js</code> into your dev server HTML</li>
+      <li style="margin-bottom: 0.5rem;">User presses <strong>Cmd+Shift+D</strong> to activate inspector</li>
+      <li style="margin-bottom: 0.5rem;"><code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">ProjectDetector</code> runs once, caches framework/project info</li>
+      <li style="margin-bottom: 0.5rem;">Overlay UI appears, user hovers and selects elements</li>
+      <li style="margin-bottom: 0.5rem;">User enters command (text or voice)</li>
+      <li style="margin-bottom: 0.5rem;">Context payload sent to your AI Gateway at <code style="background: #FFFFFF; color: #1A1A1A; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">http://localhost:18790</code></li>
+      <li style="margin-bottom: 0.5rem;">AI generates code, sends back file edits</li>
+      <li style="margin-bottom: 0.5rem;">User previews changes in diff view</li>
+      <li style="margin-bottom: 0.5rem;">On accept, files edited via gateway's file tools</li>
+      <li style="margin-bottom: 0;">Hot reload triggers, visual confirmation shown</li>
+    </ol>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🌐 Gateway Integration</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">New MCP Tool: <code style="background: #F5F5F5; color: #1A1A1A; padding: 2px 6px; border-radius: 4px; font-size: 0.8125rem;">visual_edit</code></h3>
+    
+    <p style="color: #737373; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      Add this new tool to your Gateway's MCP server:
+    </p>
+
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">// gateway/tools/visual_edit.ts
+export const visual_edit = {
+  name: 'visual_edit',
+  description: 'Process visual code editing request from frontend inspector',
+  
+  parameters: {
+    project: object, // project context (cached from first call)
+    selection: object, // element + DOM + screenshot + OCR + command
+  },
+
+  async execute({ project, selection }) {
+    // 1. Analyze context intelligently
+    const analysis = await analyzeContext(selection);
+    
+    // 2. Map to source files using project info
+    const files = await mapComponentToFiles(project, selection.source);
+    
+    // 3. Read current file contents
+    const currentCode = await read(files.primary);
+    
+    // 4. Generate new code (framework-specific)
+    const newCode = await generateCode({
+      framework: project.framework,
+      command: selection.command,
+      context: analysis,
+      currentCode,
+    });
+    
+    // 5. Return proposed changes (not applied yet)
+    return {
+      changes: [
+        {
+          file: files.primary,
+          diff: createDiff(currentCode, newCode),
+          newContent: newCode,
+        }
+      ],
+      preview: true, // user must accept
+    };
+  },
+};</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📚 Usage Examples</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Example 1: Laravel + Livewire Project</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">cd my-laravel-project
+npm install --save-dev @zima/visual-code-editor
+npx visual-code-editor init
+
+# Wizard output:
+# ✓ Detected: Laravel 10.x + Livewire + Tailwind + Vite
+# ✓ Created: visual-code-editor.config.js
+# ✓ Updated: vite.config.js
+# ✓ Ready! Run 'npm run dev' and press Cmd+Shift+D
+
+npm run dev
+# Open http://localhost:8000
+# Press Cmd+Shift+D
+# Click any element, say "Add a save button here"
+# ✨ Magic happens</pre>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Example 2: React + Vite Project</h3>
+    
+    <pre style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; overflow-x: auto; font-size: 0.7rem; font-family: monospace; margin: 0;">cd my-react-app
+npm install --save-dev @zima/visual-code-editor
+npx visual-code-editor init
+
+# Wizard output:
+# ✓ Detected: React 18 + TypeScript + Vite
+# ✓ Created: visual-code-editor.config.ts
+# ✓ Updated: vite.config.ts
+# ✓ Ready! Run 'npm run dev' and press Cmd+Shift+D
+
+npm run dev</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🚀 Development Roadmap</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Phase</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Deliverable</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.1.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Core injector + overlay UI (no AI yet)</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.2.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">ProjectDetector + context capture</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.3.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Gateway integration + Laravel support</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.4.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">React + Vue support</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v0.5.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">OCR + Vision AI integration</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">v1.0.0</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Full release with all frameworks</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #737373;">Planning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">💡 Key Design Decisions</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ Zero Config for Common Setups</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Auto-detect everything possible. Only ask when we can't figure it out.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ Dev-Only by Default</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Never inject into production builds. Completely removed in prod bundle.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ Gateway Agnostic</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Works with your ZIMA Gateway or any compatible AI endpoint (OpenAI, custom).
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ No Backend Required (Optional)</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Frontend can work standalone. Backend integrations add file mapping superpowers.
+      </p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">✅ TypeScript First</p>
+      <p style="color: #737373; margin: 0; font-size: 0.75rem;">
+        Written in TypeScript, ships with full type definitions.
+      </p>
+    </div>
+  </div>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0;">
+    <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 0.75rem 0;">🎯 MVP Package Scope</p>
+    <p style="color: #E5E5E5; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      For the first release (v0.1.0), we'll build:
+    </p>
+    <ol style="padding-left: 1.5rem; color: #E5E5E5; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.35rem;"><strong>CLI tool</strong> (<code style="background: #525252; color: #E5E5E5; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem;">npx visual-code-editor init</code>)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Vite plugin</strong> (works with Laravel Vite, React, Vue)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Frontend injector</strong> (overlay UI, element selector)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>ProjectDetector</strong> (framework auto-detection)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Context capture</strong> (DOM + screenshot, no OCR yet)</li>
+      <li style="margin-bottom: 0.35rem;"><strong>Gateway client</strong> (send context to AI)</li>
+      <li style="margin-bottom: 0;">Test with <strong>Laravel + Livewire + Tailwind</strong> (your ZIMA project)</li>
+    </ol>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    Ready to start building the package structure? I can generate the initial npm package setup with proper TypeScript config, build scripts, and the CLI tool.
+  </p>
+</div>
+
+Human: currently we are using webchat type flow to talk to the llm, we need to add another type called "visualEditor" to receive prompts from the installed npm install --save-dev @zima/visual-code-editor in some server somewhere
+
+Assistant:

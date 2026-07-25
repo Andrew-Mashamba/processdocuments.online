@@ -1,0 +1,9 @@
+{
+  "name": "decompress_text",
+  "description": "Decompress GZIP file",
+  "usage": "decompress_text(file, output_file?)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool decompress_text"
+}

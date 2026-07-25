@@ -1,0 +1,60 @@
+# PDF PROCESSING TEST PROMPTS
+# Copy and paste these prompts to test PDF tool functionality
+
+## PDF_001: Create PDF Report
+Create a professional PDF document from the quarterly report in tests/input/report_content.txt. Use proper formatting with headers, bullet points, and clear section breaks.
+
+---
+
+## PDF_002: Create PDF with Watermark
+Create a PDF from tests/input/report_content.txt and add a diagonal "CONFIDENTIAL" watermark on every page.
+
+---
+
+## PDF_003: Create Protected PDF
+Create a PDF from tests/input/sample_data.json with employee information and protect it with password "secure123". Disable printing and copying.
+
+---
+
+## PDF_004: JSON to PDF Table
+Convert the employee data from tests/input/sample_data.json to a nicely formatted PDF with a professional table showing all employees.
+
+---
+
+## PDF_005: Merge PDFs
+Create two separate PDF documents (one from the report, one from the employee data) and then merge them into a single PDF.
+
+---
+
+## PDF_006: Split PDF
+Create a multi-page PDF from the quarterly report and then split it into individual pages as separate PDF files.
+
+---
+
+## PDF_007: Compress PDF
+Create a PDF from the report content and compress it to minimize file size while maintaining readability.
+
+---
+
+## PDF_008: Add PDF Annotations
+Create a PDF from the report and add a sticky note annotation on page 1 with the text "Review needed".
+
+---
+
+## PDF_009: Set PDF Metadata
+Create a PDF from the report and set metadata: Title="Q4 2024 Report", Author="Acme Corporation", Subject="Quarterly Business Review".
+
+---
+
+## PDF_010: Redact PDF Content
+Create a PDF from tests/input/report_content.txt and redact (black out) all email addresses and the word "CONFIDENTIAL".
+
+---
+
+## PDF_011: Sign PDF
+Create a PDF document from the report and digitally sign it with a test certificate.
+
+---
+
+## PDF_012: Create PDF Forms
+Create an interactive PDF form with fields for: Name (text), Department (dropdown), Start Date (date), and Agree to Terms (checkbox).

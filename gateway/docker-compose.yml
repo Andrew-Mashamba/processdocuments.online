@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Redis for Bull job queue
+  redis:
+    image: redis:7-alpine
+    container_name: zima-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # ZIMA Gateway (Node.js)
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zima-gateway
+    ports:
+      - "5555:5555"
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=production
+      - PORT=5555
+      - REDIS_URL=redis://redis:6379
+      - QUEUE_CONCURRENCY=5
+    volumes:
+      - ./storage:/app/storage
+      - ./workspace:/app/workspace
+      - ~/.zima:/root/.zima
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+    driver: local

@@ -1,0 +1,9 @@
+{
+  "name": "duplicate_slides",
+  "description": "Duplicate slides in presentation",
+  "usage": "duplicate_slides(file, slides[], copies?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool duplicate_slides"
+}

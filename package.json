@@ -1,0 +1,22 @@
+{
+  "name": "qwen-workspace",
+  "version": "1.0.0",
+  "description": "AI coding workspace using OpenCode with Qwen2.5-Coder-14B via Ollama",
+  "private": true,
+  "scripts": {
+    "ai": "opencode"
+  },
+  "keywords": [
+    "opencode",
+    "qwen",
+    "ollama",
+    "ai-coding"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "pdfkit": "^0.17.2"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  }
+}

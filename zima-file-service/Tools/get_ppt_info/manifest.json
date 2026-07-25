@@ -1,0 +1,9 @@
+{
+  "name": "get_ppt_info",
+  "description": "Get presentation info",
+  "usage": "get_ppt_info(file)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool get_ppt_info"
+}

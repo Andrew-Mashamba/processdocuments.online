@@ -1,0 +1,9 @@
+{
+  "name": "add_watermark",
+  "description": "Add text watermark to PDF pages",
+  "usage": "add_watermark(file, text, opacity?, font_size?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_watermark"
+}

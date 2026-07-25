@@ -1,0 +1,9 @@
+{
+  "name": "validate_json",
+  "description": "Validate JSON syntax",
+  "usage": "validate_json(file)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool validate_json"
+}

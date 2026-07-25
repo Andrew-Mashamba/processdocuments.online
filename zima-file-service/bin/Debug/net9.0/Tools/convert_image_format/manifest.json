@@ -1,0 +1,9 @@
+{
+  "name": "convert_image_format",
+  "description": "Convert image format (PNG, JPG, WebP, etc.)",
+  "usage": "convert_image_format(file, format, quality?, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool convert_image_format"
+}

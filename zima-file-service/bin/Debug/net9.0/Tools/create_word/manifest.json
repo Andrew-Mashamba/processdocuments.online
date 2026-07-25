@@ -1,0 +1,25 @@
+{
+  "name": "create_word",
+  "description": "Create Word documents (.docx) with text, headings, tables, and formatting",
+  "usage": "create_word(file_path, title?, content[])",
+  "category": "document",
+  "inputs": {
+    "file_path": {
+      "type": "string",
+      "description": "Filename or full path"
+    },
+    "title": {
+      "type": "string",
+      "description": "Document title"
+    },
+    "content": {
+      "type": "array",
+      "description": "Content blocks"
+    }
+  },
+  "required": [
+    "file_path",
+    "content"
+  ],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool create_word"
+}

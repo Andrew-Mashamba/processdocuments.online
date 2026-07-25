@@ -1,0 +1,14 @@
+# Workspace .gitignore
+# Track template files, ignore generated logs
+
+# Ignore daily memory logs
+memory/*.md
+
+# Ignore user-specific files (if they override templates)
+USER.md
+IDENTITY.md
+HEARTBEAT.md
+MEMORY.md
+
+# Keep the memory directory structure
+!memory/.gitkeep

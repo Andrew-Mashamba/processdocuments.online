@@ -1,0 +1,9 @@
+{
+  "name": "merge_workbooks",
+  "description": "Merge multiple Excel workbooks",
+  "usage": "merge_workbooks(files[], output_file, mode?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool merge_workbooks"
+}

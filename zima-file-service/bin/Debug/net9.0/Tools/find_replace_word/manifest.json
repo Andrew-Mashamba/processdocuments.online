@@ -1,0 +1,9 @@
+{
+  "name": "find_replace_word",
+  "description": "Find and replace in Word document",
+  "usage": "find_replace_word(file, find, replace, use_regex?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool find_replace_word"
+}

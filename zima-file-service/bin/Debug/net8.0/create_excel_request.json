@@ -1,0 +1,1 @@
+{"jsonrpc": "2.0", "id": 1, "method": "tools/call", "params": {"name": "create_excel", "arguments": {"file_path": "sample_data.xlsx", "sheet_name": "Sample Data", "rows": [["Name", "Age", "City"], ["John Smith", 28, "New York"], ["Sarah Johnson", 35, "Los Angeles"]], "auto_fit_columns": true}}}

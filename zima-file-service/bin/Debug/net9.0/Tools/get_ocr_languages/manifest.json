@@ -1,0 +1,9 @@
+{
+  "name": "get_ocr_languages",
+  "description": "Get available OCR languages",
+  "usage": "get_ocr_languages()",
+  "category": "ocr",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool get_ocr_languages"
+}

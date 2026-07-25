@@ -1,0 +1,9 @@
+{
+  "name": "json_to_yaml",
+  "description": "Convert JSON to YAML",
+  "usage": "json_to_yaml(file, output_file?)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool json_to_yaml"
+}

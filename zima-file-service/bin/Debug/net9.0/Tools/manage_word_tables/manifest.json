@@ -1,0 +1,9 @@
+{
+  "name": "manage_word_tables",
+  "description": "Extract, remove, or count tables",
+  "usage": "manage_word_tables(file, action, table_index?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool manage_word_tables"
+}

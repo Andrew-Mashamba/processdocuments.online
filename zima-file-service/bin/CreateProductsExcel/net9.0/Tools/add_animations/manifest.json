@@ -1,0 +1,9 @@
+{
+  "name": "add_animations",
+  "description": "Add animations to presentation elements",
+  "usage": "add_animations(file, animation_type, trigger?, duration_ms?, slides?, target?, output_file?)",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_animations"
+}

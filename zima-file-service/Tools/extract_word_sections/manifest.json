@@ -1,0 +1,9 @@
+{
+  "name": "extract_word_sections",
+  "description": "Extract specific sections from Word document",
+  "usage": "extract_word_sections(file, sections[])",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool extract_word_sections"
+}

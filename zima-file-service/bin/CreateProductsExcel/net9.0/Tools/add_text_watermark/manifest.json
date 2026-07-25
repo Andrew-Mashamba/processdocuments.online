@@ -1,0 +1,9 @@
+{
+  "name": "add_text_watermark",
+  "description": "Add text watermark to image",
+  "usage": "add_text_watermark(file, text, position?, font_size?, color?, opacity?, rotation?, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_text_watermark"
+}

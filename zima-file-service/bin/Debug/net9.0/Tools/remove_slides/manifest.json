@@ -1,0 +1,9 @@
+{
+  "name": "remove_slides",
+  "description": "Remove slides from presentation",
+  "usage": "remove_slides(file, slides[])",
+  "category": "powerpoint",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool remove_slides"
+}

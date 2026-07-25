@@ -1,0 +1,9 @@
+{
+  "name": "add_header_footer",
+  "description": "Add header/footer to Word document",
+  "usage": "add_header_footer(file, header?, footer?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool add_header_footer"
+}

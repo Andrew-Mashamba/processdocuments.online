@@ -1,0 +1,9 @@
+{
+  "name": "excel_to_pdf",
+  "description": "Convert Excel spreadsheet to PDF",
+  "usage": "excel_to_pdf(file, output_file?, sheets?, landscape?, fit_to_page?)",
+  "category": "conversion",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool excel_to_pdf"
+}

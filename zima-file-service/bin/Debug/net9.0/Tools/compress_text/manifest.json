@@ -1,0 +1,9 @@
+{
+  "name": "compress_text",
+  "description": "Compress text file using GZIP",
+  "usage": "compress_text(file, output_file?)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool compress_text"
+}

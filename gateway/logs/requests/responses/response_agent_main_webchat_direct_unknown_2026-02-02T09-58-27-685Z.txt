@@ -1,0 +1,545 @@
+=== RESPONSE ===
+Request ID: 2cdd30a9-bdef-42a2-96cf-669a81d843f1
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T09:58:27.685Z
+Length: 25037 characters
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">🧠 Project Awareness - Critical Intelligence Layer</h1>
+
+  <p style="color: #525252; margin-bottom: 1rem; font-size: 0.875rem;">
+    Absolutely right! I need <strong>project context discovery</strong> to work intelligently across different codebases. Let me map out what I need to detect and how.
+  </p>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔍 Context Discovery Strategy</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Phase 1: Initial Project Analysis</h3>
+    
+    <p style="color: #525252; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      When the inspector tool is first activated, send me:
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Information</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">How to Get</th>
+          <th style="padding: 10px 12px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">Why Needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Project Type</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Check window.Laravel, window.Livewire, window.React, etc</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Know framework conventions</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Current Page/Route</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">window.location.pathname + route name</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Map URL to source file</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Language/Locale</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">document.documentElement.lang + meta tags</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Multi-language support</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Active Components</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Livewire.all(), React devtools, Vue devtools</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Know component tree</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Project Root</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Backend: git root detection</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Absolute file paths</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">CSS Framework</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Check stylesheets, computed styles patterns</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Generate matching styles</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252; font-weight: 600;">Asset Pipeline</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Vite manifest, Mix, Webpack detection</td>
+          <td style="padding: 10px 12px; font-size: 0.8125rem; color: #525252;">Know build system</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📋 Project Context Payload</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1rem; margin: 0.75rem 0; font-size: 0.7rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// Frontend sends this on inspector activation:
+{
+  project: {
+    type: "laravel-livewire",
+    version: "10.x",
+    root: "/Users/andrew/projects/zima-frontend",
+    structure: {
+      views: "resources/views",
+      components: "app/Livewire",
+      assets: "resources"
+    }
+  },
+  
+  page: {
+    url: "/dashboard",
+    routeName: "dashboard",
+    title: "Dashboard - ZIMA",
+    lang: "en",
+    locale: "en_US"
+  },
+  
+  framework: {
+    frontend: "livewire",
+    css: "tailwindcss",
+    js: "alpinejs",
+    buildTool: "vite"
+  },
+  
+  components: {
+    active: [
+      {
+        name: "ChatInterface",
+        file: "app/Livewire/ChatInterface.php",
+        view: "resources/views/livewire/chat-interface.blade.php",
+        id: "component-abc123"
+      }
+    ]
+  },
+  
+  env: {
+    mode: "development",
+    debug: true,
+    appUrl: "http://localhost:8000"
+  }
+}</pre>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🎯 Per-Selection Context</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">When User Selects an Area</h3>
+    
+    <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0; font-size: 0.7rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// Combined payload:
+{
+  // VISUAL CONTEXT
+  screenshot: "base64_png",
+  boundingBox: { x: 200, y: 350, width: 500, height: 100 },
+  
+  // DOM CONTEXT
+  element: {
+    tag: "div",
+    id: "chat-header",
+    classes: ["flex", "items-center", "justify-between", "p-4"],
+    attributes: {
+      "wire:id": "abc123",
+      "data-component": "ChatInterface"
+    }
+  },
+  
+  // FILE MAPPING
+  source: {
+    component: "ChatInterface",
+    phpFile: "app/Livewire/ChatInterface.php",
+    bladeFile: "resources/views/livewire/chat-interface.blade.php",
+    lineNumber: 45, // approximate
+    selector: "#chat-header"
+  },
+  
+  // SURROUNDING CONTEXT
+  context: {
+    parent: ".main-container",
+    siblings: {
+      before: [".logo-section"],
+      after: [".user-menu", ".settings-icon"]
+    },
+    children: 2,
+    depth: 3
+  },
+  
+  // COMPUTED STYLE
+  styles: {
+    display: "flex",
+    background: "#ffffff",
+    padding: "16px",
+    // ... all computed styles
+  },
+  
+  // OCR (if text present)
+  ocr: {
+    text: "Chat Dashboard",
+    language: "en",
+    confidence: 0.95
+  },
+  
+  // USER INTENT
+  command: {
+    type: "voice", // or "text"
+    text: "Add a download button here",
+    timestamp: "2026-02-02T10:30:00Z"
+  },
+  
+  // PROJECT CONTEXT (reference)
+  projectId: "zima-frontend-abc123"
+}</pre>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔧 Auto-Detection Implementation</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Frontend: Project Detector (JavaScript)</h3>
+    
+    <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0; font-size: 0.7rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// Auto-detect project type and context
+class ProjectDetector {
+  static detect() {
+    return {
+      type: this.detectFramework(),
+      page: this.detectPage(),
+      language: this.detectLanguage(),
+      components: this.detectComponents(),
+      css: this.detectCSS(),
+      buildTool: this.detectBuildTool()
+    };
+  }
+  
+  static detectFramework() {
+    if (window.Livewire) return 'laravel-livewire';
+    if (window.React) return 'react';
+    if (window.Vue) return 'vue';
+    if (window.Angular) return 'angular';
+    if (document.querySelector('[wire\\:id]')) return 'livewire';
+    if (document.querySelector('[data-reactroot]')) return 'react';
+    return 'unknown';
+  }
+  
+  static detectPage() {
+    return {
+      url: window.location.pathname,
+      title: document.title,
+      routeName: this.getRouteName(),
+      meta: this.getMetaTags()
+    };
+  }
+  
+  static getRouteName() {
+    // Laravel: check window.route
+    if (window.route && typeof window.route === 'function') {
+      return window.route().current();
+    }
+    
+    // Check meta tags
+    const routeMeta = document.querySelector('meta[name="route-name"]');
+    return routeMeta ? routeMeta.content : window.location.pathname;
+  }
+  
+  static detectLanguage() {
+    return {
+      lang: document.documentElement.lang || 'en',
+      locale: navigator.language,
+      dir: document.documentElement.dir || 'ltr'
+    };
+  }
+  
+  static detectComponents() {
+    const components = [];
+    
+    // Livewire
+    if (window.Livewire) {
+      const livewireComponents = window.Livewire.all();
+      components.push(...livewireComponents.map(c => ({
+        type: 'livewire',
+        name: c.__name,
+        id: c.id,
+        element: c.el
+      })));
+    }
+    
+    // Custom data attributes
+    document.querySelectorAll('[data-component]').forEach(el => {
+      components.push({
+        type: 'custom',
+        name: el.dataset.component,
+        element: el
+      });
+    });
+    
+    return components;
+  }
+  
+  static detectCSS() {
+    // Check loaded stylesheets
+    const stylesheets = Array.from(document.styleSheets);
+    
+    if (stylesheets.some(s => s.href?.includes('tailwind'))) return 'tailwindcss';
+    if (stylesheets.some(s => s.href?.includes('bootstrap'))) return 'bootstrap';
+    
+    // Check class patterns
+    const bodyClasses = document.body.className;
+    if (/\b(flex|grid|p-\d+|m-\d+)\b/.test(bodyClasses)) return 'tailwindcss';
+    
+    return 'custom';
+  }
+  
+  static detectBuildTool() {
+    // Check script sources
+    const scripts = Array.from(document.scripts);
+    
+    if (scripts.some(s => s.src.includes('vite'))) return 'vite';
+    if (scripts.some(s => s.src.includes('mix'))) return 'laravel-mix';
+    if (scripts.some(s => s.src.includes('webpack'))) return 'webpack';
+    
+    return 'unknown';
+  }
+}</pre>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🗺️ File Path Mapping</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 0.75rem 0;">Backend: Route to File Mapper</h3>
+    
+    <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0; font-size: 0.7rem; font-family: monospace; overflow-x: auto;">
+<pre style="margin: 0;">// PHP Backend: Map component to files
+class ComponentResolver {
+  public function resolve($componentName, $selector) {
+    // For Livewire components
+    if ($this->isLivewireComponent($componentName)) {
+      return [
+        'php_file' => $this->getLivewireClassFile($componentName),
+        'blade_file' => $this->getLivewireView($componentName),
+        'type' => 'livewire'
+      ];
+    }
+    
+    // For regular routes
+    if ($routeName = request()->route()?->getName()) {
+      return [
+        'controller' => $this->getControllerFile($routeName),
+        'view' => $this->getViewFile($routeName),
+        'type' => 'blade'
+      ];
+    }
+    
+    // Fallback: analyze selector
+    return $this->guessFileFromSelector($selector);
+  }
+  
+  private function getLivewireClassFile($componentName) {
+    // Convert dot notation to path
+    // chat-interface → app/Livewire/ChatInterface.php
+    $path = str_replace(['.', '-'], ['/', ' '], $componentName);
+    $path = str_replace(' ', '', ucwords($path, ' '));
+    
+    return app_path("Livewire/{$path}.php");
+  }
+  
+  private function getLivewireView($componentName) {
+    // chat-interface → resources/views/livewire/chat-interface.blade.php
+    return resource_path("views/livewire/{$componentName}.blade.php");
+  }
+}</pre>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🧠 My Intelligence Layer</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <p style="color: #525252; margin: 0 0 0.75rem 0; font-size: 0.8125rem;">
+      When I receive the context payload, I:
+    </p>
+
+    <ol style="padding-left: 1.5rem; color: #525252; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.75rem;">
+        <strong>Understand Project Type</strong>
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.35rem 0;">
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Laravel → Know Blade syntax, Livewire conventions</li>
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">React → Know JSX, component patterns</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Vue → Know template syntax, composition API</li>
+        </ul>
+      </li>
+      
+      <li style="margin-bottom: 0.75rem;">
+        <strong>Map to Source Files</strong>
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.35rem 0;">
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Component name → Exact PHP + Blade file paths</li>
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Use Read tool to fetch current code</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Understand existing patterns in the file</li>
+        </ul>
+      </li>
+      
+      <li style="margin-bottom: 0.75rem;">
+        <strong>Match Code Style</strong>
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.35rem 0;">
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Tailwind → Generate utility classes</li>
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Bootstrap → Use Bootstrap components</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Custom CSS → Match existing class names</li>
+        </ul>
+      </li>
+      
+      <li style="margin-bottom: 0.75rem;">
+        <strong>Language Awareness</strong>
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.35rem 0;">
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Generate text in correct language</li>
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Use proper RTL/LTR layout</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Match translation file patterns</li>
+        </ul>
+      </li>
+      
+      <li style="margin-bottom: 0;">
+        <strong>Generate Appropriate Code</strong>
+        <ul style="list-style-type: disc; padding-left: 1.5rem; margin: 0.35rem 0;">
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Follow project conventions</li>
+          <li style="margin-bottom: 0.25rem; font-size: 0.75rem;">Use correct syntax for framework</li>
+          <li style="margin-bottom: 0; font-size: 0.75rem;">Match existing code style</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">📊 Project Intelligence Examples</h2>
+
+  <div style="display: grid; gap: 0.75rem; margin: 1rem 0;">
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">🎯 Laravel + Livewire + Tailwind</p>
+      <div style="background: #FAFAFA; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.7rem; font-family: monospace;">
+<pre style="margin: 0;">Command: "Add download button"
+I generate:
+&lt;button 
+  wire:click="download"
+  class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
+&gt;
+  Download
+&lt;/button&gt;</pre>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">⚛️ React + Bootstrap + Spanish</p>
+      <div style="background: #FAFAFA; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.7rem; font-family: monospace;">
+<pre style="margin: 0;">Command: "Add download button"
+I generate:
+&lt;Button 
+  variant="primary"
+  onClick={handleDownload}
+  className="ms-2"
+&gt;
+  Descargar
+&lt;/Button&gt;</pre>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 12px; padding: 1rem;">
+      <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">🟢 Vue 3 + Vuetify + RTL Arabic</p>
+      <div style="background: #FAFAFA; padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; font-size: 0.7rem; font-family: monospace;">
+<pre style="margin: 0;">Command: "Add download button"
+I generate:
+&lt;v-btn 
+  color="primary"
+  @click="download"
+  prepend-icon="mdi-download"
+&gt;
+  تحميل
+&lt;/v-btn&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">🔄 Session Memory</h2>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.8125rem; color: #1A1A1A; margin: 0 0 0.5rem 0; font-weight: 600;">Project Context Caching</p>
+    <p style="color: #525252; margin: 0; font-size: 0.8125rem;">
+      The initial project detection only happens <strong>once per session</strong>. I store it in memory:
+    </p>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0.5rem 0 0 0; font-size: 0.75rem;">
+      <li style="margin-bottom: 0.25rem;">First activation: Full project scan + detection</li>
+      <li style="margin-bottom: 0.25rem;">Subsequent selections: Just send element context</li>
+      <li style="margin-bottom: 0;">I remember the project structure throughout the session</li>
+    </ul>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">✅ Complete Flow with Project Awareness</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">1</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">User Opens Inspector</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Frontend runs ProjectDetector.detect() and sends full context to me</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">2</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">I Analyze Project</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Laravel + Livewire + Tailwind + English → Store in session context</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">3</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">User Selects Area</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Screenshot + DOM + component info sent to me</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">4</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">I Map to Files</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">ChatInterface → app/Livewire/ChatInterface.php + blade file</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">5</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">I Read Current Code</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Understand existing structure, patterns, style</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px; margin-bottom: 0.75rem;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">6</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Generate Code</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Blade syntax + wire:click + Tailwind classes + English text</p>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: start; gap: 12px;">
+      <div style="width: 32px; height: 32px; background: #1A1A1A; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; color: #FFFFFF; font-size: 0.75rem;">7</div>
+      <div>
+        <p style="font-weight: 600; color: #1A1A1A; margin: 0 0 0.25rem 0; font-size: 0.8125rem;">Apply Changes</p>
+        <p style="color: #737373; margin: 0; font-size: 0.75rem;">Write to correct file, Livewire hot-reloads page</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0;">
+    <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 0.75rem 0;">🚀 Ready to Implement</p>
+    <p style="color: #E5E5E5; margin: 0 0 0.5rem 0; font-size: 0.8125rem;">
+      This project awareness system makes me truly universal. I can work on:
+    </p>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #E5E5E5; margin: 0; font-size: 0.8125rem;">
+      <li style="margin-bottom: 0.25rem;">Any Laravel project (with or without Livewire)</li>
+      <li style="margin-bottom: 0.25rem;">React/Next.js applications</li>
+      <li style="margin-bottom: 0.25rem;">Vue/Nuxt applications</li>
+      <li style="margin-bottom: 0.25rem;">Any language (detect from <code style="background: #525252; padding: 2px 4px; border-radius: 4px; font-size: 0.7rem;">lang</code> attribute)</li>
+      <li style="margin-bottom: 0;">Any CSS framework (detect from classes/stylesheets)</li>
+    </ul>
+  </div>
+
+  <p style="color: #525252; margin: 1.5rem 0 0 0; font-size: 0.875rem;">
+    Should I start building the ProjectDetector class and the backend context resolver? This is the foundation that makes the visual editing system work across any project.
+  </p>
+</div>

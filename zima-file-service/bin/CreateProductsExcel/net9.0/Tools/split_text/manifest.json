@@ -1,0 +1,9 @@
+{
+  "name": "split_text",
+  "description": "Split text file by lines, pattern, or size",
+  "usage": "split_text(file, mode, options)",
+  "category": "text",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool split_text"
+}

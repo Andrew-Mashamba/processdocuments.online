@@ -1,0 +1,55 @@
+# WORD PROCESSING TEST PROMPTS
+# Copy and paste these prompts to test Word tool functionality
+
+## WORD_001: Create Word Document
+Create a Word document from tests/input/report_content.txt with proper headings (Heading 1, Heading 2), bullet points, and professional formatting.
+
+---
+
+## WORD_002: Create Word with Table
+Create a Word document that includes the employee data from tests/input/sample_data.json as a professionally formatted table with alternating row colors and bold headers.
+
+---
+
+## WORD_003: Add Headers and Footers
+Create a Word document from tests/input/report_content.txt. Add a header with "Acme Corporation - Confidential" and a footer with page numbers centered.
+
+---
+
+## WORD_004: Protected Word Document
+Create a Word document from the quarterly report and protect it with password "readonly123" to prevent editing but allow reading.
+
+---
+
+## WORD_005: Mail Merge
+Create a personalized welcome letter template and merge it with employee data from tests/input/sample_data.json to generate individual letters for each employee.
+
+---
+
+## WORD_006: Add Table of Contents
+Create a Word document from the quarterly report with proper heading styles and generate an automatic table of contents at the beginning.
+
+---
+
+## WORD_007: Find and Replace in Word
+Create a Word document from the report and replace all occurrences of "Widget" with "Product" and "2024" with "2025".
+
+---
+
+## WORD_008: Merge Word Documents
+Create two separate Word documents (one from the report, one with employee data) and merge them into a single document with a page break between sections.
+
+---
+
+## WORD_009: Split Word Document
+Create a Word document from the quarterly report and split it into separate documents for each main section (Executive Summary, Key Highlights, Challenges, Recommendations).
+
+---
+
+## WORD_010: Compress Word Document
+Create a Word document with the report content and compress it to reduce file size.
+
+---
+
+## WORD_011: Convert HTML to Word
+Create a Word document from this HTML content: "<h1>Sales Report</h1><p>This is a <strong>quarterly</strong> sales report.</p><ul><li>Item 1</li><li>Item 2</li></ul>"

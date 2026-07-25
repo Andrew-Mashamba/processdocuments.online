@@ -1,0 +1,9 @@
+{
+  "name": "create_test_certificate",
+  "description": "Create a self-signed test certificate for PDF signing",
+  "usage": "create_test_certificate(name?, organization?, password?, valid_years?)",
+  "category": "pdf",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool create_test_certificate"
+}

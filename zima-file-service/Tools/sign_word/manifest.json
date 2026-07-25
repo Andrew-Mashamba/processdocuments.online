@@ -1,0 +1,9 @@
+{
+  "name": "sign_word",
+  "description": "Sign Word document with digital certificate",
+  "usage": "sign_word(file, certificate, password, signer_name?, signer_title?)",
+  "category": "word",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool sign_word"
+}

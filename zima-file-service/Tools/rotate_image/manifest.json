@@ -1,0 +1,9 @@
+{
+  "name": "rotate_image",
+  "description": "Rotate an image",
+  "usage": "rotate_image(file, degrees, output_file?)",
+  "category": "image",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool rotate_image"
+}

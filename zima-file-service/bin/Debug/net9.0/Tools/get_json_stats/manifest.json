@@ -1,0 +1,9 @@
+{
+  "name": "get_json_stats",
+  "description": "Get JSON file statistics",
+  "usage": "get_json_stats(file)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool get_json_stats"
+}

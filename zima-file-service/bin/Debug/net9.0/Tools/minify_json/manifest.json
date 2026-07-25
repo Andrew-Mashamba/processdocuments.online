@@ -1,0 +1,9 @@
+{
+  "name": "minify_json",
+  "description": "Minify JSON (remove whitespace)",
+  "usage": "minify_json(file, output_file)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool minify_json"
+}

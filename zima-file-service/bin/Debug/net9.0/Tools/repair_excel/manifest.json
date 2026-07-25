@@ -1,0 +1,9 @@
+{
+  "name": "repair_excel",
+  "description": "Repair corrupted Excel workbook",
+  "usage": "repair_excel(file, output_file?)",
+  "category": "excel",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool repair_excel"
+}

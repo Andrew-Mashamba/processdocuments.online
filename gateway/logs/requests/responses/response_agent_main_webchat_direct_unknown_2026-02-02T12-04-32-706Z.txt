@@ -1,0 +1,169 @@
+=== RESPONSE ===
+Request ID: 1039300a-1879-4ab3-beac-34a948e58def
+Session Key: agent:main:webchat:direct:unknown
+Timestamp: 2026-02-02T12:04:32.706Z
+Length: 12581 characters
+
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #525252;">
+  
+  <h1 style="font-size: 1.25rem; font-weight: 700; color: #1A1A1A; border-bottom: 1px solid #E5E5E5; padding-bottom: 0.75rem; margin: 0 0 1.5rem 0;">Document Processing Capability Analysis</h1>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 0 0 1.5rem 0; border-radius: 0 12px 12px 0;">
+    <p style="font-size: 0.9375rem; color: #1A1A1A; margin: 0 0 0.5rem 0; font-weight: 600;">Current Status</p>
+    <p style="color: #525252; margin: 0; font-size: 0.8125rem;">
+      I have access to <strong>217 ZIMA tools</strong> via the MCP gateway. Let me analyze what's missing from comprehensive document processing capabilities.
+    </p>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">Gap Analysis by Category</h2>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 1rem 0;">🔴 Critical Gaps</h3>
+    
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5; width: 35%;">FORMAT</th>
+          <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">MISSING CAPABILITIES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Video Files</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No video processing (MP4, AVI, MOV) - no transcription, editing, metadata extraction, thumbnail generation</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Audio Files</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No audio processing (MP3, WAV, FLAC) - no transcription, conversion, metadata editing. TTS exists but no STT (speech-to-text)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">CAD/Technical</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No CAD format support (DWG, DXF, STEP, STL) - no engineering/architectural document processing</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Databases</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No direct database tools (SQLite, MySQL, PostgreSQL exports/imports) - limited to CSV/JSON conversion</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Archives</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No ZIP/RAR/7z compression tools - only individual file GZIP compression exists</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 1rem 0;">🟡 Moderate Gaps</h3>
+    
+    <table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden;">
+      <thead>
+        <tr style="background: #FAFAFA;">
+          <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5; width: 35%;">CATEGORY</th>
+          <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">LIMITATIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">E-book Formats</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No EPUB, MOBI, AZW support - can't create/convert e-books</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Vector Graphics</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No SVG editing/optimization, no EPS/AI format support</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Advanced OCR</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Basic OCR exists, but missing: handwriting recognition, form field extraction, table structure detection</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E5E5E5;">
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Markdown Advanced</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">No markdown parsing/conversion tools, no frontmatter extraction, no Mermaid diagram rendering</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Spreadsheet Analysis</td>
+          <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Can create/edit Excel, but missing: advanced data analysis, statistical functions, macro execution</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 1.25rem; margin: 1rem 0;">
+    <h3 style="font-size: 0.9375rem; font-weight: 600; color: #1A1A1A; margin: 0 0 1rem 0;">🟢 Minor Gaps</h3>
+    
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #525252; margin: 0;">
+      <li style="margin-bottom: 0.5rem; font-size: 0.875rem;"><strong>RTF Files:</strong> No Rich Text Format support</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.875rem;"><strong>LaTeX:</strong> No TeX/LaTeX document generation or compilation</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.875rem;"><strong>Fonts:</strong> No font file manipulation (TTF, OTF, WOFF)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.875rem;"><strong>GIS/Maps:</strong> No geospatial document formats (KML, GeoJSON, Shapefiles)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.875rem;"><strong>3D Models:</strong> No 3D file support (OBJ, FBX, GLTF)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.875rem;"><strong>Calendaring:</strong> No iCal/ICS file generation</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.875rem;"><strong>Barcode/QR:</strong> No barcode generation or reading</li>
+    </ul>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">What I Do Well</h2>
+
+  <div style="background: #1A1A1A; color: #E5E5E5; border-radius: 12px; padding: 1.25rem; margin: 1rem 0;">
+    <p style="color: #E5E5E5; margin: 0 0 1rem 0; font-size: 0.8125rem;">
+      <strong>Comprehensive coverage for business documents:</strong>
+    </p>
+    <ul style="list-style-type: disc; padding-left: 1.5rem; color: #E5E5E5; margin: 0;">
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Office Suite: Excel, Word, PowerPoint (create, edit, convert, protect, sign)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">PDF: 40+ operations (merge, split, OCR, sign, annotate, protect, compress)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Images: Basic processing (resize, crop, watermark, OCR, redact)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Data Formats: JSON, CSV, XML, YAML, HTML (parse, transform, validate)</li>
+      <li style="margin-bottom: 0.5rem; font-size: 0.8125rem;">Text Processing: 20+ operations (find/replace, encoding, filtering)</li>
+    </ul>
+  </div>
+
+  <h2 style="font-size: 1.1rem; font-weight: 600; color: #1A1A1A; margin: 1.5rem 0 0.75rem 0;">Priority Recommendations</h2>
+
+  <p style="color: #525252; margin: 0 0 1rem 0; font-size: 0.875rem;">
+    Based on typical business/enterprise needs, here's what would add the most value:
+  </p>
+
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #E5E5E5; border-radius: 12px; overflow: hidden; margin: 1rem 0;">
+    <thead>
+      <tr style="background: #FAFAFA;">
+        <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5; width: 10%;">RANK</th>
+        <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5; width: 30%;">CAPABILITY</th>
+        <th style="padding: 12px 16px; text-align: left; font-size: 0.6875rem; font-weight: 600; color: #1A1A1A; text-transform: uppercase; border-bottom: 1px solid #E5E5E5;">USE CASE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid #E5E5E5;">
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 700;">1</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Audio Transcription</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Meeting notes, interview processing, podcast transcripts</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E5E5;">
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 700;">2</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Archive Tools</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">File compression, bulk document delivery, backups</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E5E5;">
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 700;">3</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Database Export</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Direct database to Excel/PDF reporting</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #E5E5E5;">
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 700;">4</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">Video Processing</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Video transcription, thumbnail extraction, metadata</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 700;">5</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #1A1A1A; font-weight: 500;">E-book Creation</td>
+        <td style="padding: 12px 16px; font-size: 0.8125rem; color: #525252;">Documentation publishing, content distribution</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background: #FAFAFA; border-left: 4px solid #1A1A1A; padding: 1rem; margin: 1.5rem 0 0 0; border-radius: 0 12px 12px 0;">
+    <p style="color: #1A1A1A; margin: 0 0 0.5rem 0; font-size: 0.8125rem; font-weight: 600;">Bottom Line</p>
+    <p style="color: #525252; margin: 0; font-size: 0.8125rem;">
+      I'm <strong>highly capable</strong> with business documents (Office, PDF, data formats). The biggest gaps are <strong>multimedia</strong> (audio/video), <strong>archiving</strong> (ZIP), and <strong>specialized formats</strong> (CAD, e-books). For most business document processing workflows, I'm well-equipped.
+    </p>
+  </div>
+
+</div>

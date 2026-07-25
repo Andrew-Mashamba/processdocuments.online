@@ -1,0 +1,9 @@
+{
+  "name": "validate_schema",
+  "description": "Validate JSON against schema",
+  "usage": "validate_schema(file, schema_file)",
+  "category": "json",
+  "inputs": {},
+  "required": [],
+  "command": "dotnet run --project /Volumes/DATA/QWEN/zima-file-service -- mcp-tool validate_schema"
+}
